@@ -1,10 +1,8 @@
 import { Menu, Avatar, Badge, Space, MenuProps, Col } from 'antd'
+import { AiOutlineForm, AiOutlineQuestionCircle, AiOutlineTable } from 'react-icons/ai';
 import { BiBox, BiCodeBlock, BiHomeAlt, BiLeftArrowAlt, BiStore } from 'react-icons/bi'
 import { IoIosSettings } from 'react-icons/io'
-import { Link } from 'react-router-dom';
-
-
-const { SubMenu } = Menu;
+import { Link, useNavigate } from 'react-router-dom';
 
 interface SideMenuProps {
   closeMenu?: () => void;
@@ -13,6 +11,12 @@ interface SideMenuProps {
 type MenuItem = Required<MenuProps>['items'][number];
 
 export const SideMenu = ({ closeMenu }: SideMenuProps) => {
+
+  const navigate = useNavigate()
+
+  const handleNavigate = (href: string) => {
+    navigate(href)
+  }
 
   function getItem(
     label: React.ReactNode,
@@ -65,22 +69,40 @@ export const SideMenu = ({ closeMenu }: SideMenuProps) => {
 
 
   const pages = [
-    { label: 'HOME', icon: <BiHomeAlt size={20} />, key: '/' },
-    // { title: 'STORES', icon: <BiStore size={20} />, href: '/accounts' },
+    { label: 'Formulario', icon: <AiOutlineForm size={20} />, key: '/', onClick: () => handleNavigate('/') },
+    { label: 'Preguntas', icon: <AiOutlineQuestionCircle size={20} />, key: '/questions', onClick: () => handleNavigate('/questions') },
+    { label: 'Tabla', icon: <AiOutlineTable size={20} />, key: '/table', onClick: () => handleNavigate('/table') },
+
     {
       key: "grp",
       icon: null,
       children: [
         {
-          "key": "13",
-          "label": "Option 13"
+          "key": "branding",
+          "label": "Branding"
         },
         {
-          "key": "14",
-          "label": "Option 14"
-        }
+          "key": "creación-de-contenido",
+          "label": "Creación de Contenido"
+        },
+        {
+          "key": "marketing-promocional",
+          "label": "Marketing Promocional"
+        },
+        {
+          "key": "performance-marketing",
+          "label": "Performance Marketing"
+        },
+        {
+          "key": "estrategia-de-crecimiento",
+          "label": "Estrategia de Crecimiento"
+        },
+        {
+          "key": "impacto-positivo",
+          "label": "Impacto Positivo"
+        },
       ],
-      label: "Group",
+      label: "Categoríes",
       type: "group"
     }
   ]
@@ -92,7 +114,8 @@ export const SideMenu = ({ closeMenu }: SideMenuProps) => {
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['sub1']}
       mode="inline"
-      items={items}
+      items={pages}
     />
+
   )
 }
