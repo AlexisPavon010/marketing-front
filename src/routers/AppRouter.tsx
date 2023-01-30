@@ -7,6 +7,8 @@ import { PublicRoute } from "./PublicRoute"
 import { PrivateRoute } from "./PrivateRoute"
 import { DashboardRouter } from "./DashboardRouter"
 import { Login } from "../views"
+import { AdminLayout } from "../components/Layout/AdminLayout"
+import { ClientRouter } from "./ClientRouter"
 
 export const AppRouter = () => {
   return (
@@ -18,8 +20,18 @@ export const AppRouter = () => {
             element={
               <PrivateRoute>
                 <LayoutComponent>
-                  <DashboardRouter />
+                  <ClientRouter />
                 </LayoutComponent>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard/*"
+            element={
+              <PrivateRoute>
+                <AdminLayout>
+                  <DashboardRouter />
+                </AdminLayout>
               </PrivateRoute>
             }
           />
@@ -33,19 +45,6 @@ export const AppRouter = () => {
           />
         </Routes>
       </Provider>
-    </BrowserRouter >
-  )
-}
-
-
-const RouterLayout = () => {
-  return (
-    <div></div>
-  )
-}
-
-const RouterLogin = () => {
-  return (
-    <div></div>
+    </BrowserRouter>
   )
 }

@@ -1,91 +1,124 @@
 import { Card, Space, Table as AntTable, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import moment from 'moment';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getPosts } from '../api/Post';
+import { CATEGORIES } from '../constans';
 
 interface DataType {
   key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
+  categorie: string;
+  brand: string;
+  date: string;
+  score: number;
+  status: 'approved' | 'decline' | 'rejected' | 'pending';
 }
 
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<any> = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: (text) => <a>{text}</a>,
+    title: 'Categoría Postulada',
+    dataIndex: 'categories',
+    key: 'categories',
+    render: (text) => {
+
+      return (
+        // @ts-ignore 
+        <p>{CATEGORIES.find(({ id }) => id === text).name}</p>
+      )
+    }
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Marca',
+    dataIndex: 'brand',
+    key: 'brand',
+    align: 'center'
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: 'Fecha',
+    dataIndex: 'createdAt',
+    key: 'createdAt',
+    render: (_, { date }) => {
+      return <div>{moment(date).format('DD/MM/YYYY, h:mm:ss a')}</div>
+    }
   },
   {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
+    title: 'Stado',
+    key: 'status',
+    dataIndex: 'status',
+    render: (_, { status }) => {
+      let color = status == 'decline' ? 'volcano' : 'geekblue';
+      if (status === 'approved') {
+        color = 'green';
+      }
+      return (
+        <Tag color={color} key={status}>
+          {status.toUpperCase()}
+        </Tag>
+      )
+    }
   },
   {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
-      </Space>
-    ),
+    title: 'Puntuacion Jurado',
+    dataIndex: 'score',
+    key: 'score',
+    align: 'center',
   },
+  {
+    title: 'Puntuacion Essence',
+    dataIndex: 'score',
+    key: 'score',
+    align: 'center'
+  },
+  // {
+  //   title: 'Action',
+  //   key: 'action',
+  //   render: (_, record) => (
+  //     <Space size="middle">
+  //       <a>Aceptar</a>
+  //       <a>Rechazar</a>
+  //       <a>Denegar</a>
+  //     </Space>
+  //   ),
+  // },
 ];
 
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-]
-
 export const Table = () => {
+  const [post, setPost] = useState([])
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
+
+
+  useEffect(() => {
+    setLoading(true)
+    getPosts()
+      .then(({ data }) => {
+        setPost(data)
+        console.log(data)
+      })
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false))
+  }, [])
+
+
   return (
-    <Card>
-      <AntTable columns={columns} dataSource={data} />
+    <Card
+      bodyStyle={{
+        padding: 0
+      }}
+    >
+      <AntTable
+        columns={columns}
+        dataSource={post}
+        scroll={{ x: 1200 }}
+        rowKey='_id'
+        loading={loading}
+        onRow={(record, rowIndex) => ({
+          onClick: event => {
+            navigate(`/dashboard/categories/published/${record._id}`)
+          }
+        })}
+      />
     </Card>
   )
 }

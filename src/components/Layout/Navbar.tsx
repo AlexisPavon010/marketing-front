@@ -32,7 +32,7 @@ export const Navbar = ({ openMenu }: NavbarProps) => {
           <Col flex={1}>
           </Col>
           <Col md={{ span: 'auto' }}>
-            <Avatar size='large' onClick={handleLogout} src={photoURL ? photoURL : ''} alt={displayName} >
+            <Avatar size='large' onClick={handleLogout} src={photoURL ? photoURL : null} alt={displayName} >
               {displayName ? displayName?.charAt(0).toUpperCase() : email?.charAt(0).toUpperCase()}
             </Avatar>
           </Col>

@@ -9,7 +9,7 @@ interface Props {
   children: JSX.Element | JSX.Element[]
 }
 
-export const LayoutComponent = ({ children }: Props) => {
+export const AdminLayout = ({ children }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const openMenu = () => setIsMenuOpen(true)
   const closeMenu = () => setIsMenuOpen(false)
@@ -17,10 +17,10 @@ export const LayoutComponent = ({ children }: Props) => {
   return (
     <>
       <Layout style={{ minHeight: '100vh', flexDirection: 'row' }}>
-        {/* <Sider className="sider" width={250} theme={'light'} >
+        <Sider className="sider" width={250} theme={'light'} >
           <div style={{ height: 64, padding: 16, background: 'rgba(255, 255, 255, 0.2)', borderBottom: '1px solid rgba(5, 5, 5, 0.06)' }} />
           <SideMenu />
-        </Sider> */}
+        </Sider>
         <Drawer
           placement="left"
           closable={false}
@@ -36,11 +36,7 @@ export const LayoutComponent = ({ children }: Props) => {
         </Drawer>
         <Layout>
           <Navbar openMenu={openMenu} />
-          <Content className="main-content" style={{
-            maxWidth: '1280px',
-            width: '100%',
-            margin: '0 auto'
-          }}>
+          <Content className="main-content">
             {children}
           </Content>
         </Layout>

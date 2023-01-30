@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 
 interface PrivateRouteProps {
@@ -8,13 +8,13 @@ interface PrivateRouteProps {
 }
 
 export const PrivateRoute = ({ children }: PrivateRouteProps) => {
-  const { uid } = useSelector((state: any) => state.auth)
+  const { uid, role } = useSelector((state: any) => state.auth)
+  const { pathname } = useLocation()
 
-  console.log('private')
-
-  return (
-    (!uid)
-      ? <Navigate to="/login" />
-      : children
-  )
+  if (!uid) {
+    return <Navigate to="/login" />
+  } else if (pathname === '/' && role == 'admin') {
+    return <Navigate to="/dashboard" />
+  }
+  return children
 }

@@ -60,6 +60,17 @@ code {
   color: rgb(52, 71, 103);
 }
 
+@media screen and (max-width: 480px) {
+  .login__card {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .ant-layout-content {
+    padding: 20px 0 0 0;
+  }
+}
+
 .login__card_header {
   padding: 24px;
 }
@@ -126,3 +137,14 @@ code {
   right: 0.5em;
   margin-left: -50%;
 }
+
+.loading__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* .ant-form-item-control {
+  max-width: unset;
+} */

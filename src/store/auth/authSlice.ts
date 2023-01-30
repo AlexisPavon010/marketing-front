@@ -7,6 +7,7 @@ interface AuthSliceProps {
   displayName: null,
   photoURL: null,
   errorMessage?: null,
+  role: 'admin' | 'client' | null
 }
 
 const userData: AuthSliceProps = JSON.parse(localStorage.getItem('user')!) || {
@@ -16,6 +17,7 @@ const userData: AuthSliceProps = JSON.parse(localStorage.getItem('user')!) || {
   displayName: null,
   photoURL: null,
   errorMessage: null,
+  role: null,
 }
 
 export const authSlice = createSlice({
@@ -29,6 +31,7 @@ export const authSlice = createSlice({
       state.displayName = payload.displayName;
       state.photoURL = payload.photoURL;
       state.errorMessage = null;
+      state.role = payload.role;
     },
     logout: (state, { payload }) => {
       state.status = 'not-authenticated';
@@ -37,6 +40,7 @@ export const authSlice = createSlice({
       state.displayName = null;
       state.photoURL = null;
       state.errorMessage = payload?.errorMessage;
+      state.role = null;
       localStorage.removeItem('user')
     },
     checkingCredentials: (state) => {

@@ -10,6 +10,8 @@ interface SideMenuProps {
 
 type MenuItem = Required<MenuProps>['items'][number];
 
+const { SubMenu } = Menu;
+
 export const SideMenu = ({ closeMenu }: SideMenuProps) => {
 
   const navigate = useNavigate()
@@ -69,41 +71,41 @@ export const SideMenu = ({ closeMenu }: SideMenuProps) => {
 
 
   const pages = [
-    { label: 'Formulario', icon: <AiOutlineForm size={20} />, key: '/', onClick: () => handleNavigate('/') },
-    { label: 'Preguntas', icon: <AiOutlineQuestionCircle size={20} />, key: '/questions', onClick: () => handleNavigate('/questions') },
-    { label: 'Tabla', icon: <AiOutlineTable size={20} />, key: '/table', onClick: () => handleNavigate('/table') },
+    { label: 'Formulario', icon: <AiOutlineForm size={20} />, key: '/dashboard' },
+    { label: 'Preguntas', icon: <AiOutlineQuestionCircle size={20} />, key: '/dashboard/questions' },
+    { label: 'Tabla', icon: <AiOutlineTable size={20} />, key: '/dashboard/table' },
 
     {
       key: "grp",
       icon: null,
       children: [
         {
-          "key": "branding",
+          "key": "/dashboard/categories/branding",
           "label": "Branding"
         },
         {
-          "key": "creación-de-contenido",
+          "key": "/dashboard/categories/creación-de-contenido",
           "label": "Creación de Contenido"
         },
         {
-          "key": "marketing-promocional",
+          "key": "/dashboard/categories/marketing-promocional",
           "label": "Marketing Promocional"
         },
         {
-          "key": "performance-marketing",
+          "key": "/dashboard/categories/performance-marketing",
           "label": "Performance Marketing"
         },
         {
-          "key": "estrategia-de-crecimiento",
+          "key": "/dashboard/categories/estrategia-de-crecimiento",
           "label": "Estrategia de Crecimiento"
         },
         {
-          "key": "impacto-positivo",
+          "key": "/dashboard/categories/impacto-positivo",
           "label": "Impacto Positivo"
         },
       ],
       label: "Categoríes",
-      type: "group"
+      type: "group",
     }
   ]
 
@@ -114,8 +116,38 @@ export const SideMenu = ({ closeMenu }: SideMenuProps) => {
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['sub1']}
       mode="inline"
-      items={pages}
-    />
+    >
+      {pages.map((p) => (
+        p.children ? (
+          <SubMenu
+            key={p.key}
+            icon={p.icon}
+            title={p.label}
+          >
+            {p.children.map((c) => (
+              <Menu.Item
+                key={c.key}
+                onClick={closeMenu}
+              >
+                <Link to={c.key}>
+                  {c.label}
+                </Link>
+              </Menu.Item>
+            ))}
+          </SubMenu>
+        ) : (
+          <Menu.Item
+            key={p.key}
+            icon={p.icon}
+            title={p.label}
+            onClick={closeMenu}
+          >
+            <Link to={p.key}>
+              {p.label}
+            </Link>
+          </Menu.Item>
+        )))}
+    </Menu >
 
   )
 }

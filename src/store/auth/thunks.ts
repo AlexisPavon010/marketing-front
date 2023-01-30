@@ -1,5 +1,7 @@
+import { collection, doc, getDocs, setDoc } from 'firebase/firestore/lite';
+import { FindUserToDb, saveUserToDb } from '../../helpers';
 import { IUser } from '../../interfaces/User';
-import { Dispatch } from '@reduxjs/toolkit'
+import { FirebaseDB } from '../../services/firebase';
 import { loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, singInWithFacebook, singInWithGoogle, singInWithMicrosoft } from '../../services/providers';
 import { checkingCredentials, login, logout } from './authSlice';
 
@@ -54,6 +56,9 @@ export const startCreatingUserWithEmailPassword = ({ email, password, displayNam
     const result = await registerUserWithEmailPassword({ email, password, displayName });
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
+
+
+
     dispatch(login(result))
 
   }
@@ -67,10 +72,20 @@ export const startLoginWithEmailPassword = ({ email, password }: IUser) => {
     dispatch(checkingCredentials());
 
     const result = await loginWithEmailPassword({ email, password });
-
     if (!result.ok) return dispatch(logout(result));
-    dispatch(login(result));
 
+    console.log(result)
+
+    const role = await FindUserToDb(result.uid!)
+
+    if (!role) {
+      await saveUserToDb(result.uid!)
+      console.log('no existe el role')
+    }
+
+    console.log(role, 'role')
+
+    dispatch(login({ ...result, role }));
   }
 }
 
