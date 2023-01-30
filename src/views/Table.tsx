@@ -93,7 +93,7 @@ export const Table = () => {
     setLoading(true)
     getPosts()
       .then(({ data }) => {
-        // setPost(data)
+        setPost(data)
         console.log(data)
       })
       .catch((error) => console.log(error))
