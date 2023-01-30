@@ -1,8 +1,6 @@
-import { Card, Col, Row, Space } from 'antd'
+import { Card, Col, Row } from 'antd'
 import { Link } from 'react-router-dom'
 import { CATEGORIES } from '../constans'
-import { Table } from './Table'
-
 
 export const Home = () => {
   return (
@@ -28,9 +26,6 @@ export const Home = () => {
             </Col>
           ))
         }
-        <Col>
-          <Table />
-        </Col>
       </Row>
     </Card>
   )

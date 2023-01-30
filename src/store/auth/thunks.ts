@@ -20,7 +20,14 @@ export const startGoogleSignIn = () => {
     const result = await singInWithGoogle();
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
-    dispatch(login(result))
+    const role = await FindUserToDb(result.uid!)
+
+    if (!role) {
+      await saveUserToDb(result.uid!)
+      console.log('no existe el role')
+    }
+
+    dispatch(login({ ...result, role }))
   }
 }
 
@@ -31,7 +38,14 @@ export const startFacebookSignIn = () => {
     const result = await singInWithFacebook();
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
-    dispatch(login(result))
+    const role = await FindUserToDb(result.uid!)
+
+    if (!role) {
+      await saveUserToDb(result.uid!)
+      console.log('no existe el role')
+    }
+
+    dispatch(login({ ...result, role }))
   }
 }
 
@@ -43,7 +57,14 @@ export const startMicrosoftSignIn = () => {
     const result = await singInWithMicrosoft();
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
-    dispatch(login(result))
+    const role = await FindUserToDb(result.uid!)
+
+    if (!role) {
+      await saveUserToDb(result.uid!)
+      console.log('no existe el role')
+    }
+
+    dispatch(login({ ...result, role }))
   }
 }
 
@@ -56,11 +77,14 @@ export const startCreatingUserWithEmailPassword = ({ email, password, displayNam
     const result = await registerUserWithEmailPassword({ email, password, displayName });
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
+    const role = await FindUserToDb(result.uid!)
 
+    if (!role) {
+      await saveUserToDb(result.uid!)
+      console.log('no existe el role')
+    }
 
-
-    dispatch(login(result))
-
+    dispatch(login({ ...result, role }))
   }
 
 }
@@ -74,16 +98,12 @@ export const startLoginWithEmailPassword = ({ email, password }: IUser) => {
     const result = await loginWithEmailPassword({ email, password });
     if (!result.ok) return dispatch(logout(result));
 
-    console.log(result)
-
     const role = await FindUserToDb(result.uid!)
 
     if (!role) {
       await saveUserToDb(result.uid!)
       console.log('no existe el role')
     }
-
-    console.log(role, 'role')
 
     dispatch(login({ ...result, role }));
   }
