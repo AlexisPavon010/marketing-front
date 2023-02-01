@@ -1,16 +1,20 @@
-import { Button, Card, Col, Form, Result, Row, Select, Spin, } from 'antd'
-import TextArea from 'antd/es/input/TextArea';
+import { Button, Card, Col, Form, Result, Row, Select, Spin, Input } from 'antd'
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import { createPost } from '../api';
 import { getPostByIdAndCategory } from '../api/Post';
+import { BrandSelect } from '../components/BrandSelect';
 import { AlertModal } from '../components/Modals';
 import { UploadImage } from '../components/UploadImage';
 import { UploadVideo } from '../components/UploadVideo';
 import { CATEGORIES } from '../constans';
+import { IPost } from '../interfaces/Post';
 
 const { Option } = Select;
+const { TextArea } = Input;
 
 const formItemLayout = {
   wrapperCol: { span: 24 },
@@ -19,7 +23,7 @@ const formItemLayout = {
 export const FormScreen = () => {
   const { uid, email, displayName, photoURL, } = useSelector((state: any) => state.auth)
   const [openModal, setOpenModal] = useState(false)
-  const [post, setPost] = useState<any>({})
+  const [post, setPost] = useState<IPost>()
   const [loading, setLoading] = useState(false)
   const [loadingLayout, setLoadingLayout] = useState(true)
   const [posted, setPosted] = useState(false)
@@ -35,9 +39,19 @@ export const FormScreen = () => {
 
   const handelUpdatePost = () => {
     console.log('updateadr')
+    setLoading(true)
     createPost({ ...form.getFieldsValue(), uid, email, displayName, photoURL, })
       .then(() => {
-        // setPosted(true)
+        toast.success('Publicación Guardada con Exito! 🚀', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "light",
+        });
+        setLoading(false)
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false))
@@ -92,7 +106,7 @@ export const FormScreen = () => {
   return (
     <Card style={{ maxWidth: '600px', margin: '0 auto' }}>
 
-      {post.categories === categoria && post.published === true ? (
+      {post?.categories === categoria && post?.published === true ? (
         <Result
           status="success"
           title="Successfully Purchased Cloud Server ECS!"
@@ -112,7 +126,9 @@ export const FormScreen = () => {
           onFinish={onFinish}
           initialValues={{
             categories: categoria,
+            images: post?.images
           }}
+          requiredMark={false}
         >
           <Form.Item
             style={{ width: '100%' }}
@@ -123,7 +139,7 @@ export const FormScreen = () => {
           >
             <Select placeholder="Please select a country"
               style={{ width: '100%' }}
-            // disabled
+              disabled
             >
               {
                 CATEGORIES.map(({ id, name }) => (
@@ -133,23 +149,7 @@ export const FormScreen = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item
-            name="brand"
-            label="Marcas"
-            hasFeedback
-            rules={[{ required: true, message: 'Please select your brand!' }]}
-          >
-            <Select
-              options={[
-                { value: 'Toyota', label: 'Toyota' },
-                { value: 'Corolla', label: 'Corolla' },
-                { value: 'Honda', label: 'Honda' },
-                // { value: '4', label: 'Creación de Contenido', disabled: true },
-                // { value: '5', label: 'Branding' },
-                // { value: '6', label: 'Impacto Positivo' },
-              ]}
-            />
-          </Form.Item>
+          <BrandSelect />
 
           <Form.Item label="Descripcion" name="description" rules={[{ required: true, message: 'Please insert a description!' }]}>
             <TextArea
@@ -186,7 +186,7 @@ export const FormScreen = () => {
               </Button>
             </Col>
             <Col xs={24} md={{ span: 8, offset: 4 }}>
-              <Button block htmlType="button" onClick={handelUpdatePost} >
+              <Button block htmlType="button" loading={loading} onClick={handelUpdatePost} >
                 Guardar
               </Button>
             </Col>
@@ -208,6 +208,3 @@ export const FormScreen = () => {
     </Card >
   )
 }
-
-
-
