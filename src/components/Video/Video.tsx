@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface VideoProps {
   src: string;
   height?: string | number;
@@ -8,13 +6,19 @@ interface VideoProps {
 
 export const Video = ({ src, height = '100%', width = '100%' }: VideoProps) => {
   return (
-    <video
-      width={height}
-      height={width}
-      controls
-    >
-      <source src={src} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+    <div style={{
+      maxWidth: width,
+      maxHeight: height
+    }}>
+      <video
+        style={{
+          width: '100%'
+        }}
+        controls
+      >
+        <source src={src} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
   )
 }
