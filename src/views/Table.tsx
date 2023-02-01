@@ -7,15 +7,16 @@ import { getPosts } from '../api/Post';
 import { CATEGORIES } from '../constans';
 
 interface DataType {
-  key: string;
+  _id: string
   categorie: string;
   brand: string;
-  date: string;
-  score: number;
+  createdAt: string;
+  juryScore: number;
+  adminScore: number;
   status: 'approved' | 'decline' | 'rejected' | 'pending';
 }
 
-const columns: ColumnsType<any> = [
+const columns: ColumnsType<DataType> = [
   {
     title: 'Categoría Postulada',
     dataIndex: 'categories',
@@ -35,15 +36,17 @@ const columns: ColumnsType<any> = [
     align: 'center'
   },
   {
+    align: 'center',
     title: 'Fecha',
     dataIndex: 'createdAt',
     key: 'createdAt',
-    render: (_, { date }) => {
+    render: (date) => {
       return <div>{moment(date).format('DD/MM/YYYY, h:mm:ss a')}</div>
     }
   },
   {
-    title: 'Stado',
+    align: 'center',
+    title: 'Estado',
     key: 'status',
     dataIndex: 'status',
     render: (_, { status }) => {
@@ -60,13 +63,13 @@ const columns: ColumnsType<any> = [
   },
   {
     title: 'Puntuacion Jurado',
-    dataIndex: 'score',
-    key: 'score',
+    dataIndex: 'juryScore',
+    key: 'juryScore',
     align: 'center',
   },
   {
     title: 'Puntuacion Essence',
-    dataIndex: 'score',
+    dataIndex: 'adminScore',
     key: 'score',
     align: 'center'
   },
