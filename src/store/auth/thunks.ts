@@ -23,7 +23,7 @@ export const startGoogleSignIn = () => {
     const role = await FindUserToDb(result.uid!)
 
     if (!role) {
-      await saveUserToDb(result.uid!)
+      await saveUserToDb(result)
       console.log('no existe el role')
     }
 
@@ -41,7 +41,7 @@ export const startFacebookSignIn = () => {
     const role = await FindUserToDb(result.uid!)
 
     if (!role) {
-      await saveUserToDb(result.uid!)
+      await saveUserToDb(result)
       console.log('no existe el role')
     }
 
@@ -60,7 +60,7 @@ export const startMicrosoftSignIn = () => {
     const role = await FindUserToDb(result.uid!)
 
     if (!role) {
-      await saveUserToDb(result.uid!)
+      await saveUserToDb(result)
       console.log('no existe el role')
     }
 
@@ -80,7 +80,7 @@ export const startCreatingUserWithEmailPassword = ({ email, password, displayNam
     const role = await FindUserToDb(result.uid!)
 
     if (!role) {
-      await saveUserToDb(result.uid!)
+      await saveUserToDb(result)
       console.log('no existe el role')
     }
 
@@ -101,7 +101,7 @@ export const startLoginWithEmailPassword = ({ email, password }: IUser) => {
     const role = await FindUserToDb(result.uid!)
 
     if (!role) {
-      await saveUserToDb(result.uid!)
+      await saveUserToDb(result)
       console.log('no existe el role')
     }
 
