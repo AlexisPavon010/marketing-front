@@ -1,8 +1,10 @@
-import { Card, Image, Spin, Typography, Descriptions, Tag, Avatar, Space, Row, Col, Button, Rate } from "antd"
+import { Card, Image, Spin, Typography, Descriptions, Tag, Row, Button, Rate, Form, Select, Col } from "antd"
 import moment from "moment";
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { toast } from "react-toastify";
 import { getPostById } from "../api";
+import { updatePost } from "../api/Post";
 import { Video } from "../components/Video";
 import { CATEGORIES, STATUSES } from "../constans";
 import { IPost } from "../interfaces/Post";
@@ -13,8 +15,42 @@ const { PreviewGroup } = Image;
 export const PublishedCategory = () => {
   const [layoutLoading, setLayoutLoading] = useState(true)
   const [post, setPost] = useState<IPost>()
+  const [form] = Form.useForm();
 
   const { id } = useParams()
+
+  const handleUpdatePost = (values: any) => {
+
+    console.log(values.role)
+
+    let adminScore = post?.adminScore
+    let juryScore = post?.juryScore
+
+    if (values.role === 'jury') {
+      juryScore = values.score
+    } else {
+      adminScore = values.score
+    }
+
+    if (!post?._id) return
+    updatePost(post?._id, { ...values, adminScore, juryScore })
+      .then(({ data }) => {
+        toast.success('Publicacion Enviada con Exito! 🚀', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
+        console.log(data)
+      }
+      )
+      .catch((error) => console.log(error))
+      .finally()
+  }
 
 
   useEffect(() => {
@@ -23,8 +59,7 @@ export const PublishedCategory = () => {
       .then(({ data }) => {
         setPost(data)
         console.log(data)
-      }
-      )
+      })
       .catch()
       .finally(() => setLayoutLoading(false))
   }, [])
@@ -67,10 +102,10 @@ export const PublishedCategory = () => {
       <div style={{
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'center',
+        justifyContent: 'start',
         gap: '10px'
       }}>
-        <PreviewGroup  >
+        <PreviewGroup>
           {post?.images.map((url: string, i: number) => (
             <Image
               style={{
@@ -84,26 +119,63 @@ export const PublishedCategory = () => {
           ))}
         </PreviewGroup>
       </div>
-      <Row gutter={10}>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'start',
+        margin: '20px 0'
+      }}>
         {post?.videos.map((url, i) => (
-          <Video height={380} width={220} src={url} key={i} />
+          <Video height={480} width={720} src={url} key={i} />
         ))}
-      </Row>
+      </div>
       <Row gutter={10}>
-        <Col  >
-          <Button type="primary" htmlType="submit">
-            Enviar
-          </Button>
-        </Col>
-        <Col>
-          <Button htmlType="button" >
-            Rechazar
-          </Button>
-        </Col>
-        <Col>
-          <Rate />
-        </Col>
+        <Form
+          style={{ width: '100%' }}
+          form={form}
+          layout="horizontal"
+          onFinish={handleUpdatePost}
+          initialValues={{
+            status: post?.status,
+            role: 'admin',
+            score: form.getFieldValue('role') === 'jury' ? post?.juryScore : post?.adminScore,
+          }}
+        >
+          <Row gutter={12}>
+            <Col xs={12} md={6}>
+              <Form.Item label='Estado' name="status" >
+                <Select options={STATUSES.map(({ id, name }) => ({ value: id, label: name }))} />
+              </Form.Item>
+            </Col>
+            <Col xs={12} md={6}>
+              <Form.Item label='Role' name="role" >
+                <Select
+                  onChange={(role) => role === 'jury' ? form.setFieldValue('score', post?.juryScore) : form.setFieldValue('score', post?.adminScore)}
+                  options={[
+                    {
+                      value: 'jury',
+                      label: 'Jurado'
+                    },
+                    {
+                      value: 'admin',
+                      label: 'Escens'
+                    },
+                  ]}
+                />
+              </Form.Item>
+            </Col>
+            <Col xs={12} md={6}>
+              <Form.Item label='Puntuación' name="score" >
+                <Rate />
+              </Form.Item>
+            </Col>
+            <Col xs={12} md={6}>
+              <Button block type="primary" htmlType="submit">
+                Enviar
+              </Button>
+            </Col>
+          </Row>
+        </Form>
       </Row>
-    </Card>
+    </Card >
   )
 }
