@@ -71,10 +71,10 @@ export const SideMenu = ({ closeMenu }: SideMenuProps) => {
 
 
   const pages = [
-    { label: 'Formulario', icon: <AiOutlineForm size={20} />, key: '/dashboard' },
+    { label: 'Dashboard', icon: <AiOutlineForm size={20} />, key: '/dashboard' },
     { label: 'Preguntas', icon: <AiOutlineQuestionCircle size={20} />, key: '/dashboard/questions' },
-    { label: 'Tabla', icon: <AiOutlineTable size={20} />, key: '/dashboard/table' },
-
+    { label: 'Table', icon: <AiOutlineTable size={20} />, key: '/dashboard/table' },
+    { label: 'Users', icon: <AiOutlineTable size={20} />, key: '/dashboard/users' },
     {
       key: "grp",
       icon: null,
