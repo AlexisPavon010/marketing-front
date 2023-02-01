@@ -12,7 +12,7 @@ export const AlertModal = ({ openModal, setOpenModal, setPosted, formValues, pos
 
   const handleOk = () => {
     setConfirmLoading(true);
-    if (!post._id) {
+    if (!post?._id) {
       createPost({ ...formValues, uid, published: true, email, displayName, photoURL, })
         .then(() => {
           setPosted(true)
@@ -39,7 +39,7 @@ export const AlertModal = ({ openModal, setOpenModal, setPosted, formValues, pos
 
   return (
     <Modal
-      title="Title"
+      title="Confirmación"
       open={openModal}
       onOk={handleOk}
       confirmLoading={confirmLoading}
