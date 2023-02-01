@@ -9,6 +9,7 @@ export const UploadImage = ({ form }: any) => {
 
   const images: string[] = []
 
+  const CLOUDINARY_URL = process.env.REACT_APP_CLOUDINARY_URL!
 
   const handleUpload = (e: any) => {
     setLoading(true)
@@ -16,7 +17,7 @@ export const UploadImage = ({ form }: any) => {
     formData.append('file', e.file);
     formData.append('upload_preset', 'prueba');
 
-    return axios.post('https://api.cloudinary.com/v1_1/alexispavon010/auto/upload', formData)
+    return axios.post(CLOUDINARY_URL, formData)
       .then((response) => {
         console.log(response)
         setFileList((state: any) => [...state, { uid: response.data.public_id, url: response.data.secure_url, name: response.data.original_filename }]);
