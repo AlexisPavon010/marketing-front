@@ -6,7 +6,8 @@ export interface IPost {
   description: string;
   published:   boolean;
   status:      string;
-  score:       number;
+  adminScore:  number;
+  juryScore:   number;
   createdAt:   Date;
   updatedAt:   Date;
   images:      string[];
