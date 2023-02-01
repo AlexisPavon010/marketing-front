@@ -1,15 +1,25 @@
-import { Button, Card, Checkbox, Col, Form, Input, Row, Typography } from "antd"
+import { Alert, Button, Card, Checkbox, Col, Form, Input, Row, Typography } from "antd"
 import { useSelector, useDispatch } from 'react-redux'
 import { BiLockAlt, BiUser } from 'react-icons/bi';
 import { BsFacebook, BsMicrosoft } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
-import { startFacebookSignIn, startGoogleSignIn, startLoginWithEmailPassword, startMicrosoftSignIn } from "../store/auth/thunks";
+import { useState } from 'react'
+
+import {
+  startFacebookSignIn,
+  startGoogleSignIn,
+  startLoginWithEmailPassword,
+  startMicrosoftSignIn,
+  startCreatingUserWithEmailPassword
+} from "../store/auth/thunks";
+import { AiOutlineMail } from "react-icons/ai";
 
 
 const { Text, Title } = Typography;
 
 export const Login = () => {
-  const { status } = useSelector((state: any) => state.auth)
+  const { status, errorMessage } = useSelector((state: any) => state.auth)
+  const [isRegister, setIsRegister] = useState(false)
   const dispatch = useDispatch()
 
   const handleLogin = ({ email, password }: { email: string, password: string }) => {
@@ -57,55 +67,70 @@ export const Login = () => {
               <p className="divider">or</p>
             </div>
             <div className="login__form">
-              <Form
-                name="normal_login"
-                className="login-form"
-                onFinish={handleLogin}
-              >
-                <Form.Item
-                  name="email"
-                  rules={[{ required: true, message: 'Please input your Username!' }]}
-                >
-                  <Input
-                    size="large"
-                    type="email"
-                    placeholder="Username"
-                    prefix={<BiUser className="site-form-item-icon" />}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="password"
-                  rules={[{ required: true, message: 'Please input your Password!' }]}
-                >
-                  <Input
-                    size="large"
-                    type="password"
-                    placeholder="Password"
-                    prefix={<BiLockAlt className="site-form-item-icon" />}
-                  />
-                </Form.Item>
-                <Form.Item>
-                  <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox>Remember me</Checkbox>
-                  </Form.Item>
-
-                  <a className="login-form-forgot" href="">
-                    Forgot password
-                  </a>
-                </Form.Item>
-
-                <Form.Item>
-                  <Button
-                    htmlType="submit"
-                    size="large"
-                    block
-                    type="primary"
-                    loading={status === 'checking'}
+              {isRegister ? (
+                <RegisterComponent />
+              ) : (
+                <>
+                  {errorMessage && (
+                    <div className="login__error">
+                      <Text style={{ textAlign: 'center' }} type="danger">Usuario o Contraseña Invalidos</Text>
+                    </div>
+                  )}
+                  <Form
+                    name="normal_login"
+                    className="login-form"
+                    onFinish={handleLogin}
                   >
-                    Log in
-                  </Button>
-                </Form.Item>
-              </Form>
+                    <Form.Item
+                      name="email"
+                      rules={[{ required: true, message: 'Please input your Username!' }]}
+                    >
+                      <Input
+                        size="large"
+                        type="email"
+                        placeholder="Username"
+                        prefix={<BiUser />}
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      name="password"
+                      rules={[{ required: true, message: 'Please input your Password!' }]}
+                    >
+                      <Input
+                        size="large"
+                        type="password"
+                        placeholder="Password"
+                        prefix={<BiLockAlt />}
+                      />
+                    </Form.Item>
+
+                    <Form.Item>
+                      <Button
+                        htmlType="submit"
+                        size="large"
+                        block
+                        type="primary"
+                        loading={status === 'checking'}
+                      >
+                        Log in
+                      </Button>
+                    </Form.Item>
+                  </Form>
+                </>
+              )}
+              <div>
+                {isRegister ? (
+                  <div className="login__footer">
+                    {`Already have an account?`}
+                    <a href="#" onClick={() => setIsRegister(false)} >Sign in</a>
+                  </div>
+                ) : (
+                  <div className="login__footer">
+                    {`Don't have an account?`}
+                    <a href="#" onClick={() => setIsRegister(true)} >Sign up</a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -145,5 +170,69 @@ export const Login = () => {
         </Card>
       </Col>
     </Row >
+  )
+}
+
+const RegisterComponent = () => {
+  const { status } = useSelector((state: any) => state.auth)
+  const dispatch = useDispatch()
+
+  const handleRegister = (values: any) => {
+    // @ts-ignore 
+    dispatch(startCreatingUserWithEmailPassword(values))
+  }
+
+  return (
+    <Form
+      name="normal_login"
+      className="login-form"
+      onFinish={handleRegister}
+    >
+      <Form.Item
+        name="displayName"
+        rules={[{ required: true, message: 'Please input your Username!' }]}
+      >
+        <Input
+          size="large"
+          type="text"
+          placeholder="Username"
+          prefix={<BiUser />}
+        />
+      </Form.Item>
+      <Form.Item
+        name="email"
+        rules={[{ required: true, message: 'Please input your Email!' }]}
+      >
+        <Input
+          size="large"
+          type="email"
+          placeholder="Username"
+          prefix={<AiOutlineMail />}
+        />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        rules={[{ required: true, message: 'Please input your Password!' }]}
+      >
+        <Input
+          size="large"
+          type="password"
+          placeholder="Password"
+          prefix={<BiLockAlt />}
+        />
+      </Form.Item>
+
+      <Form.Item>
+        <Button
+          htmlType="submit"
+          size="large"
+          block
+          type="primary"
+          loading={status === 'checking'}
+        >
+          Log in
+        </Button>
+      </Form.Item>
+    </Form >
   )
 }

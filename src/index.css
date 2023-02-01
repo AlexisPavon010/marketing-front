@@ -145,6 +145,12 @@ code {
   height: 100%;
 }
 
-/* .ant-form-item-control {
-  max-width: unset;
-} */
+.login__footer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login__error {
+  text-align: center;
+}
