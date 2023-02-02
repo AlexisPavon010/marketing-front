@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* overflow: hidden; */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.sider {
+  display: block;
+}
+
+@media screen and (max-width: 991px) {
+  .sider {
+    display: none;
+  }
+
+  .content {
+    padding-top: 55px;
+  }
+}
+
+.main-content {
+  padding: 20px 20px 0;
+  margin-bottom: 100px;
+}
+
+.login__title {
+  color: grey !important;
+}
+
+.login__text {
+  color: grey !important;
+}
+
+.login__container {
+  flex-basis: 100% !important;
+  flex-grow: 0 !important;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.login__card {
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: 100vh;
+  opacity: 1;
+  background: transparent;
+  color: rgb(52, 71, 103);
+}
+
+@media screen and (max-width: 480px) {
+  .login__card {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .ant-layout-content {
+    padding: 20px 0 0 0;
+  }
+}
+
+.login__card_header {
+  padding: 24px;
+}
+
+.login__card_text {
+  text-align: center;
+}
+
+.login__card_socials {
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.login__card_socials_facebook {
+  padding: 12px 30px;
+  border: 1px solid #1677ff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.login__card_socials_microsoft {
+  padding: 12px 30px;
+  border: 1px solid #1677ff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.login__card_socials_google {
+  padding: 12px 30px;
+  border: 1px solid #1677ff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.login__card_socials_divider {}
+
+.divider {
+  text-align: center;
+}
+
+.divider::after {
+  left: 0.5em;
+  margin-right: -50%;
+  background: linear-gradient(90deg, hsla(0, 0%, 46%, .4), hsla(0, 0%, 46%, .4), transparent);
+  content: "";
+  display: inline-block;
+  width: 30%;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+}
+
+.divider::before {
+  content: "";
+  display: inline-block;
+  width: 30%;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  background: linear-gradient(90deg, transparent, hsla(0, 0%, 46%, .4), hsla(0, 0%, 46%, .4));
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.loading__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.login__footer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login__error {
+  text-align: center;
+}
+
+.side__logo {
+  height: 30px;
+}
+
+.header__logo {
+  height: 30px;
+}
+
+.home__logo {
+  height: 30px;
+  display: none;
+}
+
+@media screen and (min-width: 992px) {
+  .header__logo {
+    display: none;
+  }
+  .home__logo {
+    display: block;
+  }
+}
