@@ -7,7 +7,7 @@ interface AuthSliceProps {
   displayName: null,
   photoURL: null,
   errorMessage?: null,
-  role: 'admin' | 'client' | null
+  role: 'admin' | 'user' | 'jury' | null
 }
 
 const userData: AuthSliceProps = JSON.parse(localStorage.getItem('user')!) || {
