@@ -1,9 +1,9 @@
-import { collection, doc, getDocs, setDoc, updateDoc } from "firebase/firestore/lite";
+import { collection, doc, getDocs, setDoc, updateDoc, query, where } from "firebase/firestore/lite";
 import { FirebaseDB } from "../services/firebase";
 
 export const FindUserToDb = async (uid: string) => {
-  const collectionRef = collection(FirebaseDB, `users/${uid}/roles`);
-  const docs = await getDocs(collectionRef);
+  const usersCollectionRef = query(collection(FirebaseDB, 'users'), where("uid", "==", uid));
+  const docs = await getDocs(usersCollectionRef);
 
   const user: any = [];
   docs.forEach(doc => {
@@ -11,6 +11,7 @@ export const FindUserToDb = async (uid: string) => {
   });
 
   if (user.length == 0) return null
+  console.log(user[0].role)
 
   return user[0]?.role;
 }
@@ -27,17 +28,19 @@ export const findAllUsersToDb = async () => {
   return users;
 }
 
-export const handleChangeRole = async (uid: string, newRole: string) => {
-  const newDoc = doc(collection(FirebaseDB, `users/${uid}/roles`));
-  await updateDoc(newDoc, {
+export const updateRole = async (docId: string, newRole: string) => {
+  const docRef = doc(FirebaseDB, "users", docId);
+  await updateDoc(docRef, {
     role: newRole
   })
 }
 
 export const saveUserToDb = async ({ uid, email, displayName }: any) => {
-  const newDoc = doc(collection(FirebaseDB, `users/${uid}/roles`));
+  const newDoc = doc(collection(FirebaseDB, 'users'));
   await setDoc(newDoc, {
-    role: 'client',
+    docId: newDoc.id,
+    uid: uid,
+    role: 'user',
     email: email,
     username: displayName
   });
