@@ -1,5 +1,6 @@
-import { Select, Divider, Row, Col, Input, Button, Form } from "antd"
+import { Select, Divider, Row, Col, Input, Button, Form, Tooltip } from "antd"
 import { useState, useEffect } from 'react'
+import { BsInfoCircle } from "react-icons/bs"
 
 import { createBrand, getBrands } from "../../api"
 
@@ -32,7 +33,18 @@ export const BrandSelect = () => {
   return (
     <Form.Item
       name="brand"
-      label="Marcas"
+      label={
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px'
+        }}>
+          <span>Marcas</span>
+          <Tooltip placement="topLeft" title={`Selecciona tu marca de la lista desplegable. Si no aparece en nuestra base de datos, puedes seleccionar "Otro" y agregar tu marca.`}>
+            <BsInfoCircle color="#1677ff" />
+          </Tooltip>
+        </div >
+      }
       hasFeedback
       rules={[{ required: true, message: 'Please select your brand!' }]}
     >
@@ -103,12 +115,17 @@ export const BrandSelect = () => {
         dropdownRender={(menu) => (
           <>
             {menu}
-            <Divider style={{ margin: '8px 0' }} />
+            <Divider style={{ margin: '24px 0' }} />
             <Form
               form={formBrand}
               onFinish={handleCreateBrand}
             >
-              <Row gutter={8}>
+              <Row
+                style={{
+                  padding: '0 20px'
+                }}
+                gutter={8}
+              >
                 <Col flex={1}>
                   <Form.Item
                     name='brandName'
