@@ -1,7 +1,7 @@
 import { Button, message, Upload } from "antd"
-import { AiOutlineUpload } from "react-icons/ai"
 import axios from "axios";
 import { useState } from "react";
+import { BsFillImageFill } from "react-icons/bs";
 
 export const UploadImage = ({ form }: any) => {
   const [fileList, setFileList] = useState<any>([]);
@@ -46,7 +46,18 @@ export const UploadImage = ({ form }: any) => {
       maxCount={4}
       accept='image/*'
     >
-      <Button loading={loading} icon={<AiOutlineUpload />}>Click to upload</Button>
+      <Button
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          marginBottom: '8px'
+        }}
+        loading={loading}
+        icon={<BsFillImageFill size={16} />}
+      >
+        Subir Imagenes
+      </Button>
     </Upload>
   )
 }

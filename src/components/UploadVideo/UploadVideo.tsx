@@ -1,5 +1,5 @@
 import { Button, message, Upload } from "antd"
-import { AiOutlineUpload } from "react-icons/ai"
+import { AiFillVideoCamera } from "react-icons/ai"
 import axios from "axios";
 import { useState } from "react";
 
@@ -46,7 +46,18 @@ export const UploadVideo = ({ form }: any) => {
       maxCount={2}
       accept='video/*'
     >
-      <Button loading={loading} icon={<AiOutlineUpload />}>Click to upload</Button>
+      <Button
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          marginBottom: '8px'
+        }}
+        loading={loading}
+        icon={<AiFillVideoCamera size={16} />}
+      >
+        Subir Videos
+      </Button>
     </Upload>
   )
 }
