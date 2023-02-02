@@ -1,8 +1,13 @@
-import { collection, doc, getDocs, setDoc } from 'firebase/firestore/lite';
 import { FindUserToDb, saveUserToDb } from '../../helpers';
 import { IUser } from '../../interfaces/User';
-import { FirebaseDB } from '../../services/firebase';
-import { loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, singInWithFacebook, singInWithGoogle, singInWithMicrosoft } from '../../services/providers';
+import {
+  loginWithEmailPassword,
+  logoutFirebase,
+  registerUserWithEmailPassword,
+  singInWithFacebook,
+  singInWithGoogle,
+  singInWithMicrosoft
+} from '../../services/providers';
 import { checkingCredentials, login, logout } from './authSlice';
 
 
@@ -20,14 +25,14 @@ export const startGoogleSignIn = () => {
     const result = await singInWithGoogle();
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
-    const role = await FindUserToDb(result.uid!)
+    // const role = await FindUserToDb(result.uid!)
 
-    if (!role) {
-      await saveUserToDb(result)
-      console.log('no existe el role')
-    }
+    // if (!role) {
+    //   await saveUserToDb(result)
+    //   console.log('no existe el role')
+    // }
 
-    dispatch(login({ ...result, role }))
+    dispatch(login({ ...result }))
   }
 }
 
@@ -38,14 +43,14 @@ export const startFacebookSignIn = () => {
     const result = await singInWithFacebook();
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
-    const role = await FindUserToDb(result.uid!)
+    // const role = await FindUserToDb(result.uid!)
 
-    if (!role) {
-      await saveUserToDb(result)
-      console.log('no existe el role')
-    }
+    // if (!role) {
+    //   await saveUserToDb(result)
+    //   console.log('no existe el role')
+    // }
 
-    dispatch(login({ ...result, role }))
+    dispatch(login({ ...result }))
   }
 }
 
@@ -57,14 +62,14 @@ export const startMicrosoftSignIn = () => {
     const result = await singInWithMicrosoft();
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
-    const role = await FindUserToDb(result.uid!)
+    // const role = await FindUserToDb(result.uid!)
 
-    if (!role) {
-      await saveUserToDb(result)
-      console.log('no existe el role')
-    }
+    // if (!role) {
+    //   await saveUserToDb(result)
+    //   console.log('no existe el role')
+    // }
 
-    dispatch(login({ ...result, role }))
+    dispatch(login({ ...result }))
   }
 }
 
@@ -77,14 +82,14 @@ export const startCreatingUserWithEmailPassword = ({ email, password, displayNam
     const result = await registerUserWithEmailPassword({ email, password, displayName });
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
-    const role = await FindUserToDb(result.uid!)
+    // const role = await FindUserToDb(result.uid!)
 
-    if (!role) {
-      await saveUserToDb(result)
-      console.log('no existe el role')
-    }
+    // if (!role) {
+    //   await saveUserToDb(result)
+    //   console.log('no existe el role')
+    // }
 
-    dispatch(login({ ...result, role }))
+    dispatch(login({ ...result }))
   }
 
 }
@@ -98,14 +103,14 @@ export const startLoginWithEmailPassword = ({ email, password }: IUser) => {
     const result = await loginWithEmailPassword({ email, password });
     if (!result.ok) return dispatch(logout(result));
 
-    const role = await FindUserToDb(result.uid!)
+    // const role = await FindUserToDb(result.uid!)
 
-    if (!role) {
-      await saveUserToDb(result)
-      console.log('no existe el role')
-    }
+    // if (!role) {
+    //   await saveUserToDb(result)
+    //   console.log('no existe el role')
+    // }
 
-    dispatch(login({ ...result, role }));
+    dispatch(login({ ...result }));
   }
 }
 
