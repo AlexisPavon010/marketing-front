@@ -3,12 +3,12 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore/lite';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBDWcCtUab9Ev33lSf-TkgM9xUNOZtxxcI",
-  authDomain: "marketing-badbf.firebaseapp.com",
-  projectId: "marketing-badbf",
-  storageBucket: "marketing-badbf.appspot.com",
-  messagingSenderId: "851900811468",
-  appId: "1:851900811468:web:fd339eefb64076628f9a69"
+  apiKey: "AIzaSyAKgI6qo7QVUIbZQvCy9aYwqjwluA2V2V0",
+  authDomain: "marketing-aec9d.firebaseapp.com",
+  projectId: "marketing-aec9d",
+  storageBucket: "marketing-aec9d.appspot.com",
+  messagingSenderId: "438234441712",
+  appId: "1:438234441712:web:0708ac0de753af10835f35"
 };
 
 export const FirebaseApp  = initializeApp(firebaseConfig);
