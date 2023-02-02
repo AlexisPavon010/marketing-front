@@ -43,13 +43,13 @@ export const Login = () => {
   }
 
   return (
-    <Row>
+    <Row style={{ background: 'linear-gradient(60deg, rgba(205,210,217,1) 0%, rgba(244,245,247,1) 100%)', }}>
       <Col span={12} xs={24} md={12}>
         <div className="login__container">
           <div className="login__card">
             <div className="login__card_header">
               <Title className="login__card_text" level={4} >
-                Register with
+                {isRegister ? 'Registrarse con' : 'Ingresar con'}
               </Title>
             </div>
             <div className="login__card_socials">
@@ -64,7 +64,7 @@ export const Login = () => {
               </div>
             </div>
             <div className="login__card_socials_divider">
-              <p className="divider">or</p>
+              <p className="divider">o</p>
             </div>
             <div className="login__form">
               {isRegister ? (
@@ -83,23 +83,23 @@ export const Login = () => {
                   >
                     <Form.Item
                       name="email"
-                      rules={[{ required: true, message: 'Please input your Username!' }]}
+                      rules={[{ required: true, message: 'Por favor ingrese su correo.' }]}
                     >
                       <Input
                         size="large"
                         type="email"
-                        placeholder="Username"
-                        prefix={<BiUser />}
+                        placeholder="Correo"
+                        prefix={<AiOutlineMail />}
                       />
                     </Form.Item>
                     <Form.Item
                       name="password"
-                      rules={[{ required: true, message: 'Please input your Password!' }]}
+                      rules={[{ required: true, message: 'Por favor ingrese su contraseña.' }]}
                     >
                       <Input
                         size="large"
                         type="password"
-                        placeholder="Password"
+                        placeholder="Contraseña"
                         prefix={<BiLockAlt />}
                       />
                     </Form.Item>
@@ -112,7 +112,7 @@ export const Login = () => {
                         type="primary"
                         loading={status === 'checking'}
                       >
-                        Log in
+                        Ingresar
                       </Button>
                     </Form.Item>
                   </Form>
@@ -121,13 +121,13 @@ export const Login = () => {
               <div>
                 {isRegister ? (
                   <div className="login__footer">
-                    {`Already have an account?`}
-                    <a href="#" onClick={() => setIsRegister(false)} >Sign in</a>
+                    {`¿Ya tienes una cuenta?`}
+                    <a href="#" onClick={() => setIsRegister(false)} >Ingresar</a>
                   </div>
                 ) : (
                   <div className="login__footer">
-                    {`Don't have an account?`}
-                    <a href="#" onClick={() => setIsRegister(true)} >Sign up</a>
+                    {`¿No tienes una cuenta?`}
+                    <a href="#" onClick={() => setIsRegister(true)} >Registrase</a>
                   </div>
                 )}
               </div>
@@ -137,6 +137,8 @@ export const Login = () => {
       </Col>
       <Col span={12} xs={0} md={12}>
         <Card style={{
+          border: 'none',
+          boxShadow: 'rgb(106 101 255 / 20%) 5px 7px 15px 0px inset',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -149,20 +151,20 @@ export const Login = () => {
           paddingLeft: '80px',
           paddingRight: '80px',
           opacity: '1',
-          background: 'linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253))',
+          background: 'linear-gradient(60deg, rgba(205,210,217,1) 0%, rgba(244,245,247,1) 100%)',
           color: 'rgb(52, 71, 103)',
           borderRadius: '0.75rem',
           overflow: 'hidden',
         }}>
-          <img src="https://demos.creative-tim.com/soft-ui-dashboard-pro-react/static/media/chat.3259bb6fd08a875331ed.png" style={{
+          <img src="/assets/login_portada.png" style={{
             width: '100%',
-            maxWidth: '31.25rem',
+            maxWidth: '250px',
             opacity: '1',
             background: 'transparent',
             color: 'rgb(52, 71, 103)',
           }} />
-          <Title className="login__title" level={2} >
-            "Attention is the new currency"
+          <Title style={{ color: '#ff4256' }} className="login__title" level={2} >
+            Premiando la efectividad
           </Title>
           <Text className="login__text">
             The more effortless the writing looks, the more effort the writer actually put into the process.
@@ -190,34 +192,34 @@ const RegisterComponent = () => {
     >
       <Form.Item
         name="displayName"
-        rules={[{ required: true, message: 'Please input your Username!' }]}
+        rules={[{ required: true, message: 'Por favor ingrese su usuario.' }]}
       >
         <Input
           size="large"
           type="text"
-          placeholder="Username"
+          placeholder="Nombre de Usuario"
           prefix={<BiUser />}
         />
       </Form.Item>
       <Form.Item
         name="email"
-        rules={[{ required: true, message: 'Please input your Email!' }]}
+        rules={[{ required: true, message: 'Por favor ingrese su correo.' }]}
       >
         <Input
           size="large"
           type="email"
-          placeholder="Username"
+          placeholder="Correo"
           prefix={<AiOutlineMail />}
         />
       </Form.Item>
       <Form.Item
         name="password"
-        rules={[{ required: true, message: 'Please input your Password!' }]}
+        rules={[{ required: true, message: 'Por favor ingrese su contraseña.' }]}
       >
         <Input
           size="large"
           type="password"
-          placeholder="Password"
+          placeholder="Contraseña"
           prefix={<BiLockAlt />}
         />
       </Form.Item>
@@ -230,7 +232,7 @@ const RegisterComponent = () => {
           type="primary"
           loading={status === 'checking'}
         >
-          Log in
+          Registrarse
         </Button>
       </Form.Item>
     </Form >
