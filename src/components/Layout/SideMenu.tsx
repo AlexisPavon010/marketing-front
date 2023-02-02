@@ -1,5 +1,5 @@
 import { Menu, Avatar, Badge, Space, MenuProps, Col } from 'antd'
-import { AiOutlineForm, AiOutlineQuestionCircle, AiOutlineTable } from 'react-icons/ai';
+import { AiOutlineForm, AiOutlineQuestionCircle, AiOutlineTable, AiOutlineUser } from 'react-icons/ai';
 import { BiBox, BiCodeBlock, BiHomeAlt, BiLeftArrowAlt, BiStore } from 'react-icons/bi'
 import { IoIosSettings } from 'react-icons/io'
 import { Link, useNavigate } from 'react-router-dom';
@@ -72,9 +72,8 @@ export const SideMenu = ({ closeMenu }: SideMenuProps) => {
 
   const pages = [
     { label: 'Dashboard', icon: <AiOutlineForm size={20} />, key: '/dashboard' },
-    { label: 'Preguntas', icon: <AiOutlineQuestionCircle size={20} />, key: '/dashboard/questions' },
-    { label: 'Table', icon: <AiOutlineTable size={20} />, key: '/dashboard/table' },
-    { label: 'Users', icon: <AiOutlineTable size={20} />, key: '/dashboard/users' },
+    { label: 'Questionarios', icon: <AiOutlineQuestionCircle size={20} />, key: '/dashboard/questions' },
+    { label: 'Usuarios', icon: <AiOutlineUser size={20} />, key: '/dashboard/users' },
     {
       key: "grp",
       icon: null,
