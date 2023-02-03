@@ -25,8 +25,8 @@ export const startGoogleSignIn = () => {
     const result = await singInWithGoogle();
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
-    const role = await FindUserToDb(result.uid!)
-    console.log(role)
+    // const role = await FindUserToDb(result.uid!)
+    // console.log(role)
 
     // if (!role) {
     //   await saveUserToDb(result)
