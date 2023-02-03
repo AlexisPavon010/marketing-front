@@ -15,7 +15,7 @@ export const CategoriesCollapse = () => {
       <Collapse>
         <Panel header="Performance Marketing" key="1">
           <Paragraph>
-            En esta categoría entran camParagraphañas de lead , paid search , pais social, que hayan demostrado incremento en conversiones, prospects , tráfico , y/o descargas de aplicaciones manteniendo o disminuyendo el CPA vs el período de comparación.
+            En esta categoría entran campañas de lead , paid search , pais social, que hayan demostrado incremento en conversiones, prospects , tráfico , y/o descargas de aplicaciones manteniendo o disminuyendo el CPA vs el período de comparación.
           </Paragraph>
           <Paragraph>
             <strong>Ejemplos:</strong> Implementación de lower funnel, uso de data con modelos de propensión, etc.
@@ -60,6 +60,5 @@ export const CategoriesCollapse = () => {
         </Panel>
       </Collapse>
     </>
-
   )
 }
