@@ -1,7 +1,7 @@
-import { Button, message, Upload } from "antd"
-import axios from "axios";
-import { useState } from "react";
 import { BsFillImageFill } from "react-icons/bs";
+import { Button, message, Upload } from "antd"
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const UploadImage = ({ form }: any) => {
   const [fileList, setFileList] = useState<any>([]);
@@ -10,6 +10,10 @@ export const UploadImage = ({ form }: any) => {
   const images: string[] = []
 
   const CLOUDINARY_URL = process.env.REACT_APP_CLOUDINARY_URL!
+
+  useEffect(() => {
+    form.getFieldValue('images').length > 0 ? setFileList(form.getFieldValue('images').map((url: string) => ({ url }))) : setFileList([])
+  }, [])
 
   const handleUpload = (e: any) => {
     setLoading(true)

@@ -1,7 +1,7 @@
 import { Button, message, Upload } from "antd"
 import { AiFillVideoCamera } from "react-icons/ai"
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useState } from "react";
 
 export const UploadVideo = ({ form }: any) => {
   const [fileList, setFileList] = useState<any>([]);
@@ -10,6 +10,10 @@ export const UploadVideo = ({ form }: any) => {
   const videos: string[] = []
 
   const CLOUDINARY_URL = process.env.REACT_APP_CLOUDINARY_URL!
+
+  useEffect(() => {
+    form.getFieldValue('videos').length > 0 ? setFileList(form.getFieldValue('videos').map((url: string) => ({ url }))) : setFileList([])
+  }, [])
 
   const handleUpload = (e: any) => {
     setLoading(true)
