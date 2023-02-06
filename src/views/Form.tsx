@@ -126,7 +126,7 @@ export const FormScreen = () => {
         </Card>
       ) : (
         <>
-          <Card style={{ maxWidth: '600px', margin: '0 auto 20px' }}>
+          <Card style={{ maxWidth: '720px', margin: '0 auto 20px' }}>
             <Typography>
               <Title>Inscripción</Title>
               <Paragraph>
@@ -147,7 +147,7 @@ export const FormScreen = () => {
               showIcon
             />
           </Card>
-          <Card style={{ maxWidth: '600px', margin: '0 auto' }}>
+          <Card style={{ maxWidth: '720px', margin: '0 auto 40px' }}>
             <Form
               style={{ width: '100%' }}
               layout="vertical"
