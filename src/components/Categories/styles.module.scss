@@ -1,0 +1,12 @@
+.card__categories {
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  color: white;
+  background: linear-gradient(45deg, rgba(18, 122, 222, 1) 0%, rgba(66, 162, 255, 1) 100%);
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(76 175 80 / 40%)
+}
+
+.card__categories_title {
+  margin-top: 0
+}
