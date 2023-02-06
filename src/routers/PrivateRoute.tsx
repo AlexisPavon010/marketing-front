@@ -13,6 +13,8 @@ export const PrivateRoute = ({ children }: PrivateRouteProps) => {
 
   if (!uid) {
     return <Navigate to="/login" />
+  } else if (pathname === '/dashboard' && role == 'user') {
+    return <Navigate to="/" />
   } else if (pathname === '/' && role == 'admin') {
     return <Navigate to="/dashboard" />
   }
