@@ -12,7 +12,7 @@ export const UploadVideo = ({ form }: any) => {
   const CLOUDINARY_URL = process.env.REACT_APP_CLOUDINARY_URL!
 
   useEffect(() => {
-    form.getFieldValue('videos').length > 0 ? setFileList(form.getFieldValue('videos').map((url: string) => ({ url }))) : setFileList([])
+    form.getFieldValue('videos')?.length > 0 ? setFileList(form.getFieldValue('videos').map((url: string) => ({ url }))) : setFileList([])
   }, [])
 
   const handleUpload = (e: any) => {

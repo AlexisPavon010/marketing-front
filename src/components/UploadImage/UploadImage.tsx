@@ -12,7 +12,7 @@ export const UploadImage = ({ form }: any) => {
   const CLOUDINARY_URL = process.env.REACT_APP_CLOUDINARY_URL!
 
   useEffect(() => {
-    form.getFieldValue('images').length > 0 ? setFileList(form.getFieldValue('images').map((url: string) => ({ url }))) : setFileList([])
+    form.getFieldValue('images')?.length > 0 ? setFileList(form.getFieldValue('images').map((url: string) => ({ url }))) : setFileList([])
   }, [])
 
   const handleUpload = (e: any) => {
