@@ -1,2 +1,2 @@
 export { createBrand, getBrands } from "./Brand";
-export { createPost, getPostById } from "./Post";
+export { createPost, getPostById, getPostByUserId } from "./Post";
