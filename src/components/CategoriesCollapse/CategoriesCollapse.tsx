@@ -1,6 +1,8 @@
 import { Collapse, Typography } from 'antd';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 
+import styles from './styles.module.scss'
+
 const { Panel } = Collapse;
 const { Title, Paragraph } = Typography;
 
@@ -9,7 +11,7 @@ export const CategoriesCollapse = () => {
   return (
     <>
       <AiOutlineInfoCircle color='grey' size={32} />
-      <Title style={{ margin: '8px 0 20px' }} level={4}>
+      <Title className={styles.categories__title} level={4}>
         Información sobre Categorías
       </Title>
       <Collapse>
