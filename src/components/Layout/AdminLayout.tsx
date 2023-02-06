@@ -1,13 +1,15 @@
-import { Col, Drawer, Layout } from 'antd';
-import { Content, Footer, Header } from 'antd/es/layout/layout';
-import Sider from 'antd/es/layout/Sider';
+import { Drawer, Layout } from 'antd';
 import { useState } from 'react';
-import { Navbar } from './Navbar';
+
+import styles from './styles.module.scss'
 import { SideMenu } from './SideMenu';
+import { AdminNavbar } from './AdminNavbar';
 
 interface Props {
   children: JSX.Element | JSX.Element[]
 }
+
+const { Content, Sider } = Layout;
 
 export const AdminLayout = ({ children }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -16,10 +18,10 @@ export const AdminLayout = ({ children }: Props) => {
 
   return (
     <>
-      <Layout style={{ minHeight: '100vh', flexDirection: 'row' }}>
+      <Layout className={styles.layout}>
         <Sider className="sider" width={250} theme={'light'} >
-          <div style={{ height: 64, padding: 16, background: 'rgba(255, 255, 255, 0.2)', borderBottom: '1px solid rgba(5, 5, 5, 0.06)' }} >
-            <img className='side__logo' src="/assets/logo-v3.png" alt="" />
+          <div className={styles.sider__header} >
+            <img className={styles.sider__logo} src="/assets/logo-v3.png" alt="" />
           </div>
           <SideMenu />
         </Sider>
@@ -34,14 +36,14 @@ export const AdminLayout = ({ children }: Props) => {
             position: 'fixed'
           }}
         >
-          <div style={{ padding: 16, background: 'rgba(255, 255, 255, 0.2)', borderBottom: '1px solid rgba(5, 5, 5, 0.06)' }} >
-            <img className='side__logo' src="/assets/logo-v3.png" alt="" />
+          <div className={styles.sider__header} >
+            <img className={styles.sider__logo} src="/assets/logo-v3.png" alt="" />
           </div>
           <SideMenu closeMenu={closeMenu} />
         </Drawer>
         <Layout>
-          <Navbar openMenu={openMenu} />
-          <Content className="main-content">
+          <AdminNavbar openMenu={openMenu} />
+          <Content className={styles.main_content}>
             {children}
           </Content>
         </Layout>

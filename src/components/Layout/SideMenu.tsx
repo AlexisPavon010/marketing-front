@@ -1,8 +1,7 @@
-import { Menu, Avatar, Badge, Space, MenuProps, Col } from 'antd'
-import { AiOutlineForm, AiOutlineQuestionCircle, AiOutlineTable, AiOutlineUser } from 'react-icons/ai';
-import { BiBox, BiCodeBlock, BiHomeAlt, BiLeftArrowAlt, BiStore } from 'react-icons/bi'
+import { Menu, MenuProps } from 'antd'
+import { AiOutlineForm, AiOutlineQuestionCircle, AiOutlineUser } from 'react-icons/ai';
 import { IoIosSettings } from 'react-icons/io'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface SideMenuProps {
   closeMenu?: () => void;
@@ -13,12 +12,6 @@ type MenuItem = Required<MenuProps>['items'][number];
 const { SubMenu } = Menu;
 
 export const SideMenu = ({ closeMenu }: SideMenuProps) => {
-
-  const navigate = useNavigate()
-
-  const handleNavigate = (href: string) => {
-    navigate(href)
-  }
 
   function getItem(
     label: React.ReactNode,
@@ -110,7 +103,6 @@ export const SideMenu = ({ closeMenu }: SideMenuProps) => {
 
   return (
     <Menu
-      onClick={() => { }}
       style={{ width: 250 }}
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['sub1']}
@@ -147,6 +139,5 @@ export const SideMenu = ({ closeMenu }: SideMenuProps) => {
           </Menu.Item>
         )))}
     </Menu >
-
   )
 }

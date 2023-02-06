@@ -1,21 +1,17 @@
-import { Row, Col, Button, Avatar, Layout, Dropdown } from 'antd'
-import { useSelector, useDispatch } from 'react-redux'
+import { Row, Col, Avatar, Layout, Dropdown } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
-import { CgMenu } from 'react-icons/cg'
 
+import styles from './styles.module.scss'
 import { startLogout } from '../../store/auth';
-import { useLocation } from 'react-router-dom';
-
-interface NavbarProps {
-  openMenu: () => any;
-}
 
 const { Header } = Layout;
 
-export const Navbar = ({ openMenu }: NavbarProps) => {
+export const Navbar = () => {
   const { displayName, photoURL, email } = useSelector((state: any) => state.auth)
   const dispatch = useDispatch()
-  const location = useLocation()
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     // @ts-ignore
@@ -45,16 +41,7 @@ export const Navbar = ({ openMenu }: NavbarProps) => {
     <Header style={{ background: 'white' }}>
       <div className="header__wrapper">
         <Row align="middle" gutter={16}>
-          <Col lg={0} >
-            <Button
-              style={{
-                display: 'flex'
-              }}
-              className="header__menu" type="link" onClick={openMenu} icon={<CgMenu size={24} color="#525F7F" />} />
-          </Col>
-          {location.pathname === '/' && (
-            <img className='home__logo' style={{ height: '30px' }} src="/assets/logo-v3.png" alt="" />
-          )}
+          <img onClick={() => navigate('/')} className={styles.header__logo} src="/assets/logo-v3.png" alt="" />
           <Col flex={1}>
           </Col>
           <Col md={{ span: 'auto' }}>
