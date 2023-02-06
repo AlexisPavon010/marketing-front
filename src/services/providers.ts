@@ -1,103 +1,8 @@
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, OAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore/lite';
+
 import { IUser } from '../interfaces/User';
-import { FirebaseAuth } from './firebase';
-
-
-const googleProvider = new GoogleAuthProvider();
-const facebookProvider = new GoogleAuthProvider();
-const microsoftProvider = new OAuthProvider('microsoft.com');
-
-
-export const singInWithGoogle = async () => {
-
-  try {
-
-    const result = await signInWithPopup(FirebaseAuth, googleProvider);
-    // const credentials = GoogleAuthProvider.credentialFromResult( result );
-    const { displayName, email, photoURL, uid } = result.user;
-
-    return {
-      ok: true,
-      uid,
-      email,
-      photoURL,
-      displayName
-    }
-
-
-  } catch (error: any) {
-
-    const errorCode = error.code;
-    const errorMessage = error.message;
-
-    return {
-      ok: false,
-      errorMessage,
-    }
-  }
-
-}
-
-export const singInWithFacebook = async () => {
-
-  try {
-
-    const result = await signInWithPopup(FirebaseAuth, facebookProvider);
-    // const credentials = GoogleAuthProvider.credentialFromResult( result );
-    const { displayName, email, photoURL, uid } = result.user;
-
-    return {
-      ok: true,
-      uid,
-      email,
-      photoURL,
-      displayName
-    }
-
-
-  } catch (error: any) {
-
-    const errorCode = error.code;
-    const errorMessage = error.message;
-
-    return {
-      ok: false,
-      errorMessage,
-    }
-  }
-
-}
-
-export const singInWithMicrosoft = async () => {
-
-  try {
-
-    const result = await signInWithPopup(FirebaseAuth, microsoftProvider);
-    // const credentials = GoogleAuthProvider.credentialFromResult( result );
-    const { displayName, email, photoURL, uid } = result.user;
-
-    return {
-      ok: true,
-      uid,
-      email,
-      photoURL,
-      displayName
-    }
-
-
-  } catch (error: any) {
-
-    const errorCode = error.code;
-    const errorMessage = error.message;
-
-    return {
-      ok: false,
-      errorMessage,
-    }
-  }
-
-}
-
+import { FirebaseAuth, FirebaseDB } from './firebase';
 
 export const registerUserWithEmailPassword = async ({ email, password, displayName }: IUser) => {
 
@@ -107,9 +12,20 @@ export const registerUserWithEmailPassword = async ({ email, password, displayNa
 
     await updateProfile(FirebaseAuth.currentUser!, { displayName });
 
+    const docRef = doc(FirebaseDB, `users/${uid}`)
+
+    setDoc(docRef, {
+      uid,
+      email,
+      photoURL,
+      displayName,
+      role: 'user'
+    })
+
     return {
       ok: true,
       uid,
+      role: 'user',
       email,
       photoURL,
       displayName
@@ -129,12 +45,16 @@ export const loginWithEmailPassword = async ({ email, password }: IUser) => {
     const resp = await signInWithEmailAndPassword(FirebaseAuth, email, password);
     const { uid, photoURL, displayName } = resp.user;
 
+    const docRef = doc(FirebaseDB, `users/${uid}`)
+    const d = await getDoc(docRef)
+
     return {
       ok: true,
-      uid,
-      email,
-      photoURL,
-      displayName
+      // uid,
+      // email,
+      // photoURL,
+      // displayName,
+      ...d.data()
     }
 
   } catch (error: any) {
