@@ -12,10 +12,11 @@ export const BrandSelect = () => {
 
   const handleCreateBrand = (values: any) => {
     setLoading(true)
-    console.log(values)
     createBrand(values)
       .then(({ data }) => {
-        console.log(data)
+        const newBrands = [data, ...brands]
+        // @ts-ignore 
+        setBrands(newBrands)
         formBrand.resetFields()
       })
       .catch((error) => console.log(error))
@@ -24,7 +25,9 @@ export const BrandSelect = () => {
 
   useEffect(() => {
     getBrands()
-      .then(({ data }) => setBrands(data))
+      .then(({ data }) => {
+        setBrands(data)
+      })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false))
   }, [])
