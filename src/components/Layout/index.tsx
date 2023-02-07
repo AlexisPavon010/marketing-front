@@ -13,7 +13,7 @@ export const LayoutComponent = ({ children }: Props) => {
   return (
     <>
       <Layout className={styles.layout}>
-        <Layout>
+        <Layout style={{ width: '100%' }}>
           <Navbar />
           <Content className={styles.main_content}>
             {children}

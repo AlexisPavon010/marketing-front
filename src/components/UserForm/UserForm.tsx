@@ -236,7 +236,7 @@ export const UserForm = () => {
         <AntTable
           columns={columns}
           dataSource={post}
-          // scroll={{ x: 1000 }}
+          scroll={{ x: 900, }}
           rowKey='_id'
           loading={loading}
           pagination={{
