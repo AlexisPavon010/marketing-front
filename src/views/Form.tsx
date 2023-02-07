@@ -5,6 +5,7 @@ import { BsPencilSquare } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Marquee from 'react-fast-marquee';
 
 import { createPost } from '../api';
 import { getPostByIdAndCategory } from '../api/Post';
@@ -12,7 +13,7 @@ import { BrandSelect } from '../components/BrandSelect';
 import { AlertModal } from '../components/Modals';
 import { UploadImage } from '../components/UploadImage';
 import { UploadVideo } from '../components/UploadVideo';
-import { CATEGORIES } from '../constans';
+import { CATEGORIES, DURATION, METRICAS } from '../constans';
 import { IPost } from '../interfaces/Post';
 
 const { Option } = Select;
@@ -35,6 +36,8 @@ export const FormScreen = () => {
 
   const navigate = useNavigate()
   const { id: categoria } = useParams()
+
+  const { title, items }: any = METRICAS.find((item) => item.id === categoria)
 
   const onFinish = (values: any) => {
     console.log(values, 'crear', uid)
@@ -130,10 +133,21 @@ export const FormScreen = () => {
             <Typography>
               <Title>Inscripción</Title>
               <Paragraph>
+                <Alert
+                  banner
+                  closable
+                  message={
+                    <Marquee style={{ gap: '8px' }} pauseOnHover gradient={false}>
+                      Recuerda que puedes ir completando tu caso en etapas, presionando el botón guardar pero tienes que asegurarte enviarlo antes de la fecha límite.
+                    </Marquee>
+                  }
+                />
+              </Paragraph>
+              <Paragraph>
                 A través de este formulario, podrás presentar tus propuestas y tener la oportunidad de ser seleccionado para los Intercorp Marketing Awards 2023.
               </Paragraph>
               <Paragraph>
-                Por favor, asegúrate de proporcionar información clara y detallada sobre tu propuesta para que la misma sea evaluada con claridad y tranparencia por nuestro equipo de profesionales.
+                Por favor, asegúrate de proporcionar información clara y detallada sobre tu propuesta para que la misma sea evaluada con claridad y transparencia por nuestro equipo de profesionales.
               </Paragraph>
             </Typography>
             <Alert
@@ -142,7 +156,7 @@ export const FormScreen = () => {
                   Fechas de Implementación
                 </strong>
               }
-              description="Los casos pueden ser presentados desde el 14 de febrero de 2023 hasta el 14 de marzo de 2023."
+              description="Los casos que pueden postular a los IMA deben haber sido implementados entre el 1º de enero de 2022 y el 31 de diciembre del 2022."
               type="info"
               showIcon
             />
@@ -180,6 +194,10 @@ export const FormScreen = () => {
               </Form.Item>
 
               <BrandSelect />
+
+              <Form.Item label='Título del Caso' name='title'>
+                <Input type='text' />
+              </Form.Item>
               <Alert
                 showIcon
                 icon={<BsPencilSquare />}
@@ -212,29 +230,7 @@ export const FormScreen = () => {
               </Form.Item>
 
               <Form.Item label='Duración'>
-                <Input.Group compact>
-                  <Input style={{ width: 100, textAlign: 'center' }} placeholder="Minimum" type='number' />
-                  <Input
-                    className="site-input-split"
-                    style={{
-                      width: 30,
-                      borderLeft: 0,
-                      borderRight: 0,
-                      pointerEvents: 'none',
-                    }}
-                    placeholder="~"
-                    disabled
-                  />
-                  <Input
-                    className="site-input-right"
-                    style={{
-                      width: 100,
-                      textAlign: 'center',
-                    }}
-                    placeholder="Maximum"
-                  />
-                </Input.Group>
-
+                <Select options={DURATION.map(({ label, value }) => ({ label, value }))} />
               </Form.Item>
 
               <Form.Item label='Core Target'>
@@ -252,7 +248,25 @@ export const FormScreen = () => {
                     Resultados
                   </strong>
                 }
-                description="Desarrollar en máximo 300 palabras los resultados que demuestran el éxito del caso detallando las fuentes de cada uno de los puntos listados. Está permitido agregar gráficos que evidencien el impacto."
+                description={
+                  <Typography>
+                    <Paragraph>
+                      Desarrollar en máximo 300 palabras los resultados que demuestran el éxito del caso detallando las fuentes de cada uno de los puntos listados.
+                    </Paragraph>
+
+                    <Paragraph>
+                      <strong>Métricas: </strong>
+                      {title}
+                    </Paragraph>
+                    {items.map((item: string) => (
+                      <Paragraph>
+                        <li style={{listStyle: 'inside'}}>
+                          {item}
+                        </li>
+                      </Paragraph>
+                    ))}
+                  </Typography>
+                }
                 type="info"
               />
               <Form.Item name='result' rules={[{ required: true, message: 'Por favor debe rellenar este campo.' }]}>
