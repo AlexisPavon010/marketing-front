@@ -157,7 +157,7 @@ export const PublishedCategory = () => {
                     },
                     {
                       value: 'admin',
-                      label: 'Escens'
+                      label: 'Essence'
                     },
                   ]}
                 />
