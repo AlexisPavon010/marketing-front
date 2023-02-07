@@ -1,19 +1,23 @@
 export const STATUSES = [
   {
     id: 'approved',
-    name: 'Aprobado'
+    name: 'Aprobado',
+    color: 'green'
   },
   {
     id: 'decline',
-    name: 'Denegado'
+    name: 'Denegado',
+    color: 'volcano'
   },
   {
     id: 'rejected',
-    name: 'Rechazado'
+    name: 'Aprobado con Revisión',
+    color: 'red'
   },
   {
     id: 'pending',
-    name: 'Pendiente'
+    name: 'Pendiente',
+    color: 'geekblue'
   },
 
 ]
