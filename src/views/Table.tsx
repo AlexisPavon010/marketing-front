@@ -1,10 +1,10 @@
-import { Card, Col, Form, Input, Row, Select, Table as AntTable, Tag } from 'antd';
+import { Card, Col, Form, Input, Rate, Row, Select, Table as AntTable, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getPosts } from '../api/Post';
-import { CATEGORIES } from '../constans';
+import { CATEGORIES, STATUSES } from '../constans';
 
 const { Search } = Input;
 
@@ -52,13 +52,11 @@ const columns: ColumnsType<DataType> = [
     key: 'status',
     dataIndex: 'status',
     render: (_, { status }) => {
-      let color = status == 'decline' ? 'volcano' : 'geekblue';
-      if (status === 'approved') {
-        color = 'green';
-      }
+      let color = STATUSES.find((item) => item.id === status)?.color
+      let text = STATUSES.find((item) => item.id === status)?.name
       return (
         <Tag color={color} key={status}>
-          {status.toUpperCase()}
+          {text!}
         </Tag>
       )
     }
@@ -73,7 +71,10 @@ const columns: ColumnsType<DataType> = [
     title: 'Puntuacion Essence',
     dataIndex: 'adminScore',
     key: 'score',
-    align: 'center'
+    align: 'center',
+    render: (value) => (
+      <Rate disabled defaultValue={value} />
+    )
   },
   // {
   //   title: 'Action',
