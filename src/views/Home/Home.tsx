@@ -17,16 +17,22 @@ export const Home = () => {
       <Card className={styles.hero}>
         <Typography>
           <Title className={styles.hero__title} >
-            <AiOutlineUser /> ¡Bienvenido  {displayName ? displayName : email}!
+            <AiOutlineUser /> ¡Bienvenido/a  {displayName ? displayName : email}!
           </Title>
           <Title className={styles.hero__subtitle}>
             Intercorp Marketing Awards 2023
           </Title >
           <Paragraph>
-            ¡Bienvenido a Intercorp Marketing Awards! Aquí podrás postular tu caso de marketing más innovador y efectivo. Te invitamos a que lo presentes con todo detalle para que sea evaluado por nuestro jurado de expertos en el campo.
+            Un premio que busca destacar a través de diferentes categorías de participación, a las acciones/campañas /ideas de marketing de las marcas de Intercorp que demuestran el mayor impacto en el cumplimiento de los objetivos de negocio.
           </Paragraph>
           <Paragraph>
-            Nuestro proceso de evaluación consta de dos instancias de votación. En la primera, un grupo de expertos evaluará los casos y seleccionará a los finalistas. En la segunda, un jurado compuesto por líderes del sector decidirá quién gana el premio a la excelencia en marketing.
+            En este documento van a encontrar los detalles de las categorías, algunos consejos para la presentación de casos, plazos de inscripción y todos los criterios de evaluación que es importante saber y tener en cuenta a la hora de aplicar.
+          </Paragraph>
+          <Paragraph>
+            Estamos orgullosos de lanzar por primera vez en Intercorp un premio de estas características.
+          </Paragraph>
+          <Paragraph>
+            ¡Buena suerte con tus inscripciones!
           </Paragraph>
         </Typography>
       </Card>
@@ -39,7 +45,10 @@ export const Home = () => {
             Seleccione la categoría a postular
           </Title>
           <Paragraph>
-            Para ayudarte a clasificar tu propuesta, te pedimos que selecciones una o más de las siguientes categorías, solo se puede postular un caso por categoría.
+            Recuerda que puedes inscribir tu caso en múltiples categoría completando un formulario para cada una.
+          </Paragraph>
+          <Paragraph>
+            Puedes presentar más de una caso por categoría.
           </Paragraph>
         </Typography>
       </Card>
