@@ -158,6 +158,9 @@ export const FormScreen = () => {
           {...formItemLayout}
           onFinish={onFinish}
           requiredMark={false}
+          initialValues={{
+            categories: categoria
+          }}
         >
           <Form.Item
             style={{ width: '100%' }}
