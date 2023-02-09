@@ -13,7 +13,11 @@ export interface IPost {
   images:      string[];
   videos:      string[];
   email:       string;
-  displayName: null;
+  username:    null;
+  title:       string;
+  result:      string;
+  duration:    number;
+  core_target: string
   photoURL:    null;
   __v:         number;
 }
