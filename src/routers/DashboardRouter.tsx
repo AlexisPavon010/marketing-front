@@ -25,7 +25,7 @@ export const DashboardRouter = () => {
         <Route path="estrategia-de-crecimiento" element={<h1>estrategia-de-crecimiento</h1>} />
         <Route path="impacto-positivo" element={<h1>impacto-positivo</h1>} />
       </Route>
-      <Route path='/categories/published/:id' element={<PublishedCategory />} />
+      <Route path='/categories/published/:id' element={<PublishedCategory adminView={true} />} />
     </Routes>
   )
 }
