@@ -1,10 +1,11 @@
-import { Card, Col, Input, Row, Select, Space, Table as AntTable, Tag, Tooltip, Form } from "antd";
+import { Card, Col, Input, Row, Select, Space, Table as AntTable, Tag, Tooltip, Form, Rate } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useState, useEffect } from 'react';
 import { AiOutlineEye } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 import { getPostByUserId } from "../../api";
 import { CATEGORIES } from "../../constans";
@@ -13,7 +14,8 @@ const { Search } = Input;
 
 interface DataType {
   _id: string
-  categorie: string;
+  published: boolean;
+  categories: string;
   brand: string;
   createdAt: string;
   juryScore: number;
@@ -76,21 +78,10 @@ const columns: ColumnsType<DataType> = [
     title: 'Puntuacion Essence',
     dataIndex: 'adminScore',
     key: 'score',
-    align: 'center'
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Space size="large">
-        <Tooltip placement="top" title={'Editar'}>
-          <BsPencil size={16} />
-        </Tooltip>
-        <Tooltip placement="top" title={'Ver'}>
-          <AiOutlineEye size={16} />
-        </Tooltip>
-      </Space>
-    ),
+    align: 'center',
+    render: (value) => (
+      <Rate disabled defaultValue={value} />
+    )
   },
 ];
 
@@ -103,6 +94,7 @@ export const UserForm = () => {
   const [skip, setSkip] = useState(1)
   const [limit, setLimit] = useState(10)
   const [count, setCount] = useState(0)
+  const navigate = useNavigate()
 
   const onPageChange = (page: any) => {
     setSkip(page)
@@ -134,7 +126,7 @@ export const UserForm = () => {
         >
           <Row gutter={[16, 16]} >
             <Col xs={24} md={8} lg={8}>
-              <Form.Item label='Categorias'>
+              <Form.Item name='category' label='Categorias'>
                 <Select
                   allowClear
                   onChange={(value) => setCategory(value)}
@@ -145,7 +137,7 @@ export const UserForm = () => {
               </Form.Item>
             </Col>
             <Col xs={24} md={8} lg={6} >
-              <Form.Item label='Marca'>
+              <Form.Item name='brand' label='Marca'>
 
                 <Select
                   allowClear
@@ -221,7 +213,7 @@ export const UserForm = () => {
             <Col flex={1}>
             </Col>
             <Col xs={24} md={6} >
-              <Form.Item label='Buscar'>
+              <Form.Item name='search' label='Buscar'>
                 <Search placeholder="Buscar" style={{ width: '100%' }} />
               </Form.Item>
             </Col>
@@ -247,11 +239,11 @@ export const UserForm = () => {
             onShowSizeChange: onPageSizeChange,
             showSizeChanger: true
           }}
-        // onRow={(record, rowIndex) => ({
-        //   onClick: event => {
-        //     navigate(`/dashboard/categories/published/${record._id}`)
-        //   }
-        // })}
+          onRow={(record, rowIndex) => ({
+            onClick: event => {
+              navigate(record.published ? `/categories/published/${record._id}` : `/update-categories/${record.categories}`)
+            }
+          })}
         />
       </Card>
     </>
