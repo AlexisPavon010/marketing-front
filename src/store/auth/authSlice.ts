@@ -4,9 +4,9 @@ interface AuthSliceProps {
   status: 'checking' | 'not-authenticated' | 'authenticated'
   uid: null,
   email: null,
-  displayName: null,
-  photoURL: null,
-  errorMessage?: null,
+  username: null,
+  loginMessage?: null,
+  registerMessage?: null,
   role: 'admin' | 'user' | 'jury' | null
 }
 
@@ -14,9 +14,10 @@ const userData: AuthSliceProps = JSON.parse(localStorage.getItem('user')!) || {
   status: 'not-authenticated',
   uid: null,
   email: null,
-  displayName: null,
+  username: null,
   photoURL: null,
-  errorMessage: null,
+  loginMessage: null,
+  registerMessage: null,
   role: null,
 }
 
@@ -26,20 +27,21 @@ export const authSlice = createSlice({
   reducers: {
     login: (state, { payload }) => {
       state.status = 'authenticated';
-      state.uid = payload.uid;
+      state.uid = payload._id;
       state.email = payload.email;
-      state.displayName = payload.displayName;
-      state.photoURL = payload.photoURL;
-      state.errorMessage = null;
+      state.username = payload.username;
+      state.loginMessage = null;
+      state.registerMessage = null;
       state.role = payload.role;
+      // localStorage.setItem('user', JSON.stringify(payload))
     },
     logout: (state, { payload }) => {
       state.status = 'not-authenticated';
       state.uid = null;
       state.email = null;
-      state.displayName = null;
-      state.photoURL = null;
-      state.errorMessage = payload?.errorMessage;
+      state.username = null;
+      state.loginMessage = payload?.loginMessage;
+      state.registerMessage = payload?.registerMessage;
       state.role = null;
       localStorage.removeItem('user')
     },
