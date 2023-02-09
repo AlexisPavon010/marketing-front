@@ -49,7 +49,7 @@ export const BrandSelect = () => {
         </div >
       }
       hasFeedback
-      rules={[{ required: true, message: 'Please select your brand!' }]}
+      rules={[{ required: true, message: 'El nombre de la marca es requerido!' }]}
     >
       <Select
         options={[
@@ -141,11 +141,9 @@ export const BrandSelect = () => {
                   </Form.Item>
                 </Col>
                 <Col>
-                  <Form.Item>
-                    <Button loading={loading} type="primary" htmlType='submit'>
-                      Agregar
-                    </Button>
-                  </Form.Item>
+                  <Button loading={loading} type="primary" htmlType='submit'>
+                    Agregar
+                  </Button>
                 </Col>
               </Row>
             </Form>
