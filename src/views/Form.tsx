@@ -37,6 +37,8 @@ export const FormScreen = () => {
   const navigate = useNavigate()
   const { id: categoria } = useParams()
 
+  console.log(categoria)
+
   const { title, items }: any = METRICAS.find((item) => item.id === categoria)
 
   const onFinish = (values: any) => {
