@@ -1,4 +1,3 @@
-import { collection, getDocs } from "firebase/firestore/lite";
 import { Card, Select, Table, Tag } from "antd"
 import { ColumnsType } from "antd/es/table";
 import { toast } from "react-toastify";
@@ -6,7 +5,6 @@ import { useState } from "react";
 
 import { updateRole } from "../helpers";
 import { IUser } from "../interfaces/User";
-import { FirebaseDB } from "../services/firebase";
 
 
 export const Users = () => {
@@ -27,25 +25,11 @@ export const Users = () => {
     })
   }
 
-  const userRef = collection(FirebaseDB, 'users')
-
-  getDocs(userRef)
-    .then((snapshot) => {
-      setLoading(true)
-      let users: any = []
-      snapshot.docs.forEach((doc) => {
-        users.push({ ...doc.data(), docId: doc.id })
-        setUsers(users)
-      })
-    })
-    .catch((error) => console.log(error))
-    .finally(() => setLoading(false))
-
   const columns: ColumnsType<any> = [
     {
       title: 'Nombre de Usuario',
-      dataIndex: 'displayName',
-      key: 'displayName',
+      dataIndex: 'username',
+      key: 'username',
     },
     {
       title: 'Email',
