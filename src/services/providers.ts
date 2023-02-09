@@ -1,39 +1,22 @@
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore/lite';
+import { login, register } from '../api/auth';
 
 import { IUser } from '../interfaces/User';
-import { FirebaseAuth, FirebaseDB } from './firebase';
 
-export const registerUserWithEmailPassword = async ({ email, password, displayName }: IUser) => {
+export const registerUserWithEmailPassword = async ({ email, password, username }: IUser) => {
 
   try {
-    const resp = await createUserWithEmailAndPassword(FirebaseAuth, email, password);
-    const { uid, photoURL } = resp.user;
-
-    await updateProfile(FirebaseAuth.currentUser!, { displayName });
-
-    const docRef = doc(FirebaseDB, `users/${uid}`)
-
-    setDoc(docRef, {
-      uid,
-      email,
-      photoURL,
-      displayName,
-      role: 'user'
-    })
+    const { data } = await register({ email, password, username });
 
     return {
       ok: true,
-      uid,
-      role: 'user',
-      email,
-      photoURL,
-      displayName
+      ...data
     }
 
   } catch (error: any) {
-    console.log(error);
-    return { ok: false, errorMessage: error.message }
+    console.log(error.response.data.message)
+    const message = Array.isArray(error.response.data.message) ? error.response.data.message[0] : error.response.data.message
+
+    return { ok: false, registerMessage: message }
   }
 
 }
@@ -42,26 +25,16 @@ export const registerUserWithEmailPassword = async ({ email, password, displayNa
 export const loginWithEmailPassword = async ({ email, password }: IUser) => {
 
   try {
-    const resp = await signInWithEmailAndPassword(FirebaseAuth, email, password);
-    const { uid, photoURL, displayName } = resp.user;
-
-    const docRef = doc(FirebaseDB, `users/${uid}`)
-    const d = await getDoc(docRef)
+    const { data } = await login({ email, password });
 
     return {
       ok: true,
-      // uid,
-      // email,
-      // photoURL,
-      // displayName,
-      ...d.data()
+      ...data
     }
 
   } catch (error: any) {
-    return { ok: false, errorMessage: error.message }
+    console.log(error.response.data.message)
+    const message = Array.isArray(error.response.data.message) ? error.response.data.message[0] : error.response.data.message
+    return { ok: false, loginMessage: message }
   }
-}
-
-export const logoutFirebase = async () => {
-  return await FirebaseAuth.signOut();
 }
