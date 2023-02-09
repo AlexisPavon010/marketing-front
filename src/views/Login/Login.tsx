@@ -10,7 +10,7 @@ import styles from './login.module.scss'
 const { Text, Title, Paragraph } = Typography;
 
 export const Login = () => {
-  const { status, errorMessage } = useSelector((state: any) => state.auth)
+  const { status, loginMessage, registerMessage } = useSelector((state: any) => state.auth)
   const [isRegister, setIsRegister] = useState(false)
   const dispatch = useDispatch()
 
@@ -44,12 +44,19 @@ export const Login = () => {
             </div>
             <div className={styles.login__form}>
               {isRegister ? (
-                <RegisterComponent />
+                <>
+                  {registerMessage && (
+                    <div className={styles.login__error}>
+                      <Text style={{ textAlign: 'center' }} type="danger">{registerMessage}</Text>
+                    </div>
+                  )}
+                  <RegisterComponent />
+                </>
               ) : (
                 <>
-                  {errorMessage && (
+                  {loginMessage && (
                     <div className={styles.login__error}>
-                      <Text style={{ textAlign: 'center' }} type="danger">El usuario no existe o las credenciales son invalidas!</Text>
+                      <Text style={{ textAlign: 'center' }} type="danger">{loginMessage}</Text>
                     </div>
                   )}
                   <Form
@@ -79,18 +86,15 @@ export const Login = () => {
                         prefix={<BiLockAlt />}
                       />
                     </Form.Item>
-
-                    <Form.Item>
-                      <Button
-                        htmlType="submit"
-                        size="large"
-                        block
-                        type="primary"
-                        loading={status === 'checking'}
-                      >
-                        Ingresar
-                      </Button>
-                    </Form.Item>
+                    <Button
+                      htmlType="submit"
+                      size="large"
+                      block
+                      type="primary"
+                      loading={status === 'checking'}
+                    >
+                      Ingresar
+                    </Button>
                   </Form>
                 </>
               )}
@@ -142,7 +146,7 @@ const RegisterComponent = () => {
       onFinish={handleRegister}
     >
       <Form.Item
-        name="displayName"
+        name="username"
         rules={[{ required: true, message: 'Por favor ingrese su usuario.' }]}
       >
         <Input
@@ -175,17 +179,15 @@ const RegisterComponent = () => {
         />
       </Form.Item>
 
-      <Form.Item>
-        <Button
-          htmlType="submit"
-          size="large"
-          block
-          type="primary"
-          loading={status === 'checking'}
-        >
-          Registrarse
-        </Button>
-      </Form.Item>
+      <Button
+        htmlType="submit"
+        size="large"
+        block
+        type="primary"
+        loading={status === 'checking'}
+      >
+        Registrarse
+      </Button>
     </Form >
   )
 }
