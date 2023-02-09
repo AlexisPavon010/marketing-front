@@ -129,7 +129,7 @@ export const Table = () => {
         >
           <Row gutter={[16, 16]} >
             <Col xs={24} md={8} lg={8}>
-              <Form.Item label='Categorias'>
+              <Form.Item name='categories' label='Categorias'>
                 <Select
                   allowClear
                   onChange={(value) => setCategory(value)}
@@ -140,7 +140,7 @@ export const Table = () => {
               </Form.Item>
             </Col>
             <Col xs={24} md={8} lg={6} >
-              <Form.Item label='Marca'>
+              <Form.Item name='brands' label='Marcas'>
 
                 <Select
                   allowClear
@@ -216,7 +216,7 @@ export const Table = () => {
             <Col flex={1}>
             </Col>
             <Col xs={24} md={6} >
-              <Form.Item label='Buscar'>
+              <Form.Item name='search' label='Buscar'>
                 <Search placeholder="Buscar" style={{ width: '100%' }} />
               </Form.Item>
             </Col>
