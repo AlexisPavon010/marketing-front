@@ -2,6 +2,8 @@ import { Layout } from 'antd';
 
 import styles from './styles.module.scss'
 import { Navbar } from './Navbar';
+import { WhatsAppButton } from '../WhatsAppButton';
+import { Footer } from '../Footer';
 
 interface Props {
   children: JSX.Element | JSX.Element[]
@@ -17,7 +19,9 @@ export const LayoutComponent = ({ children }: Props) => {
           <Navbar />
           <Content className={styles.main_content}>
             {children}
+            <WhatsAppButton />
           </Content>
+          <Footer />
         </Layout>
       </Layout>
     </>

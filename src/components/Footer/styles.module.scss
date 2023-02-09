@@ -1,0 +1,19 @@
+.footer {
+  box-shadow: rgb(0 0 0 / 14%) 0px 106px 36px -116px inset;
+}
+
+.footer__container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 0;
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
+  font-size: 14px !important;
+  border-top: 1px solid rgba(255, 255, 255, .25);
+}
+
+.footer__text {
+  opacity: 0.4;
+}

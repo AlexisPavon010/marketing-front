@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from './styles.module.scss'
 import { SideMenu } from './SideMenu';
 import { AdminNavbar } from './AdminNavbar';
+import { Footer } from '../Footer';
 
 interface Props {
   children: JSX.Element | JSX.Element[]
@@ -46,6 +47,7 @@ export const AdminLayout = ({ children }: Props) => {
           <Content className={styles.main_content}>
             {children}
           </Content>
+          <Footer />
         </Layout>
       </Layout>
     </>
