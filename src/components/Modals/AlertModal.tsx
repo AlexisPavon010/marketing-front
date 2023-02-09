@@ -8,13 +8,13 @@ import { updatePost } from "../../api/Post";
 const { Paragraph } = Typography
 
 export const AlertModal = ({ openModal, setOpenModal, setPosted, formValues, post }: any) => {
-  const { uid, email, displayName, photoURL, } = useSelector((state: any) => state.auth)
+  const { uid, email, username, photoURL, } = useSelector((state: any) => state.auth)
   const [confirmLoading, setConfirmLoading] = useState(false)
 
   const handleOk = () => {
     setConfirmLoading(true);
     if (!post?._id) {
-      createPost({ ...formValues, uid, published: true, email, displayName, photoURL, })
+      createPost({ ...formValues, uid, published: true, email, username, photoURL, })
         .then(() => {
           setPosted(true)
           setOpenModal(false)

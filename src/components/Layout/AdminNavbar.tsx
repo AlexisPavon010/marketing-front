@@ -14,7 +14,7 @@ interface NavbarProps {
 const { Header } = Layout;
 
 export const AdminNavbar = ({ openMenu }: NavbarProps) => {
-  const { displayName, photoURL, email } = useSelector((state: any) => state.auth)
+  const { username, photoURL, email } = useSelector((state: any) => state.auth)
   const dispatch = useDispatch()
   const location = useLocation()
 
@@ -57,8 +57,8 @@ export const AdminNavbar = ({ openMenu }: NavbarProps) => {
           </Col>
           <Col md={{ span: 'auto' }}>
             <Dropdown menu={{ items }} trigger={['click']}>
-              <Avatar size='large' src={photoURL ? photoURL : null} alt={displayName} >
-                {displayName ? displayName?.charAt(0).toUpperCase() : email?.charAt(0).toUpperCase()}
+              <Avatar size='large' src={photoURL ? photoURL : null} alt={username} >
+                {username ? username?.charAt(0).toUpperCase() : email?.charAt(0).toUpperCase()}
               </Avatar>
             </Dropdown>
           </Col>
