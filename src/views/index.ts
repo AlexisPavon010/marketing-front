@@ -1,3 +1,4 @@
+export { FormUpdate } from "./FormUpdate";
 export { Users } from "./Users";
 export { PublishedCategory } from "./PublishedCategory";
 export { Home } from "./Home";
