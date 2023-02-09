@@ -49,7 +49,7 @@ export const FormScreen = () => {
     setLoading(true)
     form.validateFields()
       .then(() => {
-        createPost({ ...form.getFieldsValue(), uid, email, username, photoURL, })
+        createPost({ ...form.getFieldsValue(), uid, email, username, photoURL, categories: categoria })
           .then(() => {
             toast.success('Publicación Guardada con Exito! 🚀', {
               position: "top-right",
@@ -164,7 +164,7 @@ export const FormScreen = () => {
             name="categories"
             label="Categorías"
             hasFeedback
-            // rules={[{ required: true, message: 'Please select your category!' }]}
+          // rules={[{ required: true, message: 'Please select your category!' }]}
           >
             <Select placeholder="Selecione su categoria"
               style={{ width: '100%' }}
