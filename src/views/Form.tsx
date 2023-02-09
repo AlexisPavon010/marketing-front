@@ -164,7 +164,7 @@ export const FormScreen = () => {
             name="categories"
             label="Categorías"
             hasFeedback
-            rules={[{ required: true, message: 'Please select your category!' }]}
+            // rules={[{ required: true, message: 'Please select your category!' }]}
           >
             <Select placeholder="Selecione su categoria"
               style={{ width: '100%' }}
