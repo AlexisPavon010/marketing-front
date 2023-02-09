@@ -12,7 +12,7 @@ import { IPost } from "../interfaces/Post";
 const { Title, Paragraph, Text, Link } = Typography;
 const { PreviewGroup } = Image;
 
-export const PublishedCategory = () => {
+export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }) => {
   const [layoutLoading, setLayoutLoading] = useState(true)
   const [post, setPost] = useState<IPost>()
   const [form] = Form.useForm();
@@ -73,12 +73,12 @@ export const PublishedCategory = () => {
 
   return (
     <Card>
-      <Descriptions title="Informacion">
+      <Descriptions title="Información">
         <Descriptions.Item label="Usuario">
           {/* <Avatar src={post?.photoURL ? post.photoURL : null}>
-            {post?.displayName ? post.displayName : post?.email?.charAt(0).toUpperCase()}
+            {post?.username ? post.username : post?.email?.charAt(0).toUpperCase()}
           </Avatar> */}
-          {post?.displayName ? post.displayName : post?.email}
+          {post?.username ? post.username : post?.email}
         </Descriptions.Item>
         <Descriptions.Item label="Categoria">
           {/* @ts-ignore  */}
@@ -94,9 +94,25 @@ export const PublishedCategory = () => {
         </Descriptions.Item>
       </Descriptions>
       <Typography>
+        <Title level={5}>Titulo</Title>
+        <Paragraph>
+          {post?.title}
+        </Paragraph>
         <Title level={5}>Descripcion</Title>
         <Paragraph>
           {post?.description}
+        </Paragraph>
+        <Title level={5}>Duración</Title>
+        <Paragraph>
+          {post?.duration! == 1 ? `${post?.duration} Semana` : `${post?.duration} Semanas`}
+        </Paragraph>
+        <Title level={5}>Core Target</Title>
+        <Paragraph>
+          {post?.core_target}
+        </Paragraph>
+        <Title level={5}>Resultado</Title>
+        <Paragraph>
+          {post?.result}
         </Paragraph>
       </Typography>
       <div style={{
@@ -128,54 +144,56 @@ export const PublishedCategory = () => {
           <Video height={480} width={720} src={url} key={i} />
         ))}
       </div>
-      <Row gutter={10}>
-        <Form
-          style={{ width: '100%' }}
-          form={form}
-          layout="horizontal"
-          onFinish={handleUpdatePost}
-          initialValues={{
-            status: post?.status,
-            role: 'admin',
-            score: form.getFieldValue('role') === 'jury' ? post?.juryScore : post?.adminScore,
-          }}
-        >
-          <Row gutter={12}>
-            <Col xs={12} md={6}>
-              <Form.Item label='Estado' name="status" >
-                <Select options={STATUSES.map(({ id, name }) => ({ value: id, label: name }))} />
-              </Form.Item>
-            </Col>
-            <Col xs={12} md={6}>
-              <Form.Item label='Role' name="role" >
-                <Select
-                  onChange={(role) => role === 'jury' ? form.setFieldValue('score', post?.juryScore) : form.setFieldValue('score', post?.adminScore)}
-                  options={[
-                    {
-                      value: 'jury',
-                      label: 'Jurado'
-                    },
-                    {
-                      value: 'admin',
-                      label: 'Essence'
-                    },
-                  ]}
-                />
-              </Form.Item>
-            </Col>
-            <Col xs={12} md={6}>
-              <Form.Item label='Puntuación' name="score" >
-                <Rate />
-              </Form.Item>
-            </Col>
-            <Col xs={12} md={6}>
-              <Button block type="primary" htmlType="submit">
-                Enviar
-              </Button>
-            </Col>
-          </Row>
-        </Form>
-      </Row>
+      {adminView ? (
+        <Row gutter={10}>
+          <Form
+            style={{ width: '100%' }}
+            form={form}
+            layout="horizontal"
+            onFinish={handleUpdatePost}
+            initialValues={{
+              status: post?.status,
+              role: 'admin',
+              score: form.getFieldValue('role') === 'jury' ? post?.juryScore : post?.adminScore,
+            }}
+          >
+            <Row gutter={12}>
+              <Col xs={12} md={6}>
+                <Form.Item label='Estado' name="status" >
+                  <Select options={STATUSES.map(({ id, name }) => ({ value: id, label: name }))} />
+                </Form.Item>
+              </Col>
+              <Col xs={12} md={6}>
+                <Form.Item label='Role' name="role" >
+                  <Select
+                    onChange={(role) => role === 'jury' ? form.setFieldValue('score', post?.juryScore) : form.setFieldValue('score', post?.adminScore)}
+                    options={[
+                      {
+                        value: 'jury',
+                        label: 'Jurado'
+                      },
+                      {
+                        value: 'admin',
+                        label: 'Essence'
+                      },
+                    ]}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={12} md={6}>
+                <Form.Item label='Puntuación' name="score" >
+                  <Rate />
+                </Form.Item>
+              </Col>
+              <Col xs={12} md={6}>
+                <Button block type="primary" htmlType="submit">
+                  Enviar
+                </Button>
+              </Col>
+            </Row>
+          </Form>
+        </Row>
+      ) : null}
     </Card >
   )
 }
