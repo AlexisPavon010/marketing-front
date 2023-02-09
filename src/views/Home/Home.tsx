@@ -10,14 +10,14 @@ import { UserForm } from '../../components/UserForm'
 const { Title, Paragraph } = Typography;
 
 export const Home = () => {
-  const { displayName, email } = useSelector((state: any) => state.auth)
+  const { username, email } = useSelector((state: any) => state.auth)
 
   return (
     <>
       <Card className={styles.hero}>
         <Typography>
           <Title className={styles.hero__title} >
-            <AiOutlineUser /> ¡Bienvenido/a  {displayName ? displayName : email}!
+            <AiOutlineUser /> ¡Bienvenido/a  {username ? username : email}!
           </Title>
           <Title className={styles.hero__subtitle}>
             Intercorp Marketing Awards 2023
