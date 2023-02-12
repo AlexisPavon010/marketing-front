@@ -15,20 +15,92 @@ export const CategoriesCollapse = () => {
         Información sobre Categorías
       </Title>
       <Collapse>
+        <Panel header={<strong>Branding</strong>} key="5">
+          <Paragraph>
+            Esta categoría reconoce aquellas campañas o acciones que generaron impacto en la salud de marcas.
+          </Paragraph>
+          <Paragraph>
+            <strong>Métricas: </strong>
+            A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente. No dejes de participar.
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Período de comparación vs baseline: mismo mes del año anterior ó mes anterior.
+            </li>
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Cambios en la pirámide marcaria: (awareness, consideración, experiencia, preferencia, fidelidad).
+            </li>
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Resultados investigaciones cuali/cuanti a consumidores,
+            </li>
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Resultados de Post tests, evolución atributos de marcas.
+            </li>
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Métricas redes sociales: like, share, sentiment, engagement, brand lift.
+            </li>
+          </Paragraph>
+        </Panel>
+        <Panel header={<strong>Estrategia de Crecimiento</strong>} key="3">
+          <Paragraph>
+            Esta categoría incluye aquellas iniciativas de lanzamientos, revitalización de marca, nuevos servicios, canales de venta, cambios de posicionamiento, y cualquier innovación que haya traído crecimiento exponencial  para la marca y para el negocio.
+          </Paragraph>
+          <Paragraph>
+            Se valorarán campañas y estrategias impulsadas por datos cualitativos y cuantitativos, basados en insights de negocio o de consumidor.
+          </Paragraph>
+          <Paragraph>
+            <strong>Métricas: </strong>
+            A modo de referencia a continuación se detallan como ejemplo  métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s  y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente. No dejes de participar.
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Período de comparación vs baseline: mismo mes del año anterior ó mes anterior.
+            </li>
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Incremento de ventas (ventas web /offline), en valores ($$) y transacciones.
+            </li>
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Cambios en la Pirámide marcaria: awareness, consideración, experiencia, preferencia, fidelidad,
+            </li>
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Resultados investigaciones cuali/cuanti a consumidores,
+            </li>
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Resultados de Post tests, evolución atributos de marcas.
+            </li>
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Métricas redes sociales: share, sentiment, engagement, brand lift.
+            </li>
+          </Paragraph>
+        </Panel>
         <Panel header={<strong>Performance Marketing</strong>} key="1">
           <Paragraph>
-            En esta categoría entran campañas de lead , paid search , pais social, que hayan demostrado incremento en conversiones, prospects , tráfico , y/o descargas de aplicaciones manteniendo o disminuyendo el CPA vs el período de comparación.
+            En esta categoría entran campañas de lead, paid search, paid social, que hayan demostrado incremento en conversiones, prospects, tráfico, y/o descargas de aplicaciones  manteniendo o disminuyendo el CPA vs el período de comparación.
           </Paragraph>
           <Paragraph>
             <strong>Ejemplos:</strong> Implementación de lower funnel, uso de data con modelos de propensión, etc.
           </Paragraph>
           <Paragraph>
-            <strong>Métricas:</strong> A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI ́s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Conversiones incrementales, CPA, ratio de conversión, leads, prospects, tráfico, descargas de aplicaciones, ROAS (Return On Advertising Spending = Ventas/inversión en el evento)
-            </li>
+            <strong>Métricas:</strong>
+            A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI ́s  y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente. No dejes de participar.
           </Paragraph>
           <Paragraph>
             <li className={styles.list_item}>
@@ -39,12 +111,11 @@ export const CategoriesCollapse = () => {
         <Panel header={<strong>Marketing Promocional</strong>} key="2">
           <Paragraph>
             En esta categoría el beneficio adicional ofrecido debe ser un factor determinante en la generación de los resultados para impulsar la venta.
+            Esta categoría incluye aquellas iniciativas que aprovechan temporadas especiales (verano, otoño, back to school),  días festivos (navidad, fiestas patrias)  y eventos (cyberwow) donde se conecta la oferta en un contexto determinado con el público objetivo.
           </Paragraph>
           <Paragraph>
-            Esta categoría incluye aquellas iniciativas que aprovechan temporadas especiales (verano, otoño, back to school), días festivos (navidad, fiestas patrias) y eventos (cyberwow) donde se conecta la oferta en un contexto determinado con el público objetivo
-          </Paragraph>
-          <Paragraph>
-            <strong>Métricas:</strong> A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.
+            <strong>Métricas:</strong>
+            A modo de referencia a continuación se detallan como ejemplo  métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s  y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente. No dejes de participar.
           </Paragraph>
           <Paragraph>
             <li className={styles.list_item}>
@@ -102,51 +173,10 @@ export const CategoriesCollapse = () => {
             </li>
           </Paragraph>
         </Panel>
-        <Panel header={<strong>Estrategia de Crecimiento</strong>} key="3">
+        <Panel header={<strong>Uso de Influencers / Creación de Contenido</strong>} key="4">
           <Paragraph>
-            Esta categoría incluye aquellas iniciativas de lanzamientos, revitalización de marca, nuevos servicios, canales de venta, cambios de posicionamiento, y cualquier innovación que haya traído crecimiento exponencial para la marca y para el negocio.
-          </Paragraph>
-          <Paragraph>
-            Se valorarán campañas y estrategias impulsadas por datos cualitativos y cuantitativos, basados en insights de negocio o de consumidor.
-          </Paragraph>
-          <Paragraph>
-            <strong>Métricas: </strong>
-            A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Período de comparación vs baseline: mismo mes del año anterior ó mes anterior.
-            </li>
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Incremento de ventas (ventas web /off line), en valores ($$) y transacciones.
-            </li>
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Cambios en la Pirámide marcaria: awareness, consideración, experiencia, preferencia, fidelidad,
-            </li>
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Resultados investigaciones cuali/cuanti a consumidores,
-            </li>
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Resultados de Post tests, evolución atributos de marcas.
-            </li>
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Métricas redes sociales: share, sentiment, engagement, brand lift.
-            </li>
-          </Paragraph>
-        </Panel>
-        <Panel header={<strong>Creación de Contenido</strong>} key="4">
-          <Paragraph>
-            Esta categoría destaca aquellas campañas o acciones que buscan conectar con el consumidor a través de la creación de contenidos con el objetivo de informar o entretener a los posibles clientes de una marca.
+            Esta categoría destaca aquellas campañas o acciones  que buscan conectar con el consumidor a través de la creación de contenidos con el objetivo de informar o entretener a los posibles clientes de una marca.
+            Incluye a creadores de contenido/ influencers que se transformen en embajadores de la marca que impulsan ventas o desarrollo de marca.
           </Paragraph>
           <Paragraph>
             Esta categoría incluye a creadores de contenido/ influencers que se transformen en embajadores de la marca que impulsan ventas
@@ -169,47 +199,10 @@ export const CategoriesCollapse = () => {
               CTR
             </li>
             <li className={styles.list_item}>
-              VTR (vistas/impresiones)
-            </li>
-            <li className={styles.list_item}>
               CPM (costo/impresiones)
             </li>
             <li className={styles.list_item}>
               Métricas redes sociales: share, sentiment, engagement, brand lift, search lift.
-            </li>
-          </Paragraph>
-        </Panel>
-        <Panel header={<strong>Branding</strong>} key="5">
-          <Paragraph>
-            Esta categoría reconoce aquellas campañas o acciones que generaron impacto en la salud de marcas.
-          </Paragraph>
-          <Paragraph>
-            <strong>Métricas: </strong>
-            A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Período de comparación vs baseline: mismo mes del año anterior ó mes anterior.
-            </li>
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Cambios en la pirámide marcaria: (awareness, consideración, experiencia, preferencia, fidelidad).
-            </li>
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Resultados investigaciones cuali/cuanti a consumidores,
-            </li>
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Resultados de Post tests, evolución atributos de marcas.
-            </li>
-          </Paragraph>
-          <Paragraph>
-            <li className={styles.list_item}>
-              Métricas redes sociales: like, share, sentiment, engagement, brand lift.
             </li>
           </Paragraph>
         </Panel>
@@ -221,7 +214,8 @@ export const CategoriesCollapse = () => {
             Se valorará el impacto que estas acciones generen en la salud de la marca.
           </Paragraph>
           <Paragraph>
-            A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.
+            <strong>Métricas ejemplo: </strong>
+            A modo de referencia a continuación se detallan como ejemplo  métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s  y a las fuentes de información con las que cuente cada marca.Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.
           </Paragraph>
           <Paragraph>
             <li className={styles.list_item}>
