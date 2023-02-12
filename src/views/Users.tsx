@@ -1,18 +1,18 @@
 import { Card, Select, Table, Tag } from "antd"
 import { ColumnsType } from "antd/es/table";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { updateRole } from "../helpers";
 import { IUser } from "../interfaces/User";
+import { getUsers, updatedRole } from "../api/auth";
 
 
 export const Users = () => {
   const [loading, setLoading] = useState(true)
   const [users, setUsers] = useState<IUser[]>([])
 
-  const handleChangeRole = (docId: string, role: string) => {
-    updateRole(docId, role).then(() => {
+  const handleChangeRole = (id: string, role: string) => {
+    updatedRole(id, role).then(() => {
       toast.success('Rol Actualizado con Exito! 🚀', {
         position: "top-right",
         autoClose: 5000,
@@ -23,7 +23,16 @@ export const Users = () => {
         theme: "light",
       });
     })
+      .catch((error) => console.log(error))
   }
+
+  useEffect(() => {
+    setLoading(true)
+    getUsers()
+      .then(({ data }) => setUsers(data))
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false))
+  }, [])
 
   const columns: ColumnsType<any> = [
     {
@@ -32,7 +41,7 @@ export const Users = () => {
       key: 'username',
     },
     {
-      title: 'Email',
+      title: 'Correo',
       dataIndex: 'email',
       key: 'email',
       align: 'center'
@@ -49,7 +58,7 @@ export const Users = () => {
       )
     },
     {
-      title: 'Action',
+      title: 'Cambio de Rol',
       key: 'action',
       width: '150px',
       render: (user) => (

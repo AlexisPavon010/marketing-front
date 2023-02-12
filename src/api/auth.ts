@@ -10,6 +10,10 @@ export const login = (payload: any) => {
   return axios.post(`${BASE_URL}/api/auth/login`, payload)
 }
 
-export const updatedRole = (payload: any)=> {
+export const getUsers = () => {
+  return axios.get(`${BASE_URL}/api/auth/users`)
+}
+
+export const updatedRole = (id: string, payload: any) => {
   return axios.post(`${BASE_URL}/api/auth/login`, payload)
 }
