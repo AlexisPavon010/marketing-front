@@ -1,7 +1,8 @@
-import { Card, Col, Form, Input, Rate, Row, Select, Table as AntTable, Tag } from 'antd';
+import { Button, Card, Col, Form, Input, Rate, Row, Select, Space, Table as AntTable, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
+import { AiOutlineReload } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { getPosts } from '../api/Post';
 import { CATEGORIES, STATUSES } from '../constans';
@@ -19,6 +20,16 @@ interface DataType {
 }
 
 const columns: ColumnsType<DataType> = [
+  {
+    title: 'Usuario',
+    dataIndex: 'username',
+    key: 'username'
+  },
+  {
+    title: 'Correo',
+    dataIndex: 'email',
+    key: 'email'
+  },
   {
     title: 'Categoría Postulada',
     dataIndex: 'categories',
@@ -68,7 +79,7 @@ const columns: ColumnsType<DataType> = [
     align: 'center',
   },
   {
-    title: 'Puntuacion Essence',
+    title: 'Valoración',
     dataIndex: 'adminScore',
     key: 'score',
     align: 'center',
@@ -107,7 +118,7 @@ export const Table = () => {
     setLimit(size)
   }
 
-  useEffect(() => {
+  const getData = () => {
     setLoading(true)
     getPosts(limit, skip, category, brand)
       .then(({ data }) => {
@@ -117,6 +128,10 @@ export const Table = () => {
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false))
+  }
+
+  useEffect(() => {
+    getData()
   }, [skip, limit, category, brand])
 
 
@@ -216,9 +231,17 @@ export const Table = () => {
             <Col flex={1}>
             </Col>
             <Col xs={24} md={6} >
-              <Form.Item name='search' label='Buscar'>
-                <Search placeholder="Buscar" style={{ width: '100%' }} />
-              </Form.Item>
+              <Space direction='horizontal' align='center'>
+                <Form.Item name='search' label='Buscar'>
+                  <Search placeholder="Buscar" style={{ width: '100%' }} />
+                </Form.Item>
+                <Button
+                  loading={loading}
+                  onClick={() => getData()}
+                  style={{ marginTop: '5px' }}
+                  icon={<AiOutlineReload />}
+                />
+              </Space>
             </Col>
           </Row>
         </Form>
@@ -235,6 +258,9 @@ export const Table = () => {
           rowKey='_id'
           loading={loading}
           pagination={{
+            locale: {
+              items_per_page: 'x pag.',
+            },
             total: count,
             current: skip,
             pageSize: limit,
