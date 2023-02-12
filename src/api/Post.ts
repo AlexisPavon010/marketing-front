@@ -51,8 +51,5 @@ export const getPostByUserId = (id: string, skip: any, limit: any, brand: string
 }
 
 export const updatePost = (id: string, payload: any) => {
-  return axios.patch(`${BASE_URL}/api/posts/${id}`, {
-    ...payload,
-    published: true
-  })
+  return axios.patch(`${BASE_URL}/api/posts/${id}`, payload)
 }
