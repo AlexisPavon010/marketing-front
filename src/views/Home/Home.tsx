@@ -6,6 +6,7 @@ import styles from './home.module.scss'
 import { CategoriesCard } from '../../components/Categories'
 import { CategoriesCollapse } from '../../components/CategoriesCollapse';
 import { UserForm } from '../../components/UserForm'
+import { StepsComponent } from '../../components/Steps'
 
 const { Title, Paragraph } = Typography;
 
@@ -37,6 +38,9 @@ export const Home = () => {
         </Typography>
       </Card>
       <Card className={styles.card__categories}>
+        <StepsComponent />
+      </Card>
+      <Card className={styles.card__categories}>
         <CategoriesCollapse />
       </Card>
       <Card className={styles.card__categories}>
@@ -49,6 +53,16 @@ export const Home = () => {
           </Paragraph>
           <Paragraph>
             Puedes presentar más de una caso por categoría.
+          </Paragraph>
+          <Paragraph>
+            <ul>
+              <li>
+                <a href="#">Guia de Inscripción</a>
+              </li>
+              <li>
+                <a href="#">Bases y Condiciones</a>
+              </li>
+            </ul>
           </Paragraph>
         </Typography>
       </Card>
