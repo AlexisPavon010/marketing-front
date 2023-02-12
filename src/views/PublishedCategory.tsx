@@ -1,7 +1,7 @@
 import { Card, Image, Spin, Typography, Descriptions, Tag, Row, Button, Rate, Form, Select, Col } from "antd"
 import moment from "moment";
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { toast } from "react-toastify";
 import { getPostById } from "../api";
 import { updatePost } from "../api/Post";
@@ -16,24 +16,14 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
   const [layoutLoading, setLayoutLoading] = useState(true)
   const [post, setPost] = useState<IPost>()
   const [form] = Form.useForm();
+  const navigate = useNavigate()
 
   const { id } = useParams()
 
   const handleUpdatePost = (values: any) => {
 
-    console.log(values.role)
-
-    let adminScore = post?.adminScore
-    let juryScore = post?.juryScore
-
-    if (values.role === 'jury') {
-      juryScore = values.score
-    } else {
-      adminScore = values.score
-    }
-
     if (!post?._id) return
-    updatePost(post?._id, { ...values, adminScore, juryScore })
+    updatePost(post?._id, values)
       .then(({ data }) => {
         toast.success('Publicacion Enviada con Exito! 🚀', {
           position: "top-right",
@@ -46,6 +36,7 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
           theme: "light",
         });
         console.log(data)
+        navigate('/dashboard')
       }
       )
       .catch((error) => console.log(error))
@@ -164,7 +155,7 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
                 </Form.Item>
               </Col>
               <Col xs={12} md={6}>
-                <Form.Item label='Role' name="role" >
+                {/* <Form.Item label='Role' name="role" >
                   <Select
                     onChange={(role) => role === 'jury' ? form.setFieldValue('score', post?.juryScore) : form.setFieldValue('score', post?.adminScore)}
                     options={[
@@ -178,10 +169,10 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
                       },
                     ]}
                   />
-                </Form.Item>
+                </Form.Item> */}
               </Col>
               <Col xs={12} md={6}>
-                <Form.Item label='Puntuación' name="score" >
+                <Form.Item label='Puntuación' name="adminScore" >
                   <Rate />
                 </Form.Item>
               </Col>
