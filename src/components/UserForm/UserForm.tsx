@@ -67,22 +67,7 @@ const columns: ColumnsType<DataType> = [
         </Tag>
       )
     }
-  },
-  {
-    title: 'Puntuacion Jurado',
-    dataIndex: 'juryScore',
-    key: 'juryScore',
-    align: 'center',
-  },
-  {
-    title: 'Puntuacion Essence',
-    dataIndex: 'adminScore',
-    key: 'score',
-    align: 'center',
-    render: (value) => (
-      <Rate disabled defaultValue={value} />
-    )
-  },
+  }
 ];
 
 export const UserForm = () => {
@@ -241,7 +226,7 @@ export const UserForm = () => {
           }}
           onRow={(record, rowIndex) => ({
             onClick: event => {
-              navigate(record.published ? `/categories/published/${record._id}` : `/update-categories/${record.categories}`)
+              navigate(record.published ? `/categories/published/${record._id}` : `/update-categories/${record._id}`)
             }
           })}
         />
