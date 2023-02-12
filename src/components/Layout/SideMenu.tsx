@@ -65,40 +65,9 @@ export const SideMenu = ({ closeMenu }: SideMenuProps) => {
 
   const pages = [
     { label: 'Dashboard', icon: <AiOutlineForm size={20} />, key: '/dashboard' },
-    { label: 'Questionarios', icon: <AiOutlineQuestionCircle size={20} />, key: '/dashboard/questions' },
+    // { label: 'Questionarios', icon: <AiOutlineQuestionCircle size={20} />, key: '/dashboard/questions' },
     { label: 'Usuarios', icon: <AiOutlineUser size={20} />, key: '/dashboard/users' },
-    {
-      key: "grp",
-      icon: null,
-      children: [
-        {
-          "key": "/dashboard/categories/branding",
-          "label": "Branding"
-        },
-        {
-          "key": "/dashboard/categories/creación-de-contenido",
-          "label": "Creación de Contenido"
-        },
-        {
-          "key": "/dashboard/categories/marketing-promocional",
-          "label": "Marketing Promocional"
-        },
-        {
-          "key": "/dashboard/categories/performance-marketing",
-          "label": "Performance Marketing"
-        },
-        {
-          "key": "/dashboard/categories/estrategia-de-crecimiento",
-          "label": "Estrategia de Crecimiento"
-        },
-        {
-          "key": "/dashboard/categories/impacto-positivo",
-          "label": "Impacto Positivo"
-        },
-      ],
-      label: "Categoríes",
-      type: "group",
-    }
+
   ]
 
   return (
@@ -109,35 +78,17 @@ export const SideMenu = ({ closeMenu }: SideMenuProps) => {
       mode="inline"
     >
       {pages.map((p) => (
-        p.children ? (
-          <SubMenu
-            key={p.key}
-            icon={p.icon}
-            title={p.label}
-          >
-            {p.children.map((c) => (
-              <Menu.Item
-                key={c.key}
-                onClick={closeMenu}
-              >
-                <Link to={c.key}>
-                  {c.label}
-                </Link>
-              </Menu.Item>
-            ))}
-          </SubMenu>
-        ) : (
-          <Menu.Item
-            key={p.key}
-            icon={p.icon}
-            title={p.label}
-            onClick={closeMenu}
-          >
-            <Link to={p.key}>
-              {p.label}
-            </Link>
-          </Menu.Item>
-        )))}
+        <Menu.Item
+          key={p.key}
+          icon={p.icon}
+          title={p.label}
+          onClick={closeMenu}
+        >
+          <Link to={p.key}>
+            {p.label}
+          </Link>
+        </Menu.Item>
+      ))}
     </Menu >
   )
 }
