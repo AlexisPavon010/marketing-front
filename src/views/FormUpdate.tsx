@@ -7,8 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Marquee from 'react-fast-marquee';
 
-import { createPost } from '../api';
-import { getPostByIdAndCategory } from '../api/Post';
+import { getPostById, updatePost } from '../api/Post';
 import { BrandSelect } from '../components/BrandSelect';
 import { AlertModal } from '../components/Modals';
 import { UploadImage } from '../components/UploadImage';
@@ -33,11 +32,11 @@ export const FormUpdate = () => {
   const [loadingLayout, setLoadingLayout] = useState(true)
   const [posted, setPosted] = useState(false)
   const [form] = Form.useForm();
+  const [metricas, setMetricas] = useState<any>()
 
   const navigate = useNavigate()
-  const { id: categoria } = useParams()
+  const { id } = useParams()
 
-  const { title, items }: any = METRICAS.find((item) => item.id === categoria)
 
   const onFinish = (values: any) => {
     console.log(values, 'crear', uid)
@@ -46,10 +45,15 @@ export const FormUpdate = () => {
 
   const handelUpdatePost = () => {
     console.log('updateadr')
+    console.log(form.getFieldsValue())
     setLoading(true)
     form.validateFields()
       .then(() => {
-        createPost({ ...form.getFieldsValue(), uid, email, username, photoURL, })
+        updatePost(
+          post?._id!,
+          {
+            ...form.getFieldsValue(),
+          })
           .then(() => {
             toast.success('Publicación Guardada con Exito! 🚀', {
               position: "top-right",
@@ -65,13 +69,10 @@ export const FormUpdate = () => {
           })
           .catch((error) => console.log(error))
           .finally(() => setLoading(false))
-
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false))
   }
-
-
   const normFile = (e: any) => {
     console.log('Upload event:', e);
     if (Array.isArray(e)) {
@@ -81,14 +82,14 @@ export const FormUpdate = () => {
   };
 
   useEffect(() => {
-    console.log(categoria)
     setLoadingLayout(true)
-    if (!categoria) return
-    getPostByIdAndCategory(uid, categoria!)
+    if (!id) return
+    getPostById(id)
       .then(({ data }) => {
         setPost(data)
         form.setFieldsValue(data)
         console.log(data)
+        setMetricas(METRICAS.find((item) => item.id === data.categories))
       })
       .catch((error) => console.log(error))
       .finally(() => setLoadingLayout(false))
@@ -257,9 +258,9 @@ export const FormUpdate = () => {
 
                 <Paragraph>
                   <strong>Métricas: </strong>
-                  {title}
+                  {metricas.title}
                 </Paragraph>
-                {items.map((item: string, i: number) => (
+                {metricas.items.map((item: string, i: number) => (
                   <Paragraph key={i}>
                     <li style={{ listStyle: 'inside' }}>
                       {item}
