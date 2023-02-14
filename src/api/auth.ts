@@ -17,3 +17,11 @@ export const getUsers = () => {
 export const updatedRole = (id: string, payload: any) => {
   return axios.post(`${BASE_URL}/api/auth/login`, payload)
 }
+
+export const resetPassword = (payload: any) => {
+  return axios.post(`${BASE_URL}/api/email/reset`, payload)
+}
+
+export const recoveryPassword = (payload: any) => {
+  return axios.post(`${BASE_URL}/api/email/recovery`, payload)
+}
