@@ -48,9 +48,9 @@ export const AlertModal = ({ openModal, setOpenModal, setPosted, formValues, pos
       cancelText='No lo he decidido aún'
     >
       <p>
-        Una vez aceptado no se podrá eliminar ni cambiar el contenido. Ante cualquier duda o error en la presentación consulte al soporte de Essence en
+        Una vez aceptado no se podrá eliminar ni cambiar el contenido. Ante cualquier duda o error en la presentación consulte al soporte de Intercorp Marketing Awards 2023 en
         <span> </span>
-        <a href="mailto:soporte@essencemarketingpartner.com">soporte@essencemarketingpartner.com</a>
+        <a href="mailto:info@intercorpmarketingawards.com">info@intercorpmarketingawards.com</a>
         <span> </span>
         o comunicarse al
         <br />
