@@ -92,7 +92,7 @@ export const UserForm = () => {
       render: (_, record) => {
         let color = STATUSES.find((item) => item.id === record.status)?.color
         let text = STATUSES.find((item) => item.id === record.status)?.name
-        if (record.published) {
+        if (!record.published) {
           color = 'yellow';
           text = 'Guardado';
         }
