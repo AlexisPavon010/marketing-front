@@ -186,7 +186,7 @@ export const FormScreen = () => {
           <BrandSelect />
 
           <Form.Item
-            rules={[{ required: true, message: 'El titulo del caso es requerido!' }]}
+            // rules={[{ required: true, message: 'El titulo del caso es requerido!' }]}
             label='Título del Caso'
             name='title'>
             <Input type='text' />
@@ -212,7 +212,7 @@ export const FormScreen = () => {
             type="info"
           />
           <Form.Item
-            rules={[{ required: true, message: 'Por favor debe rellenar este campo.' }]}
+            // rules={[{ required: true, message: 'Por favor debe rellenar este campo.' }]}
             name="description"
           >
             <TextArea
@@ -226,7 +226,7 @@ export const FormScreen = () => {
           </Form.Item>
 
           <Form.Item
-            rules={[{ required: true, message: 'Seleccione la duración.' }]}
+            // rules={[{ required: true, message: 'Seleccione la duración.' }]}
             name='duration'
             label='Duración'
           >
@@ -234,7 +234,7 @@ export const FormScreen = () => {
           </Form.Item>
 
           <Form.Item
-            rules={[{ required: true, message: 'Ingrese un core target' }]}
+            // rules={[{ required: true, message: 'Ingrese un core target' }]}
             name='core_target'
             label='Core Target'
           >
@@ -273,7 +273,10 @@ export const FormScreen = () => {
             }
             type="info"
           />
-          <Form.Item name='result' rules={[{ required: true, message: 'Por favor debe rellenar este campo.' }]}>
+          <Form.Item
+            name='result'
+            // rules={[{ required: true, message: 'Por favor debe rellenar este campo.' }]}
+          >
             <TextArea
               rows={4}
               showCount
