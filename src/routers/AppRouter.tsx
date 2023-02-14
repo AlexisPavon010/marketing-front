@@ -11,6 +11,8 @@ import { DashboardRouter } from "./DashboardRouter"
 import { Login } from "../views"
 import { AdminLayout } from "../components/Layout/AdminLayout"
 import { ClientRouter } from "./ClientRouter"
+import { ResetPassword } from "../views/ResetPassword";
+import { RecoveryPassword } from "../views/RecoveryPassword";
 
 export const AppRouter = () => {
   return (
@@ -38,11 +40,23 @@ export const AppRouter = () => {
             }
           />
           <Route
+            path="/recovery-password/"
+            element={
+              <RecoveryPassword />
+            }
+          />
+          <Route
             path="/login"
             element={
               <PublicRoute>
                 <Login />
               </PublicRoute>
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              <ResetPassword />
             }
           />
         </Routes>
