@@ -17,7 +17,6 @@ export const RecoveryPassword = () => {
 
   const handleLogin = (values: any) => {
     setLoading(true)
-    console.log(values)
     recoveryPassword(values)
       .then(({ data }) => {
         setLoading(false)
@@ -105,9 +104,6 @@ export const RecoveryPassword = () => {
           <Title style={{ color: '#ff4256' }} className={styles.login__title} level={2} >
             Premiando la efectividad
           </Title>
-          <Text className={styles.login__text}>
-            The more effortless the writing looks, the more effort the writer actually put into the process.
-          </Text>
         </Card>
       </Col>
     </Row >

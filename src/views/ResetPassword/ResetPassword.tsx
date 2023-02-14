@@ -1,6 +1,6 @@
 import { Row, Col, Input, Button, Card, Typography, Form } from "antd"
 import { useState } from 'react'
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { BiLockAlt } from "react-icons/bi"
 
 import { resetPassword } from "../../api/auth"
@@ -10,7 +10,7 @@ const { Title, Text } = Typography;
 
 export const ResetPassword = () => {
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
+  const navigate = useNavigate()
   const [errorMessage, setErrorMessage] = useState('')
   const [params] = useSearchParams()
   const token = params.get('token')
@@ -20,7 +20,7 @@ export const ResetPassword = () => {
     resetPassword({ ...values, token })
       .then(({ data }) => {
         setLoading(false)
-        setSuccess(true)
+        navigate('/login')
       })
       .catch((error) => {
         console.log(error.response.data)
@@ -71,6 +71,7 @@ export const ResetPassword = () => {
                   size="large"
                   block
                   type="primary"
+                  loading={loading}
                 >
                   Reestablecer Contraseña
                 </Button>
@@ -91,9 +92,6 @@ export const ResetPassword = () => {
           <Title style={{ color: '#ff4256' }} className={styles.login__title} level={2} >
             Premiando la efectividad
           </Title>
-          <Text className={styles.login__text}>
-            The more effortless the writing looks, the more effort the writer actually put into the process.
-          </Text>
         </Card>
       </Col>
     </Row >
