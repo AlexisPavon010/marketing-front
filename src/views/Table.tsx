@@ -141,7 +141,7 @@ export const Table = () => {
       )
     },
     {
-      title: 'Action',
+      title: 'Acción',
       key: 'action',
       // onCell: (record, event) => {
       //   // event.preventDefault();
