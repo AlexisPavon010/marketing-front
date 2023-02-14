@@ -8,7 +8,7 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
 import { getPostByUserId } from "../../api";
-import { CATEGORIES } from "../../constans";
+import { CATEGORIES, STATUSES } from "../../constans";
 
 const { Search } = Input;
 
@@ -23,52 +23,7 @@ interface DataType {
   status: 'approved' | 'decline' | 'rejected' | 'pending';
 }
 
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'Categoría Postulada',
-    dataIndex: 'categories',
-    key: 'categories',
-    render: (text) => {
 
-      return (
-        // @ts-ignore 
-        <p>{CATEGORIES.find(({ id }) => id === text).name}</p>
-      )
-    }
-  },
-  {
-    title: 'Marca',
-    dataIndex: 'brand',
-    key: 'brand',
-    align: 'center'
-  },
-  {
-    align: 'center',
-    title: 'Fecha',
-    dataIndex: 'createdAt',
-    key: 'createdAt',
-    render: (date: string) => {
-      return <div>{moment(date).format('DD/MM/YYYY, h:mm:ss a')}</div>
-    }
-  },
-  {
-    align: 'center',
-    title: 'Estado',
-    key: 'status',
-    dataIndex: 'status',
-    render: (_, { status }) => {
-      let color = status == 'decline' ? 'volcano' : 'geekblue';
-      if (status === 'approved') {
-        color = 'green';
-      }
-      return (
-        <Tag color={color} key={status}>
-          {status.toUpperCase()}
-        </Tag>
-      )
-    }
-  }
-];
 
 export const UserForm = () => {
   const { uid } = useSelector((state: any) => state.auth)
@@ -101,6 +56,79 @@ export const UserForm = () => {
       .finally(() => setLoading(false))
   }, [skip, limit, brand, category])
 
+  const columns: ColumnsType<DataType> = [
+    {
+      title: 'Categoría Postulada',
+      dataIndex: 'categories',
+      key: 'categories',
+      render: (text) => {
+
+        return (
+          // @ts-ignore 
+          <p>{CATEGORIES.find(({ id }) => id === text).name}</p>
+        )
+      }
+    },
+    {
+      title: 'Marca',
+      dataIndex: 'brand',
+      key: 'brand',
+      align: 'center'
+    },
+    {
+      align: 'center',
+      title: 'Fecha',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      render: (date: string) => {
+        return <div>{moment(date).format('DD/MM/YYYY, h:mm:ss a')}</div>
+      }
+    },
+    {
+      align: 'center',
+      title: 'Estado',
+      key: 'status',
+      dataIndex: 'status',
+      render: (_, record) => {
+        let color = STATUSES.find((item) => item.id === record.status)?.color
+        let text = STATUSES.find((item) => item.id === record.status)?.name
+        if (record.published) {
+          color = 'yellow';
+          text = 'Guardado';
+        }
+        else if (record.status === 'approved') {
+          color = 'green';
+        }
+        return (
+          <Tag color={color} key={record.status}>
+            {text?.toUpperCase()}
+          </Tag>
+        )
+      }
+    },
+    {
+      title: 'Acción',
+      key: 'action',
+      render: (_, record) => {
+        if (!record.published) {
+          return (
+            <Space size="large">
+              <Tooltip placement="top" title={'Editar'}>
+                <BsPencil onClick={() => navigate(`/update-categories/${record._id}`)} size={16} />
+              </Tooltip>
+            </Space>
+          )
+        }
+        return (
+          <Space size="large">
+            <Tooltip placement="top" title={'Ver'}>
+              <AiOutlineEye onClick={() => navigate(`/categories/published/${record._id}`)} size={16} />
+            </Tooltip >
+          </Space >
+        )
+      }
+    },
+  ];
 
   return (
     <>
@@ -217,6 +245,9 @@ export const UserForm = () => {
           rowKey='_id'
           loading={loading}
           pagination={{
+            locale: {
+              items_per_page: 'x pág.',
+            },
             total: count,
             current: skip,
             pageSize: limit,
@@ -224,11 +255,11 @@ export const UserForm = () => {
             onShowSizeChange: onPageSizeChange,
             showSizeChanger: true
           }}
-          onRow={(record, rowIndex) => ({
-            onClick: event => {
-              navigate(record.published ? `/categories/published/${record._id}` : `/update-categories/${record._id}`)
-            }
-          })}
+        // onRow={(record, rowIndex) => ({
+        //   onClick: event => {
+        //     navigate(record.published ? `/categories/published/${record._id}` : `/update-categories/${record._id}`)
+        //   }
+        // })}
         />
       </Card>
     </>
