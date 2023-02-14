@@ -27,7 +27,7 @@ export const Login = () => {
           <div className={styles.login__card}>
             <div className={styles.login__card_header}>
               <Title className={styles.login__card_text} level={4} >
-                {isRegister ? 'Registro de Nuevo Usuario' : 'Ingresar con'}
+                {isRegister ? 'Registro de Nuevo Usuario' : 'Ingresar'}
               </Title>
               {isRegister ? (
                 <Alert
