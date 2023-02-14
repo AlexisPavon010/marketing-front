@@ -19,7 +19,7 @@ export const UploadVideo = ({ form }: any) => {
     setLoading(true)
     const formData = new FormData();
     formData.append('file', e.file);
-    formData.append('upload_preset', 'prueba');
+    formData.append('upload_preset', 'gykgqvrv');
 
     return axios.post(CLOUDINARY_URL, formData)
       .then((response) => {
