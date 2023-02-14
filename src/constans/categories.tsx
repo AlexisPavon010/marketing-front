@@ -5,6 +5,18 @@ import { MdOutlineBubbleChart, MdOutlineDraw, MdOutlineShowChart } from "react-i
 
 export const CATEGORIES = [
   {
+    id: 'branding',
+    name: 'Branding / Desarrollo de Valor de Marca',
+    icon: <MdOutlineDraw size={32} />,
+    color: 'linear-gradient(45deg, rgba(18,122,222,1) 0%, rgba(66,162,255,1) 100%)'
+  },
+  {
+    id: 'estrategia-de-crecimiento',
+    name: 'Estrategia de Crecimiento',
+    icon: <MdOutlineShowChart size={32} />,
+    color: 'linear-gradient(45deg, rgba(18,122,222,1) 0%, rgba(66,162,255,1) 100%)'
+  },
+  {
     id: 'performance-marketing',
     name: 'Performance Marketing',
     icon: <BiChart size={32} />,
@@ -17,21 +29,9 @@ export const CATEGORIES = [
     color: 'linear-gradient(45deg, rgba(18,122,222,1) 0%, rgba(66,162,255,1) 100%)'
   },
   {
-    id: 'estrategia-de-crecimiento',
-    name: 'Estrategia de Crecimiento',
-    icon: <MdOutlineShowChart size={32} />,
-    color: 'linear-gradient(45deg, rgba(18,122,222,1) 0%, rgba(66,162,255,1) 100%)'
-  },
-  {
     id: 'creacion-de-contenido',
-    name: 'Creación de Contenido',
+    name: 'Uso de Influencers / C. de Contenido',
     icon: <HiOutlinePencilSquare size={32} />,
-    color: 'linear-gradient(45deg, rgba(18,122,222,1) 0%, rgba(66,162,255,1) 100%)'
-  },
-  {
-    id: 'branding',
-    name: 'Branding',
-    icon: <MdOutlineDraw size={32} />,
     color: 'linear-gradient(45deg, rgba(18,122,222,1) 0%, rgba(66,162,255,1) 100%)'
   },
   {
