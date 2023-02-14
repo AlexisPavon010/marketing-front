@@ -1,15 +1,16 @@
 import { Card, Image, Spin, Typography, Descriptions, Tag, Row, Button, Rate, Form, Select, Col } from "antd"
 import moment from "moment";
 import { useState, useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { BiArrowBack } from "react-icons/bi";
+import { useNavigate, useParams, Link } from "react-router-dom"
 import { toast } from "react-toastify";
-import { getPostById } from "../api";
-import { updatePost } from "../api/Post";
-import { Video } from "../components/Video";
 import { CATEGORIES, STATUSES } from "../constans";
+import { Video } from "../components/Video";
 import { IPost } from "../interfaces/Post";
+import { updatePost } from "../api/Post";
+import { getPostById } from "../api";
 
-const { Title, Paragraph, Text, Link } = Typography;
+const { Title, Paragraph } = Typography;
 const { PreviewGroup } = Image;
 
 export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }) => {
@@ -64,6 +65,13 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
 
   return (
     <Card>
+      <Row>
+        <Col>
+          <Link to={adminView ? '/dashboard' : '/'}>
+            <BiArrowBack size={26} />
+          </Link>
+        </Col>
+      </Row>
       <Descriptions title="Información">
         <Descriptions.Item label="Usuario">
           {/* <Avatar src={post?.photoURL ? post.photoURL : null}>
