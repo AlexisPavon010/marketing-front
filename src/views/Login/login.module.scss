@@ -109,6 +109,7 @@
 }
 
 .login__footer {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   gap: 8px;
@@ -145,4 +146,9 @@
   opacity: 1;
   background: transparent;
   color: rgb(52, 71, 103);
+}
+
+.login__recovery_text {
+  text-align: center;
+  margin-top: 8px;
 }

@@ -2,6 +2,7 @@ import { Alert, Button, Card, Col, Form, Input, Row, Typography } from "antd";
 import { useSelector, useDispatch } from 'react-redux';
 import { BiLockAlt, BiUser } from 'react-icons/bi';
 import { AiOutlineMail } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import { useState } from 'react';
 
 import { startLoginWithEmailPassword, startCreatingUserWithEmailPassword } from "../../store/auth";
@@ -33,7 +34,7 @@ export const Login = () => {
                   style={{ background: '#e7e9ed' }}
                   closable
                   message="Importante"
-                  description="Por favor utilize soloamente casilla de correo profesional para el registro en Intercorp Marketing Awards 2023."
+                  description="Por favor utilice unicamente casilla de correo profesional para el registro en Intercorp Marketing Awards 2023."
                   type="info"
                   showIcon
                 />
@@ -111,6 +112,11 @@ export const Login = () => {
                   </div>
                 )}
               </div>
+              <div className={styles.login__recovery_text}>
+                <Link to='/recovery-password'>
+                  Recuperar Contraseña
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -121,9 +127,6 @@ export const Login = () => {
           <Title style={{ color: '#ff4256' }} className={styles.login__title} level={2} >
             Premiando la efectividad
           </Title>
-          <Text className={styles.login__text}>
-            The more effortless the writing looks, the more effort the writer actually put into the process.
-          </Text>
         </Card>
       </Col>
     </Row >
