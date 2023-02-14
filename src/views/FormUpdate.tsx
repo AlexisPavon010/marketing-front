@@ -47,28 +47,23 @@ export const FormUpdate = () => {
     console.log('updateadr')
     console.log(form.getFieldsValue())
     setLoading(true)
-    form.validateFields()
+    updatePost(
+      post?._id!,
+      {
+        ...form.getFieldsValue(),
+      })
       .then(() => {
-        updatePost(
-          post?._id!,
-          {
-            ...form.getFieldsValue(),
-          })
-          .then(() => {
-            toast.success('Publicación Guardada con Exito! 🚀', {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: false,
-              theme: "light",
-            });
-            navigate('/')
-            setLoading(false)
-          })
-          .catch((error) => console.log(error))
-          .finally(() => setLoading(false))
+        toast.success('Publicación Guardada con Exito! 🚀', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "light",
+        });
+        navigate('/')
+        setLoading(false)
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false))
