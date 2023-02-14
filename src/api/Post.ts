@@ -53,3 +53,8 @@ export const getPostByUserId = (id: string, skip: any, limit: any, brand: string
 export const updatePost = (id: string, payload: any) => {
   return axios.patch(`${BASE_URL}/api/posts/${id}`, payload)
 }
+
+export const deletedPost = (id: string) => {
+  console.log(id)
+  return axios.delete(`${BASE_URL}/api/posts/${id}`)
+}
