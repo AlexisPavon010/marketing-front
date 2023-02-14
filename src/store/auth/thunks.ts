@@ -1,3 +1,4 @@
+import { sendWelcome } from '../../api';
 import { IUser } from '../../interfaces/User';
 import {
   loginWithEmailPassword,
@@ -20,6 +21,7 @@ export const startCreatingUserWithEmailPassword = ({ email, password, username }
     const result = await registerUserWithEmailPassword({ email, password, username });
     if (!result.ok) return dispatch(logout(result));
 
+    await sendWelcome(result.email)
 
     dispatch(login({ ...result }))
   }
