@@ -1,10 +1,13 @@
-import { Button, Card, Col, Form, Input, Rate, Row, Select, Space, Table as AntTable, Tag } from 'antd';
+import { Button, Card, Col, Form, Input, Rate, Row, Select, Space, Table as AntTable, Tag, Tooltip } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { AiOutlineReload } from 'react-icons/ai';
+import { BsEye, BsTrash } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
+
 import { getPosts } from '../api/Post';
+import { DeletedModal } from '../components/Modals';
 import { CATEGORIES, STATUSES } from '../constans';
 
 const { Search } = Input;
@@ -17,88 +20,9 @@ interface DataType {
   juryScore: number;
   adminScore: number;
   status: 'approved' | 'decline' | 'rejected' | 'pending';
+  onCell: () => any
 }
 
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'Usuario',
-    dataIndex: 'username',
-    key: 'username'
-  },
-  {
-    title: 'Correo',
-    dataIndex: 'email',
-    key: 'email'
-  },
-  {
-    title: 'Categoría Postulada',
-    dataIndex: 'categories',
-    key: 'categories',
-    render: (text) => {
-
-      return (
-        // @ts-ignore 
-        <p>{CATEGORIES.find(({ id }) => id === text).name}</p>
-      )
-    }
-  },
-  {
-    title: 'Marca',
-    dataIndex: 'brand',
-    key: 'brand',
-    align: 'center'
-  },
-  {
-    align: 'center',
-    title: 'Fecha',
-    dataIndex: 'createdAt',
-    key: 'createdAt',
-    render: (date) => {
-      return <div>{moment(date).format('DD/MM/YYYY, h:mm:ss a')}</div>
-    }
-  },
-  {
-    align: 'center',
-    title: 'Estado',
-    key: 'status',
-    dataIndex: 'status',
-    render: (_, { status }) => {
-      let color = STATUSES.find((item) => item.id === status)?.color
-      let text = STATUSES.find((item) => item.id === status)?.name
-      return (
-        <Tag color={color} key={status}>
-          {text!}
-        </Tag>
-      )
-    }
-  },
-  {
-    title: 'Puntuacion Jurado',
-    dataIndex: 'juryScore',
-    key: 'juryScore',
-    align: 'center',
-  },
-  {
-    title: 'Valoración',
-    dataIndex: 'adminScore',
-    key: 'score',
-    align: 'center',
-    render: (value) => (
-      <Rate disabled defaultValue={value} />
-    )
-  },
-  // {
-  //   title: 'Action',
-  //   key: 'action',
-  //   render: (_, record) => (
-  //     <Space size="middle">
-  //       <a>Aceptar</a>
-  //       <a>Rechazar</a>
-  //       <a>Denegar</a>
-  //     </Space>
-  //   ),
-  // },
-];
 
 export const Table = () => {
   const [post, setPost] = useState([])
@@ -108,6 +32,7 @@ export const Table = () => {
   const [skip, setSkip] = useState(1)
   const [limit, setLimit] = useState(10)
   const [count, setCount] = useState(0)
+  const [openModal, setOpenModal] = useState<{ visible: boolean; id: string | null }>({ visible: false, id: null })
   const navigate = useNavigate()
 
   const onPageChange = (page: any) => {
@@ -130,9 +55,116 @@ export const Table = () => {
       .finally(() => setLoading(false))
   }
 
+  const handleDeleted = (id: string) => {
+    console.log(id)
+    setOpenModal({ visible: true, id: id })
+  }
+
   useEffect(() => {
     getData()
   }, [skip, limit, category, brand])
+
+
+
+  const columns: ColumnsType<DataType> = [
+    {
+      title: 'Usuario',
+      dataIndex: 'username',
+      key: 'username'
+    },
+    {
+      title: 'Correo',
+      dataIndex: 'email',
+      key: 'email'
+    },
+    {
+      width: 250,
+      align: 'center',
+      title: 'Categoría Postulada',
+      dataIndex: 'categories',
+      key: 'categories',
+      render: (text) => {
+
+        return (
+          // @ts-ignore 
+          <p>{CATEGORIES.find(({ id }) => id === text).name}</p>
+        )
+      }
+    },
+    {
+      width: 200,
+      title: 'Marca',
+      dataIndex: 'brand',
+      key: 'brand',
+      align: 'center'
+    },
+    {
+      width: 300,
+      align: 'center',
+      title: 'Fecha',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      render: (date) => {
+        return <div>{moment(date).format('DD/MM/YYYY, h:mm:ss a')}</div>
+      }
+    },
+    {
+      align: 'center',
+      title: 'Estado',
+      key: 'status',
+      dataIndex: 'status',
+      render: (_, { status }) => {
+        let color = STATUSES.find((item) => item.id === status)?.color
+        let text = STATUSES.find((item) => item.id === status)?.name
+        return (
+          <Tag color={color} key={status}>
+            {text!}
+          </Tag>
+        )
+      }
+    },
+    {
+      width: 200,
+      title: 'Puntuacion Jurado',
+      dataIndex: 'juryScore',
+      key: 'juryScore',
+      align: 'center',
+    },
+    {
+      width: 200,
+      title: 'Valoración',
+      dataIndex: 'adminScore',
+      key: 'score',
+      align: 'center',
+      render: (value) => (
+        <Rate disabled defaultValue={value} />
+      )
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      // onCell: (record, event) => {
+      //   // event.preventDefault();
+      // },
+      render: (_, record) => (
+        <Space size="large">
+          <Tooltip placement="top" title='Ver'>
+            <BsEye
+              onClick={() => navigate(`/dashboard/categories/published/${record._id}`)}
+              size={16}
+            />
+          </Tooltip>
+          <Tooltip placement="top" title='Eliminar'>
+            <BsTrash
+              onClick={() => handleDeleted(record._id)}
+              size={16}
+              color='red'
+            />
+          </Tooltip>
+        </Space>
+      ),
+    },
+  ];
 
 
   return (
@@ -254,12 +286,12 @@ export const Table = () => {
         <AntTable
           columns={columns}
           dataSource={post}
-          scroll={{ x: 1200 }}
+          scroll={{ x: 1800 }}
           rowKey='_id'
           loading={loading}
           pagination={{
             locale: {
-              items_per_page: 'x pag.',
+              items_per_page: 'x pág.',
             },
             total: count,
             current: skip,
@@ -268,13 +300,18 @@ export const Table = () => {
             onShowSizeChange: onPageSizeChange,
             showSizeChanger: true
           }}
-          onRow={(record, rowIndex) => ({
-            onClick: event => {
-              navigate(`/dashboard/categories/published/${record._id}`)
-            }
-          })}
+        // onRow={(record, rowIndex) => ({
+        //   onClick: (event) => {
+        //     navigate(`/dashboard/categories/published/${record._id}`)
+        //   }
+        // })}
         />
       </Card>
+      <DeletedModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        getData={getData}
+      />
     </>
   )
 }
