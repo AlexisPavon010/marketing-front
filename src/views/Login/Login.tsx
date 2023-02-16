@@ -26,6 +26,9 @@ export const Login = () => {
         <div className={styles.login__container}>
           <div className={styles.login__card}>
             <div className={styles.login__card_header}>
+              <div className={styles.login__logo_container}>
+                <img className={styles.login__logo_mobile} src="/assets/logo-v3.png" alt="" />
+              </div>
               <Title className={styles.login__card_text} level={4} >
                 {isRegister ? 'Registro de Nuevo Usuario' : 'Ingresar'}
               </Title>
@@ -40,9 +43,7 @@ export const Login = () => {
                 />
               ) : null}
             </div>
-            <div>
-              <img src="" alt="" />
-            </div>
+
             <div className={styles.login__form}>
               {isRegister ? (
                 <>

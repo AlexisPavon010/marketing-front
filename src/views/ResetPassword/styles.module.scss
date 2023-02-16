@@ -117,6 +117,7 @@
 
 .login__error {
   text-align: center;
+  color: red;
 }
 
 .login__right {
@@ -146,4 +147,14 @@
   opacity: 1;
   background: transparent;
   color: rgb(52, 71, 103);
+}
+
+.login__logo_container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.login__logo_mobile {
+  height: 60px;
 }

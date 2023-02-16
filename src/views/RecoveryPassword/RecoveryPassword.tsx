@@ -24,7 +24,8 @@ export const RecoveryPassword = () => {
       })
       .catch((error) => {
         console.log(error)
-        setErrorMessage(error.response.data.message[0])
+        const message = Array.isArray(error.response.data.message) ? error.response.data.message[0] : error.response.data.message
+        setErrorMessage(message)
       })
       .finally(() => {
         setLoading(false)
@@ -52,6 +53,9 @@ export const RecoveryPassword = () => {
         <div className={styles.login__container}>
           <div className={styles.login__card}>
             <div className={styles.login__card_header}>
+              <div className={styles.login__logo_container}>
+                <img className={styles.login__logo_mobile} src="/assets/logo-v3.png" alt="" />
+              </div>
               <Title className={styles.login__card_text} level={4} >
                 Recuperar Contraseña
               </Title>
