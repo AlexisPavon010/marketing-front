@@ -107,8 +107,8 @@ export const FormScreen = () => {
     <Card style={{ maxWidth: '600px', margin: '0 auto' }}>
       <Result
         status="success"
-        title="Su caso ha sido presentado correctamente!"
-        subTitle="Vamos a revisar su caso. Puede hacer un seguimiento del estado del mismo desde su dashboard principal."
+        title="Su caso ha sido postulado con éxito."
+        subTitle="Haga un seguimiento del mismo desde su Dashboard principal."
         extra={[
           <Button type="primary" key="console" onClick={() => navigate('/')}>
             Volver
@@ -255,7 +255,7 @@ export const FormScreen = () => {
             description={
               <Typography>
                 <Paragraph>
-                  Desarrollar en máximo 300 palabras los resultados que demuestran el éxito del caso detallando las fuentes de cada uno de los puntos listados.
+                  Desarrollar en máximo 1000 palabras los resultados que demuestran el éxito del caso detallando las fuentes de cada uno de los puntos listados.
                 </Paragraph>
 
                 <Paragraph>
@@ -275,13 +275,13 @@ export const FormScreen = () => {
           />
           <Form.Item
             name='result'
-            // rules={[{ required: true, message: 'Por favor debe rellenar este campo.' }]}
+          // rules={[{ required: true, message: 'Por favor debe rellenar este campo.' }]}
           >
             <TextArea
               rows={4}
               showCount
               minLength={50}
-              maxLength={300}
+              maxLength={1000}
               style={{ height: 120, marginBottom: 24 }}
               placeholder='Escriba aquí sus resultados...'
             />

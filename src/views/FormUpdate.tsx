@@ -102,8 +102,8 @@ export const FormUpdate = () => {
     <Card style={{ maxWidth: '600px', margin: '0 auto' }}>
       <Result
         status="success"
-        title="Su caso ha sido presentado correctamente!"
-        subTitle="Vamos a revisar su caso. Puede hacer un seguimiento del estado del mismo desde su dashboard principal."
+        title="Su caso ha sido postulado con éxito."
+        subTitle="Haga un seguimiento del mismo desde su Dashboard principal."
         extra={[
           <Button type="primary" key="console" onClick={() => navigate('/')}>
             Volver

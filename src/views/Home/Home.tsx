@@ -57,10 +57,7 @@ export const Home = () => {
           <Paragraph>
             <ul>
               <li>
-                <a href="#">Guia de Inscripción</a>
-              </li>
-              <li>
-                <a href="#">Bases y Condiciones</a>
+                <a href="#">Guía de Inscripción, Bases y Condiciones.</a>
               </li>
             </ul>
           </Paragraph>
