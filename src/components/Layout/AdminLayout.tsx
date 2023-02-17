@@ -44,7 +44,7 @@ export const AdminLayout = ({ children }: Props) => {
         </Drawer>
         <Layout>
           <AdminNavbar openMenu={openMenu} />
-          <Content className={styles.main_content}>
+          <Content className={styles.main_content_admin}>
             {children}
           </Content>
           <Footer />
