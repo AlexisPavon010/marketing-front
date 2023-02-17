@@ -1,8 +1,10 @@
 export const METRICAS = [
   {
     id: 'performance-marketing',
+    ejemplo: 'Implementación de lower funnel, uso de data con modelos de propensión, etc.',
     title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.',
     items: [
+      'Conversiones incrementales, ratio de conversión, leads, prospects, descargas de aplicaciones, tráfico, CPA , ROAS (Return On Advertising Spending = Ventas/inversión)',
       'Período de comparación vs baseline: mismo mes del año anterior ó mes anterior.',
     ]
   },
@@ -66,5 +68,13 @@ export const METRICAS = [
       'Sentiment a través de plataformas de social listening, engagement, brand lift.',
       'Evolución asociación a los atributos: sustentable, inclusiva, apoyo a la diversidad, etc.'
     ]
-  }
+  },
+  {
+    id: 'uso-de-first-party-data',
+    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.',
+    items: [
+      'Período de comparación vs baseline: mismo mes del año anterior ó mes anterior.',
+      'Tráfico WEB, Páginas vistas, Tiempo en la web, Bounce rate, Conversion rate.',
+    ]
+  },
 ]
