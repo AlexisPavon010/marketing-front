@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 import { createPost } from "../../api";
 import { updatePost } from "../../api/Post";
+import { sendPostulation } from "../../api/emails";
 
 const { Paragraph } = Typography
 
@@ -16,6 +17,7 @@ export const AlertModal = ({ openModal, setOpenModal, setPosted, formValues, pos
     if (!post?._id) {
       createPost({ ...formValues, uid, published: true, email, username, photoURL, })
         .then(() => {
+          sendPostulation(email)
           setPosted(true)
           setOpenModal(false)
         })
@@ -26,6 +28,7 @@ export const AlertModal = ({ openModal, setOpenModal, setPosted, formValues, pos
 
     updatePost(post._id, { ...formValues, published: true })
       .then(() => {
+        sendPostulation(email)
         setPosted(true)
         setOpenModal(false)
       })

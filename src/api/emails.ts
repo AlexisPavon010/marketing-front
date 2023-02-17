@@ -7,3 +7,9 @@ export const sendWelcome = (email: string) => {
     email
   })
 }
+
+export const sendPostulation = (email: string) => {
+  return axios.post(`${BASE_URL}/api/email/postulation`, {
+    email
+  })
+}
