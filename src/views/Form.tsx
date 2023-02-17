@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 import Marquee from 'react-fast-marquee';
 
 import { createPost } from '../api';
-import { getPostByIdAndCategory } from '../api/Post';
 import { BrandSelect } from '../components/BrandSelect';
 import { AlertModal } from '../components/Modals';
 import { UploadImage } from '../components/UploadImage';
@@ -39,7 +38,7 @@ export const FormScreen = () => {
 
   console.log(categoria)
 
-  const { title, items }: any = METRICAS.find((item) => item.id === categoria)
+  const { title, items, ejemplo }: any = METRICAS.find((item) => item.id === categoria)
 
   const onFinish = (values: any) => {
     console.log(values, 'crear', uid)
@@ -257,7 +256,12 @@ export const FormScreen = () => {
                 <Paragraph>
                   Desarrollar en máximo 1000 palabras los resultados que demuestran el éxito del caso detallando las fuentes de cada uno de los puntos listados.
                 </Paragraph>
-
+                {ejemplo && (
+                  <Paragraph>
+                    <strong>Ejemplo: </strong>
+                    {ejemplo}
+                  </Paragraph>
+                )}
                 <Paragraph>
                   <strong>Métricas: </strong>
                   {title}

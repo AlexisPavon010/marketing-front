@@ -1,9 +1,11 @@
 import { Card, Image, Spin, Typography, Descriptions, Tag, Row, Button, Rate, Form, Select, Col } from "antd"
-import moment from "moment";
-import { useState, useEffect } from "react"
-import { BiArrowBack } from "react-icons/bi";
 import { useNavigate, useParams, Link } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { FiDownload } from "react-icons/fi";
+import { BiArrowBack } from "react-icons/bi";
 import { toast } from "react-toastify";
+import moment from "moment";
+
 import { CATEGORIES, STATUSES } from "../constans";
 import { Video } from "../components/Video";
 import { IPost } from "../interfaces/Post";
@@ -69,6 +71,12 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
         <Col>
           <Link to={adminView ? '/dashboard' : '/'}>
             <BiArrowBack size={26} />
+          </Link>
+        </Col>
+        <Col flex={1}></Col>
+        <Col>
+          <Link target='_blank' to={`/view/${id}`}>
+            <FiDownload size={26} />
           </Link>
         </Col>
       </Row>
