@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const BASE_URL = process.env.REACT_APP_BASE_URL
+export const BASE_URL = process.env.REACT_APP_BASE_URL
 
 export const createPost = (payload: any) => {
   return axios.post(`${BASE_URL}/api/posts`, payload)
