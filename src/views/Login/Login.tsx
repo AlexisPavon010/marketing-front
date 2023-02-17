@@ -12,7 +12,7 @@ const { Text, Title, Paragraph } = Typography;
 
 export const Login = () => {
   const { status, loginMessage, registerMessage } = useSelector((state: any) => state.auth)
-  const [isRegister, setIsRegister] = useState(false)
+  const [isRegister, setIsRegister] = useState(true)
   const dispatch = useDispatch()
 
   const handleLogin = ({ email, password }: { email: string, password: string }) => {
