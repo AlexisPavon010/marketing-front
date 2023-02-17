@@ -13,6 +13,7 @@ import { AdminLayout } from "../components/Layout/AdminLayout"
 import { ClientRouter } from "./ClientRouter"
 import { ResetPassword } from "../views/ResetPassword";
 import { RecoveryPassword } from "../views/RecoveryPassword";
+import { PdfViewer } from "../views/PdfViewer";
 
 export const AppRouter = () => {
   return (
@@ -59,6 +60,7 @@ export const AppRouter = () => {
               <ResetPassword />
             }
           />
+          <Route path="/view/:id" element={<PdfViewer />} />
         </Routes>
       </Provider>
       <ToastContainer />
