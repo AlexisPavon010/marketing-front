@@ -93,7 +93,7 @@ export const CategoriesCollapse = () => {
         </Panel>
         <Panel header={<strong>Performance Marketing</strong>} key="1">
           <Paragraph>
-            Esta categoría incluye campañas de lead, paid search, paid social, que hayan demostrado incremento en conversiones, prospects, tráfico, y/o descargas de aplicaciones  manteniendo o disminuyendo el CPA vs el período de comparación.
+            En esta categoría entran campañas de lead, paid search, paid social, que hayan demostrado incremento en conversiones, prospects, tráfico, y/o descargas de aplicaciones  manteniendo o disminuyendo el CPA vs el período de comparación.
           </Paragraph>
           <Paragraph>
             <strong>Ejemplos:</strong> Implementación de lower funnel, uso de data con modelos de propensión, etc.
@@ -101,6 +101,11 @@ export const CategoriesCollapse = () => {
           <Paragraph>
             <strong>Métricas: </strong>
             A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI ́s  y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente. No dejes de participar.
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Conversiones incrementales, ratio de conversión, leads, prospects, descargas de aplicaciones, tráfico, CPA , ROAS (Return On Advertising Spending = Ventas/inversión)
+            </li>
           </Paragraph>
           <Paragraph>
             <li className={styles.list_item}>
@@ -232,6 +237,28 @@ export const CategoriesCollapse = () => {
           <Paragraph>
             <li className={styles.list_item}>
               Evolución asociación a los atributos: sustentable, inclusiva, apoyo a la diversidad, etc.
+            </li>
+          </Paragraph>
+        </Panel>
+        <Panel header={<strong>Uso de First Party Data</strong>} key="7">
+          <Paragraph>
+            Esta categoría reconoce aquellas campañas/acciones/ideas que hayan realizado un buen uso de los datos propios (website, mobile app, social media pages, email) para tomar decisiones de marketing informadas.
+          </Paragraph>
+          <Paragraph>
+            Incluye uso de data para: personalización de mensajes y contenidos, optimización de segmentación de clientes, desarrollo de mejoras de productos, retención de clientes, venta cruzada y venta adicional
+          </Paragraph>
+          <Paragraph>
+            <strong>Métricas: </strong>
+            A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI ́s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Período de comparación vs baseline: mismo mes del año anterior ó mes anterior.
+            </li>
+          </Paragraph>
+          <Paragraph>
+            <li className={styles.list_item}>
+              Tráfico WEB, Páginas vistas, Tiempo en la web, Bounce rate, Conversion rate.
             </li>
           </Paragraph>
         </Panel>
