@@ -1,5 +1,5 @@
 import { Button, Card, Col, Form, Result, Row, Select, Spin, Input, Typography, Alert } from 'antd'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BiUpload } from 'react-icons/bi';
 import { BsPencilSquare } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
@@ -17,7 +17,7 @@ import { IPost } from '../interfaces/Post';
 
 const { Option } = Select;
 const { TextArea } = Input;
-const { Title, Paragraph, Text } = Typography;
+const { Title, Paragraph } = Typography;
 
 
 const formItemLayout = {
@@ -146,7 +146,20 @@ export const FormScreen = () => {
               Fechas de Implementación
             </strong>
           }
-          description="Los casos que pueden postular a los IMA deben haber sido implementados entre el 1º de enero de 2022 y el 31 de diciembre del 2022."
+          description={
+            <>
+              <Paragraph>
+                Los casos que pueden postular a los IMA deben haber sido implementados entre el 1º de enero de 2022 y el 31 de diciembre del 2022.
+              </Paragraph>
+              <Paragraph>
+                <ul>
+                  <li>
+                    <a target='_blank' href="Bases_y_Condiciones_y_Guia_de_inscripcion_IMA_2023.pdf">Bases y Condiciones.</a>
+                  </li>
+                </ul>
+              </Paragraph>
+            </>
+          }
           type="info"
           showIcon
         />
