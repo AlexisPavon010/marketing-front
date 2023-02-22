@@ -65,7 +65,7 @@ export const Users = () => {
         <Select
           placeholder='Roles'
           style={{ width: '100%' }}
-          onChange={(role) => handleChangeRole(user.docId, role)}
+          onChange={(role) => handleChangeRole(user._id, role)}
           value={user.role}
           options={
             [

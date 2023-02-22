@@ -15,7 +15,9 @@ export const getUsers = () => {
 }
 
 export const updatedRole = (id: string, payload: any) => {
-  return axios.post(`${BASE_URL}/api/auth/update/${id}`, payload)
+  return axios.post(`${BASE_URL}/api/auth/update/${id}`, {
+    role: payload
+  })
 }
 
 export const resetPassword = (payload: any) => {
