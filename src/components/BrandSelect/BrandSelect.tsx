@@ -56,30 +56,23 @@ export const BrandSelect = () => {
           {
             label: 'Financiera',
             options: [
-              { label: 'Intercorp', value: 'Intercorp' },
               { label: 'Interbank', value: 'Interbank' },
               { label: 'Interseguro', value: 'Interseguro' },
-              { label: 'Interfondos', value: 'Interfondos' },
               { label: 'Inteligo', value: 'Inteligo' },
               { label: 'Express Net', value: 'Express Net' },
               { label: 'Izipay', value: 'Izipay' },
-              { label: 'Tebca', value: 'Tebca' },
             ],
           },
           {
             label: 'Retail',
             options: [
-              { label: 'Supermercados Peruanos', value: 'Supermercados Peruanos' },
-              { label: 'InRetail', value: 'InRetail' },
               { label: 'Plaza Vea', value: 'Plaza Vea' },
               { label: 'Makro', value: 'Makro' },
               { label: 'Mass', value: 'Mass' },
               { label: 'Vivanda', value: 'Vivanda' },
               { label: 'Real Plaza', value: 'Real Plaza' },
               { label: 'Oechsle', value: 'Oechsle' },
-              { label: 'Indigital', value: 'Indigital' },
               { label: 'Agora', value: 'Agora' },
-              { label: 'Oslo Logistic', value: 'Oslo Logistic' },
               { label: 'Promart', value: 'Promart' },
               { label: 'Financiera Oh', value: 'Financiera Oh' },
             ],
@@ -87,7 +80,6 @@ export const BrandSelect = () => {
           {
             label: 'Salud',
             options: [
-              { label: 'Farmacias Peruanas', value: 'Farmacias Peruanas' },
               { label: 'Inkafarma', value: 'Inkafarma' },
               { label: 'Mifarma', value: 'Mifarma' },
               { label: 'Química Suiza', value: 'Química Suiza' },
@@ -109,7 +101,7 @@ export const BrandSelect = () => {
             ],
           },
           {
-            label: 'Otros',
+            label: 'Marcas Exclusivas',
             options: brands.map(({ brandName }) => (
               { label: brandName, value: brandName }
             ))
@@ -142,7 +134,7 @@ export const BrandSelect = () => {
                 </Col>
                 <Col>
                   <Button loading={loading} type="primary" htmlType='submit'>
-                    Agregar
+                    Agregar Marca
                   </Button>
                 </Col>
               </Row>
