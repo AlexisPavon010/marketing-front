@@ -57,7 +57,7 @@ export const AlertModal = ({ openModal, setOpenModal, setPosted, formValues, pos
         <span> </span>
         o comunicarse al
         <br />
-        +51 9 42 020 546
+        +54 9 11 2390 2334
       </p>
       <Typography>
         <Paragraph>
