@@ -57,7 +57,7 @@ export const Home = () => {
           <Paragraph>
             <ul>
               <li>
-                <a target='_blank' href="Bases_y_Condiciones_y_Guia_de_inscripcion_IMA_2023.pdf">Bases y Condiciones.</a>
+                <a target='_blank' href="/Bases_y_Condiciones_IMA_2023.pdf">Bases y Condiciones.</a>
               </li>
             </ul>
           </Paragraph>
