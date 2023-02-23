@@ -35,16 +35,16 @@ export const CATEGORIES = [
     icon: <HiOutlinePencilSquare size={32} />,
     color: 'linear-gradient(45deg, rgba(18,122,222,1) 0%, rgba(66,162,255,1) 100%)'
   },
-  {
-    id: 'impacto-positivo',
-    name: 'Impacto Positivo',
-    icon: <AiOutlinePlusSquare size={32} />,
-    color: 'linear-gradient(45deg, rgba(18,122,222,1) 0%, rgba(66,162,255,1) 100%)'
-  },
-  {
-    id: 'uso-de-first-party-data',
-    name: 'Uso de First Party Data',
-    icon: <FiDatabase size={32} />,
-    color: 'linear-gradient(45deg, rgba(18,122,222,1) 0%, rgba(66,162,255,1) 100%)'
-  },
+  // {
+  //   id: 'impacto-positivo',
+  //   name: 'Impacto Positivo',
+  //   icon: <AiOutlinePlusSquare size={32} />,
+  //   color: 'linear-gradient(45deg, rgba(18,122,222,1) 0%, rgba(66,162,255,1) 100%)'
+  // },
+  // {
+  //   id: 'uso-de-first-party-data',
+  //   name: 'Uso de First Party Data',
+  //   icon: <FiDatabase size={32} />,
+  //   color: 'linear-gradient(45deg, rgba(18,122,222,1) 0%, rgba(66,162,255,1) 100%)'
+  // },
 ]

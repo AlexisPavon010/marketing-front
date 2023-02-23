@@ -208,7 +208,7 @@ export const CategoriesCollapse = () => {
             </li>
           </Paragraph>
         </Panel>
-        <Panel header={<strong>Impacto Positivo</strong>} key="6">
+        {/* <Panel header={<strong>Impacto Positivo</strong>} key="6">
           <Paragraph>
             El objetivo de esta categoría es premiar aquellos casos que demuestren generar impacto positivo en materia de sustentabilidad, inclusión y/o diversidad.
           </Paragraph>
@@ -261,7 +261,7 @@ export const CategoriesCollapse = () => {
               Tráfico WEB, Páginas vistas, Tiempo en la web, Bounce rate, Conversion rate.
             </li>
           </Paragraph>
-        </Panel>
+        </Panel> */}
       </Collapse>
     </>
   )
