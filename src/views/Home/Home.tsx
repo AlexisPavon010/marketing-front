@@ -43,47 +43,51 @@ export const Home = () => {
       <Card className={styles.card__categories}>
         <StepsComponent />
       </Card>
-      {role === 'jury' ? (
-        <>
+      {
+        role === 'jury' ? (
+          <>
+            <Card className={styles.card__categories}>
+              <ProgressComponent />
+            </Card>
+            <Card className={styles.card__categories}>
+              <JuryCollapse />
+            </Card>
+          </>
+        ) : (
           <Card className={styles.card__categories}>
-            <ProgressComponent />
+            <CategoriesCollapse />
           </Card>
-          <Card className={styles.card__categories}>
-            <JuryCollapse />
-          </Card>
-        </>
-      ) : (
-        <Card className={styles.card__categories}>
-          <CategoriesCollapse />
-        </Card>
-      )}
-      {role !== 'jury' && (
-        <>
-          <Card className={styles.card__categories}>
-            <Typography>
-              <Title className={styles.card__categories_title} level={4}>
-                Seleccione la categoría a postular
-              </Title>
-              <Paragraph>
-                Recuerda que puedes inscribir tu caso en múltiples categoría completando un formulario para cada una.
-              </Paragraph>
-              <Paragraph>
-                Puedes presentar más de una caso por categoría.
-              </Paragraph>
-              <Paragraph>
-                <ul>
-                  <li>
-                    <a target='_blank' href="/Bases_y_Condiciones_IMA_2023.pdf">Bases y Condiciones.</a>
-                  </li>
-                </ul>
-              </Paragraph>
-            </Typography>
-          </Card>
-          <Card className={styles.card__categories}>
-            <CategoriesCard />
-          </Card>
-        </>
-      )}
+        )
+      }
+      {
+        role !== 'jury' && (
+          <>
+            <Card className={styles.card__categories}>
+              <Typography>
+                <Title className={styles.card__categories_title} level={4}>
+                  Seleccione la categoría a postular
+                </Title>
+                <Paragraph>
+                  Recuerda que puedes inscribir tu caso en múltiples categoría completando un formulario para cada una.
+                </Paragraph>
+                <Paragraph>
+                  Puedes presentar más de una caso por categoría.
+                </Paragraph>
+                <Paragraph>
+                  <ul>
+                    <li>
+                      <a target='_blank' href="/Bases_y_Condiciones_IMA_2023.pdf">Bases y Condiciones.</a>
+                    </li>
+                  </ul>
+                </Paragraph>
+              </Typography>
+            </Card>
+            <Card className={styles.card__categories}>
+              <CategoriesCard />
+            </Card>
+          </>
+        )
+      }
       <Card>
         {role === 'jury' ? (
           <JuryForm />
