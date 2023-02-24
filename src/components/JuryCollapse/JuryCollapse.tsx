@@ -156,7 +156,12 @@ export const JuryCollapse = () => {
             </Col>
           </Row>
         } >
-          <Table columns={columns} dataSource={branding} rowKey='_id' />
+          <Table
+            columns={columns}
+            dataSource={branding}
+            scroll={{ x: 900, }}
+            rowKey='_id'
+          />
         </Panel>
         <Panel className={styles.panel} key={2} header={
           <Row>
@@ -169,7 +174,12 @@ export const JuryCollapse = () => {
             </Col>
           </Row>
         } >
-          <Table columns={columns} dataSource={estrategia_de_crecimiento} rowKey='_id' />
+          <Table
+            columns={columns}
+            dataSource={estrategia_de_crecimiento}
+            scroll={{ x: 900, }}
+            rowKey='_id'
+          />
         </Panel>
         <Panel className={styles.panel} key={3} header={
           <Row>
@@ -182,7 +192,12 @@ export const JuryCollapse = () => {
             </Col>
           </Row>
         } >
-          <Table columns={columns} dataSource={performance_marketing} rowKey='_id' />
+          <Table
+            columns={columns}
+            dataSource={performance_marketing}
+            scroll={{ x: 900, }}
+            rowKey='_id'
+          />
         </Panel>
         <Panel className={styles.panel} key={4} header={
           <Row>
@@ -195,7 +210,12 @@ export const JuryCollapse = () => {
             </Col>
           </Row>
         } >
-          <Table columns={columns} dataSource={marketing_promocional} rowKey='_id' />
+          <Table
+            columns={columns}
+            dataSource={marketing_promocional}
+            scroll={{ x: 900, }}
+            rowKey='_id'
+          />
         </Panel>
         <Panel className={styles.panel} key={5} header={
           <Row>
@@ -208,7 +228,12 @@ export const JuryCollapse = () => {
             </Col>
           </Row>
         } >
-          <Table columns={columns} dataSource={creacion_de_contenido} rowKey='_id' />
+          <Table
+            columns={columns}
+            dataSource={creacion_de_contenido}
+            scroll={{ x: 900, }}
+            rowKey='_id'
+          />
         </Panel>
       </Collapse >
     </>
