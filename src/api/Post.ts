@@ -6,7 +6,7 @@ export const createPost = (payload: any) => {
   return axios.post(`${BASE_URL}/api/posts`, payload)
 }
 
-export const getPosts = (limit: any, skip: any, category: string, brand: string) => {
+export const getPosts = (limit?: any, skip?: any, category?: string, brand?: string) => {
   let query: any = { skip, limit }
   if (category) {
     query = {
