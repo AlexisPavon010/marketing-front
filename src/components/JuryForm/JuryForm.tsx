@@ -1,14 +1,14 @@
-import { Card, Col, Input, Row, Select, Space, Table as AntTable, Tag, Tooltip, Form, Typography } from "antd";
+import { Card, Col, Input, Row, Select, Space, Table as AntTable, Tag, Tooltip, Form, Typography, Badge } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useState, useEffect } from 'react';
 import { AiOutlineEye, AiOutlineInfoCircle } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
-import { useSelector } from "react-redux";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
-import { getPostByUserId } from "../../api";
 import { CATEGORIES, STATUSES } from "../../constans";
+import { BASE_URL } from "../../api/Post";
+import axios from "axios";
 
 const { Search } = Input;
 const { Title } = Typography;
@@ -25,7 +25,6 @@ interface DataType {
 }
 
 export const JuryForm = () => {
-  const { uid } = useSelector((state: any) => state.auth)
   const [category, setCategory] = useState('')
   const [brand, setBrand] = useState('')
   const [post, setPost] = useState([])
@@ -45,11 +44,11 @@ export const JuryForm = () => {
 
   useEffect(() => {
     setLoading(true)
-    getPostByUserId(uid, skip, limit, brand, category)
+    const url = `${BASE_URL}/api/posts?status=approved&scored=true`
+    axios.get(url)
       .then(({ data }) => {
         setPost(data.posts)
         setCount(data.metadata.total)
-        console.log(data)
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false))
@@ -64,7 +63,7 @@ export const JuryForm = () => {
 
         return (
           // @ts-ignore 
-          <p>{CATEGORIES.find(({ id }) => id === text).name}</p>
+          <p>{CATEGORIES.find(({ id }) => id === text)?.name}</p>
         )
       }
     },
@@ -82,6 +81,16 @@ export const JuryForm = () => {
       render: (date: string) => {
         return <div>{moment(date).format('DD/MM/YYYY, h:mm:ss a')}</div>
       }
+    },
+    {
+      width: 160,
+      title: 'Puntuacion Jurado',
+      dataIndex: 'juryScore',
+      key: 'juryScore',
+      align: 'center',
+      render: (value) => (
+        <Badge color='#1677ff' count={value} overflowCount={999} showZero />
+      )
     },
     {
       align: 'center',
