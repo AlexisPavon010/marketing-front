@@ -129,6 +129,11 @@ export const Table = () => {
       dataIndex: 'juryScore',
       key: 'juryScore',
       align: 'center',
+      render: (value) => (
+        <Tag color='gold'>
+          {value}
+        </Tag>
+      )
     },
     {
       width: 200,
