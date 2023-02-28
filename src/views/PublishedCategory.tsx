@@ -11,11 +11,14 @@ import { Video } from "../components/Video";
 import { IPost } from "../interfaces/Post";
 import { updatePost } from "../api/Post";
 import { getPostById } from "../api";
+import { Questions } from "../components/Questions";
+import { useSelector } from "react-redux";
 
 const { Title, Paragraph } = Typography;
 const { PreviewGroup } = Image;
 
 export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }) => {
+  const { role } = useSelector((state: any) => state.auth)
   const [layoutLoading, setLayoutLoading] = useState(true)
   const [post, setPost] = useState<IPost>()
   const [form] = Form.useForm();
@@ -66,112 +69,113 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
 
 
   return (
-    <Card>
-      <Row>
-        <Col>
-          <Link to={adminView ? '/dashboard' : '/'}>
-            <BiArrowBack size={26} />
-          </Link>
-        </Col>
-        <Col flex={1}></Col>
-        <Col>
-          <Link target='_blank' to={`/view/${id}`}>
-            <FiDownload size={26} />
-          </Link>
-        </Col>
-      </Row>
-      <Descriptions title="Información">
-        <Descriptions.Item label="Usuario">
-          {/* <Avatar src={post?.photoURL ? post.photoURL : null}>
+    <>
+      <Card style={{ marginBottom: '20px', boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)' }}>
+        <Row>
+          <Col>
+            <Link to={adminView ? '/dashboard' : '/'}>
+              <BiArrowBack size={26} />
+            </Link>
+          </Col>
+          <Col flex={1}></Col>
+          <Col>
+            <Link target='_blank' to={`/view/${id}`}>
+              <FiDownload size={26} />
+            </Link>
+          </Col>
+        </Row>
+        <Descriptions title="Información">
+          <Descriptions.Item label="Usuario">
+            {/* <Avatar src={post?.photoURL ? post.photoURL : null}>
             {post?.username ? post.username : post?.email?.charAt(0).toUpperCase()}
           </Avatar> */}
-          {post?.username ? post.username : post?.email}
-        </Descriptions.Item>
-        <Descriptions.Item label="Categoria">
-          {/* @ts-ignore  */}
-          <Tag color="green">{CATEGORIES.find(({ id }) => id === post?.categories).name}</Tag>
-        </Descriptions.Item>
-        <Descriptions.Item label="Marca">
-          <Tag color="orange">{post?.brand}</Tag>
-        </Descriptions.Item>
-        <Descriptions.Item label="Fecha">{moment(post?.createdAt).format('DD/MM/YYYY, h:mm:ss a')}</Descriptions.Item>
-        <Descriptions.Item label="Status">
-          {/* @ts-ignore  */}
-          <Tag color="orange">{STATUSES.find(({ id }) => id === post?.status).name}</Tag>
-        </Descriptions.Item>
-      </Descriptions>
-      <Typography>
-        <Title level={5}>Titulo</Title>
-        <Paragraph>
-          {post?.title}
-        </Paragraph>
-        <Title level={5}>Descripcion</Title>
-        <Paragraph>
-          {post?.description}
-        </Paragraph>
-        <Title level={5}>Duración</Title>
-        <Paragraph>
-          {post?.duration! == 1 ? `${post?.duration} Semana` : `${post?.duration} Semanas`}
-        </Paragraph>
-        <Title level={5}>Core Target</Title>
-        <Paragraph>
-          {post?.core_target}
-        </Paragraph>
-        <Title level={5}>Resultado</Title>
-        <Paragraph>
-          {post?.result}
-        </Paragraph>
-      </Typography>
-      <div style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'start',
-        gap: '10px'
-      }}>
-        <PreviewGroup>
-          {post?.images.map((url: string, i: number) => (
-            <Image
-              style={{
-                aspectRatio: ' 8 / 9',
-                objectFit: 'cover'
-              }}
-              width={180}
-              key={i}
-              src={url}
-            />
+            {post?.username ? post.username : post?.email}
+          </Descriptions.Item>
+          <Descriptions.Item label="Categoria">
+            {/* @ts-ignore  */}
+            <Tag color="green">{CATEGORIES.find(({ id }) => id === post?.categories).name}</Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label="Marca">
+            <Tag color="orange">{post?.brand}</Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label="Fecha">{moment(post?.createdAt).format('DD/MM/YYYY, h:mm:ss a')}</Descriptions.Item>
+          <Descriptions.Item label="Status">
+            {/* @ts-ignore  */}
+            <Tag color="orange">{STATUSES.find(({ id }) => id === post?.status).name}</Tag>
+          </Descriptions.Item>
+        </Descriptions>
+        <Typography>
+          <Title level={5}>Titulo</Title>
+          <Paragraph>
+            {post?.title}
+          </Paragraph>
+          <Title level={5}>Descripcion</Title>
+          <Paragraph>
+            {post?.description}
+          </Paragraph>
+          <Title level={5}>Duración</Title>
+          <Paragraph>
+            {post?.duration! == 1 ? `${post?.duration} Semana` : `${post?.duration} Semanas`}
+          </Paragraph>
+          <Title level={5}>Core Target</Title>
+          <Paragraph>
+            {post?.core_target}
+          </Paragraph>
+          <Title level={5}>Resultado</Title>
+          <Paragraph>
+            {post?.result}
+          </Paragraph>
+        </Typography>
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'start',
+          gap: '10px'
+        }}>
+          <PreviewGroup>
+            {post?.images.map((url: string, i: number) => (
+              <Image
+                style={{
+                  aspectRatio: ' 8 / 9',
+                  objectFit: 'cover'
+                }}
+                width={180}
+                key={i}
+                src={url}
+              />
+            ))}
+          </PreviewGroup>
+        </div>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'start',
+          margin: '20px 0'
+        }}>
+          {post?.videos.map((url, i) => (
+            <Video height={480} width={720} src={url} key={i} />
           ))}
-        </PreviewGroup>
-      </div>
-      <div style={{
-        display: 'flex',
-        justifyContent: 'start',
-        margin: '20px 0'
-      }}>
-        {post?.videos.map((url, i) => (
-          <Video height={480} width={720} src={url} key={i} />
-        ))}
-      </div>
-      {adminView ? (
-        <Row gutter={10}>
-          <Form
-            style={{ width: '100%' }}
-            form={form}
-            layout="horizontal"
-            onFinish={handleUpdatePost}
-            initialValues={{
-              status: post?.status,
-              role: 'admin',
-              score: form.getFieldValue('role') === 'jury' ? post?.juryScore : post?.adminScore,
-            }}
-          >
-            <Row gutter={12}>
-              <Col xs={12} md={6}>
-                <Form.Item label='Estado' name="status" >
-                  <Select options={STATUSES.map(({ id, name }) => ({ value: id, label: name }))} />
-                </Form.Item>
-              </Col>
-              <Col xs={12} md={6}>
-                {/* <Form.Item label='Role' name="role" >
+        </div>
+        {adminView ? (
+          <Row gutter={10}>
+            <Form
+              style={{ width: '100%' }}
+              form={form}
+              layout="horizontal"
+              onFinish={handleUpdatePost}
+              initialValues={{
+                status: post?.status,
+                role: 'admin',
+                score: form.getFieldValue('role') === 'jury' ? post?.juryScore : post?.adminScore,
+              }}
+            >
+              <Row gutter={12}>
+                <Col xs={12} md={6}>
+                  <Form.Item label='Estado' name="status" >
+                    <Select options={STATUSES.map(({ id, name }) => ({ value: id, label: name }))} />
+                  </Form.Item>
+                </Col>
+                <Col xs={12} md={6}>
+                  {/* <Form.Item label='Role' name="role" >
                   <Select
                     onChange={(role) => role === 'jury' ? form.setFieldValue('score', post?.juryScore) : form.setFieldValue('score', post?.adminScore)}
                     options={[
@@ -186,21 +190,25 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
                     ]}
                   />
                 </Form.Item> */}
-              </Col>
-              <Col xs={12} md={6}>
-                <Form.Item label='Puntuación' name="adminScore" >
-                  <Rate />
-                </Form.Item>
-              </Col>
-              <Col xs={12} md={6}>
-                <Button block type="primary" htmlType="submit">
-                  Enviar
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </Row>
-      ) : null}
-    </Card >
+                </Col>
+                <Col xs={12} md={6}>
+                  <Form.Item label='Puntuación' name="adminScore" >
+                    <Rate />
+                  </Form.Item>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Button block type="primary" htmlType="submit">
+                    Enviar
+                  </Button>
+                </Col>
+              </Row>
+            </Form>
+          </Row>
+        ) : null}
+      </Card >
+      {role === 'jury' && (
+        <Questions id={id!} post={post!} />
+      )}
+    </>
   )
 }
