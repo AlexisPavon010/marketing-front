@@ -16,6 +16,7 @@ export interface IPost {
   username:    null;
   title:       string;
   result:      string;
+  scored:      boolean;
   duration:    number;
   core_target: string
   photoURL:    null;
