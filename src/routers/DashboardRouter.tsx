@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
 
-import { PublishedCategory, Questions, Table, Users } from '../views'
+import { PublishedCategory, Table, Users } from '../views'
 
 export const DashboardRouter = () => {
   const user = useSelector((state: any) => state.auth);
@@ -15,7 +15,6 @@ export const DashboardRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Table />} />
-      <Route path="/questions" element={<Questions />} />
       <Route path="/users" element={<Users />} />
       <Route path='/categories'>
         <Route path="branding" element={<h1>branding</h1>} />
