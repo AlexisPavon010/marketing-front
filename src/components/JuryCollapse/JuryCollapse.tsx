@@ -37,22 +37,18 @@ export const JuryCollapse = () => {
 
   const navigate = useNavigate()
 
-
-
   const fetchData = async () => {
     setIsLoading(true)
     try {
       const url = `${BASE_URL}/api/posts?status=approved`
       const { data } = await axios.get(url)
-      console.log(data)
-      set_branding(data.posts.filter((post: IPost) => post.categories === 'branding'))
-      set_estrategia_de_crecimiento(data.posts.filter((post: IPost) => post.categories === 'estrategia-de-crecimiento'))
-      set_performance_marketing(data.posts.filter((post: IPost) => post.categories === 'performance-marketing'))
-      set_marketing_promocional(data.posts.filter((post: IPost) => post.categories === 'marketing-promocional'))
-      set_creacion_de_contenido(data.posts.filter((post: IPost) => post.categories === 'creacion-de-contenido'))
+      set_branding(data.posts.filter((post: IPost) => post.categories === 'branding' && post.scored === false))
+      set_estrategia_de_crecimiento(data.posts.filter((post: IPost) => post.categories === 'estrategia-de-crecimiento' && post.scored === false))
+      set_performance_marketing(data.posts.filter((post: IPost) => post.categories === 'performance-marketing' && post.scored === false))
+      set_marketing_promocional(data.posts.filter((post: IPost) => post.categories === 'marketing-promocional' && post.scored === false))
+      set_creacion_de_contenido(data.posts.filter((post: IPost) => post.categories === 'creacion-de-contenido' && post.scored === false))
     } catch (error) {
       console.log(error)
-      alert('Hubo un error al hacer el fetch al server')
     } finally {
       setIsLoading(false)
     }
