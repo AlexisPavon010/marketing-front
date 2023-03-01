@@ -43,8 +43,11 @@ export const Home = () => {
       <Card className={styles.card__categories}>
         <StepsComponent />
       </Card>
+      <Card className={styles.card__categories}>
+        <CategoriesCollapse />
+      </Card>
       {
-        role === 'jury' ? (
+        role === 'jury' && (
           <>
             <Card className={styles.card__categories}>
               <ProgressComponent />
@@ -53,10 +56,6 @@ export const Home = () => {
               <JuryCollapse />
             </Card>
           </>
-        ) : (
-          <Card className={styles.card__categories}>
-            <CategoriesCollapse />
-          </Card>
         )
       }
       {
