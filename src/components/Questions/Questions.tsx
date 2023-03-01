@@ -1,6 +1,7 @@
-import { Card, Form, Button, Steps, Result, } from "antd"
+import { Card, Form, Button, Steps, Result, message, } from "antd"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { updatePost } from "../../api/Post";
 
 import { IPost } from "../../interfaces/Post";
 import { QuestionModal } from "../Modals";
@@ -18,7 +19,7 @@ interface QuestionsProps {
 }
 
 export const Questions = ({ id, post }: QuestionsProps) => {
-  const [openModal, setOpenModal] = useState({ visible: false, notaFinal: 0 })
+  const [loading, setLoading] = useState(false)
   const [published, setPublished] = useState(false)
   const [current, setCurrent] = useState(0);
   const [form] = Form.useForm();
@@ -93,39 +94,30 @@ export const Questions = ({ id, post }: QuestionsProps) => {
     var notaFinal = (puntajePonderado1 + puntajePonderado2) * 100;
 
     form.validateFields().then(() => {
-      setOpenModal({
-        visible: true,
-        notaFinal
+      setLoading(true)
+      updatePost(id, {
+        juryScore: notaFinal,
+        scored: true
       })
+        .then(({ data }) => {
+          message.success(`El score final es de ${notaFinal} pts.`)
+          setPublished(true)
+        })
+        .catch((error) => {
+          console.log(error)
+          setLoading(false)
+        })
+        .finally(() => {
+          setLoading(false)
+        })
     })
 
   };
 
-  if (published) {
-    return (
-      <Card style={{ boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)' }}>
-        <Result
-          status="success"
-          title="El caso ha sido puntuado correctamente"
-          subTitle="Puede ver sus casos evaluados en el dashboard principal"
-          extra={[
-            <Button
-              onClick={() => navigate('/')}
-              type="primary"
-              key="console"
-            >
-              Volver
-            </Button>,
-          ]}
-        />
-      </Card>
-    )
-  }
-
   return (
     <Card style={{ boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)' }}>
 
-      {post.scored ? (
+      {published ? (
         <Result
           status="success"
           title="El caso ha sido puntuado correctamente"
@@ -134,10 +126,10 @@ export const Questions = ({ id, post }: QuestionsProps) => {
             <Button
               onClick={() => navigate('/')}
               type="primary"
-              key="console"
             >
-              Volver
+              Menú Principal
             </Button>,
+            <Button onClick={() => setPublished(false)} >Volver a Evaluar</Button>,
           ]}
         />
       ) : (
@@ -155,7 +147,12 @@ export const Questions = ({ id, post }: QuestionsProps) => {
               </Button>
             )}
             {current === steps.length - 1 && (
-              <Button style={{ margin: '8px 0' }} type="primary" onClick={handleSubmit}>
+              <Button
+                type="primary"
+                loading={loading}
+                style={{ margin: '8px 0' }}
+                onClick={handleSubmit}
+              >
                 Enviar
               </Button>
             )}
@@ -167,12 +164,6 @@ export const Questions = ({ id, post }: QuestionsProps) => {
           </div>
         </>
       )}
-      <QuestionModal
-        id={id}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-        setPublished={setPublished}
-      />
     </Card >
   )
 }
