@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { CATEGORIES, STATUSES } from "../../constans";
 import { BASE_URL } from "../../api/Post";
 import axios from "axios";
+import { IPost } from "../../interfaces/Post";
 
 const { Search } = Input;
 const { Title } = Typography;
@@ -47,7 +48,7 @@ export const JuryForm = () => {
     const url = `${BASE_URL}/api/posts?status=approved&scored=true`
     axios.get(url)
       .then(({ data }) => {
-        setPost(data.posts)
+        setPost(data.posts.filter((post: IPost) => post.scored === true))
         setCount(data.metadata.total)
       })
       .catch((error) => console.log(error))
