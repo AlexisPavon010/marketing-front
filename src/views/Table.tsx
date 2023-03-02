@@ -68,17 +68,20 @@ export const Table = () => {
 
   const columns: ColumnsType<DataType> = [
     {
+      width: 180,
       title: 'Usuario',
       dataIndex: 'username',
       key: 'username'
     },
     {
+      width: 200,
       title: 'Correo',
       dataIndex: 'email',
       key: 'email'
     },
     {
-      width: 250,
+      width: 200,
+      ellipsis: true,
       align: 'center',
       title: 'Categoría Postulada',
       dataIndex: 'categories',
@@ -91,15 +94,15 @@ export const Table = () => {
         )
       }
     },
+    // {
+    //   width: 200,
+    //   title: 'Marca',
+    //   dataIndex: 'brand',
+    //   key: 'brand',
+    //   align: 'center'
+    // },
     {
-      width: 200,
-      title: 'Marca',
-      dataIndex: 'brand',
-      key: 'brand',
-      align: 'center'
-    },
-    {
-      width: 300,
+      width: 190,
       align: 'center',
       title: 'Fecha',
       dataIndex: 'createdAt',
@@ -109,6 +112,7 @@ export const Table = () => {
       }
     },
     {
+      width: 60,
       align: 'center',
       title: 'Estado',
       key: 'status',
@@ -124,7 +128,7 @@ export const Table = () => {
       }
     },
     {
-      width: 200,
+      width: 160,
       title: 'Puntuacion Jurado',
       dataIndex: 'juryScore',
       key: 'juryScore',
@@ -135,40 +139,41 @@ export const Table = () => {
         </Tag>
       )
     },
-    {
-      width: 200,
-      title: 'Valoración',
-      dataIndex: 'adminScore',
-      key: 'score',
-      align: 'center',
-      render: (value) => (
-        <Rate disabled defaultValue={value} />
-      )
-    },
-    {
-      title: 'Acción',
-      key: 'action',
-      // onCell: (record, event) => {
-      //   // event.preventDefault();
-      // },
-      render: (_, record) => (
-        <Space size="large">
-          <Tooltip placement="top" title='Ver'>
-            <BsEye
-              onClick={() => navigate(`/dashboard/categories/published/${record._id}`)}
-              size={16}
-            />
-          </Tooltip>
-          <Tooltip placement="top" title='Eliminar'>
-            <BsTrash
-              onClick={() => handleDeleted(record._id)}
-              size={16}
-              color='red'
-            />
-          </Tooltip>
-        </Space>
-      ),
-    },
+    // {
+    //   width: 200,
+    //   title: 'Valoración',
+    //   dataIndex: 'adminScore',
+    //   key: 'score',
+    //   align: 'center',
+    //   render: (value) => (
+    //     <Rate disabled defaultValue={value} />
+    //   )
+    // },
+    // {
+    //   title: 'Acción',
+    //   key: 'action',
+    //   align: 'center',
+    //   // onCell: (record, event) => {
+    //   //   // event.preventDefault();
+    //   // },
+    //   render: (_, record) => (
+    //     <Space size="large">
+    //       <Tooltip placement="top" title='Ver'>
+    //         <BsEye
+    //           onClick={() => navigate(`/dashboard/categories/published/${record._id}`)}
+    //           size={16}
+    //         />
+    //       </Tooltip>
+    //       <Tooltip placement="top" title='Eliminar'>
+    //         <BsTrash
+    //           onClick={() => handleDeleted(record._id)}
+    //           size={16}
+    //           color='red'
+    //         />
+    //       </Tooltip>
+    //     </Space>
+    //   ),
+    // },
   ];
 
 
@@ -283,7 +288,7 @@ export const Table = () => {
         <AntTable
           columns={columns}
           dataSource={post}
-          scroll={{ x: 1800 }}
+          scroll={{ x: 900 }}
           rowKey='_id'
           loading={loading}
           pagination={{
@@ -297,11 +302,11 @@ export const Table = () => {
             onShowSizeChange: onPageSizeChange,
             showSizeChanger: true
           }}
-        // onRow={(record, rowIndex) => ({
-        //   onClick: (event) => {
-        //     navigate(`/dashboard/categories/published/${record._id}`)
-        //   }
-        // })}
+          onRow={(record, rowIndex) => ({
+            onClick: (event) => {
+              navigate(`/dashboard/categories/published/${record._id}`)
+            }
+          })}
         />
       </Card>
       <DeletedModal
