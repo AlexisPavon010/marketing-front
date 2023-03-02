@@ -1,4 +1,4 @@
-import { Button, Card, Col, Form, Input, Rate, Row, Select, Space, Table as AntTable, Tag, Tooltip } from 'antd';
+import { Badge, Button, Card, Col, Form, Input, Row, Select, Space, Table as AntTable, Tag, Tooltip } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
@@ -134,9 +134,7 @@ export const Table = () => {
       key: 'juryScore',
       align: 'center',
       render: (value) => (
-        <Tag color='gold'>
-          {value}
-        </Tag>
+        <Badge color='#1677ff' overflowCount={999} count={value} showZero />
       )
     },
     // {
@@ -291,6 +289,7 @@ export const Table = () => {
           scroll={{ x: 900 }}
           rowKey='_id'
           loading={loading}
+          rowClassName='table-row'
           pagination={{
             locale: {
               items_per_page: 'x pág.',
