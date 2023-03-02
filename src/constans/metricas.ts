@@ -2,7 +2,7 @@ export const METRICAS = [
   {
     id: 'performance-marketing',
     ejemplo: 'Implementación de lower funnel, uso de data con modelos de propensión, etc.',
-    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.',
+    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. ',
     items: [
       'Conversiones incrementales, ratio de conversión, leads, prospects, descargas de aplicaciones, tráfico, CPA , ROAS (Return On Advertising Spending = Ventas/inversión)',
       'Período de comparación vs baseline: mismo mes del año anterior ó mes anterior.',
@@ -10,7 +10,7 @@ export const METRICAS = [
   },
   {
     id: 'marketing-promocional',
-    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.',
+    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. ',
     items: [
       'KPI´s (ejemplo Cyberwow/ Hot sale).',
       'Período de comparación: vs plan /vs evento anterior/ vs promedio semana anterior o misma semana mes anterior.',
@@ -27,7 +27,7 @@ export const METRICAS = [
   },
   {
     id: 'estrategia-de-crecimiento',
-    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.',
+    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. ',
     items: [
       'Período de comparación vs baseline: mismo mes del año anterior ó mes anterior.',
       'Incremento de ventas (ventas web /off line), en valores ($$) y transacciones.',
@@ -39,7 +39,7 @@ export const METRICAS = [
   },
   {
     id: 'creacion-de-contenido',
-    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.',
+    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. ',
     items: [
       'Alcance, vistas al 100%,',
       'Conversiones , tasa de conversión',
@@ -50,7 +50,7 @@ export const METRICAS = [
   },
   {
     id: 'branding',
-    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.',
+    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. ',
     items: [
       'Período de comparación vs baseline: mismo mes del año anterior ó mes anterior.',
       'Cambios en la pirámide marcaria: (awareness, consideración, experiencia, preferencia, fidelidad).',
@@ -61,7 +61,7 @@ export const METRICAS = [
   },
   {
     id: 'impacto-positivo',
-    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.',
+    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. ',
     items: [
       'Período de comparación vs Baseline: mismo mes del año anterior ó mes anterior.',
       'Post Test: Recuerdo espontáneo, conocimiento de marca, lealtad de marca',
@@ -71,7 +71,7 @@ export const METRICAS = [
   },
   {
     id: 'uso-de-first-party-data',
-    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente . No dejes de participar.',
+    title: 'A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. ',
     items: [
       'Período de comparación vs baseline: mismo mes del año anterior ó mes anterior.',
       'Tráfico WEB, Páginas vistas, Tiempo en la web, Bounce rate, Conversion rate.',
