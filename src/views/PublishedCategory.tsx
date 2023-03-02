@@ -93,15 +93,18 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
           </Descriptions.Item>
           <Descriptions.Item label="Categoria">
             {/* @ts-ignore  */}
-            <Tag color="green">{CATEGORIES.find(({ id }) => id === post?.categories).name}</Tag>
+            <Tag color="cyan">{CATEGORIES.find(({ id }) => id === post?.categories).name}</Tag>
           </Descriptions.Item>
           <Descriptions.Item label="Marca">
             <Tag color="orange">{post?.brand}</Tag>
           </Descriptions.Item>
           <Descriptions.Item label="Fecha">{moment(post?.createdAt).format('DD/MM/YYYY, h:mm:ss a')}</Descriptions.Item>
-          <Descriptions.Item label="Status">
+          <Descriptions.Item label="Estado">
             {/* @ts-ignore  */}
-            <Tag color="orange">{STATUSES.find(({ id }) => id === post?.status).name}</Tag>
+            <Tag color={STATUSES.find(({ id }) => id === post?.status).color}>{STATUSES.find(({ id }) => id === post?.status).name}</Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label="Score">
+            <Tag color="blue">{post?.juryScore}</Tag>
           </Descriptions.Item>
         </Descriptions>
         <Typography>
