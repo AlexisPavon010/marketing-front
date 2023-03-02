@@ -94,14 +94,16 @@ export const Questions = ({ id, post }: QuestionsProps) => {
 
     var notaFinal = (puntajePonderado1 + puntajePonderado2) * 100;
 
+    console.log(Math.round(notaFinal))
+
     form.validateFields().then(() => {
       setLoading(true)
       updatePost(id, {
-        juryScore: notaFinal,
+        juryScore: Math.round(notaFinal),
         scored: true
       })
         .then(({ data }) => {
-          message.success(`El score final es de ${notaFinal} pts.`)
+          message.success(`El score final es de ${Math.round(notaFinal)} pts.`)
           setPublished(true)
         })
         .catch((error) => {
