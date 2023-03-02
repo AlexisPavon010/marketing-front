@@ -115,19 +115,19 @@ export const JuryForm = () => {
         )
       }
     },
-    {
-      title: 'Acción',
-      key: 'action',
-      render: (_, record) => {
-        return (
-          <Space size="large">
-            <Tooltip placement="top" title={'Juzgar'}>
-              <AiOutlineEye onClick={() => navigate(`/categories/published/${record._id}`)} size={16} />
-            </Tooltip >
-          </Space >
-        )
-      }
-    },
+    // {
+    //   title: 'Acción',
+    //   key: 'action',
+    //   render: (_, record) => {
+    //     return (
+    //       <Space size="large">
+    //         <Tooltip placement="top" title={'Juzgar'}>
+    //           <AiOutlineEye onClick={() => navigate(`/categories/published/${record._id}`)} size={16} />
+    //         </Tooltip >
+    //       </Space >
+    //     )
+    //   }
+    // },
   ];
 
   return (
@@ -245,6 +245,7 @@ export const JuryForm = () => {
           scroll={{ x: 900, }}
           rowKey='_id'
           loading={loading}
+          rowClassName='table-row'
           pagination={{
             locale: {
               items_per_page: 'x pág.',
@@ -256,11 +257,11 @@ export const JuryForm = () => {
             onShowSizeChange: onPageSizeChange,
             showSizeChanger: true
           }}
-        // onRow={(record, rowIndex) => ({
-        //   onClick: event => {
-        //     navigate(record.published ? `/categories/published/${record._id}` : `/update-categories/${record._id}`)
-        //   }
-        // })}
+          onRow={(record, rowIndex) => ({
+            onClick: event => {
+              navigate(`/categories/published/${record._id}`)
+            }
+          })}
         />
       </Card>
     </>
