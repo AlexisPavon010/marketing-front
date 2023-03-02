@@ -212,7 +212,7 @@ export const JuryCollapse = () => {
             </Col>
             <Col flex={1}></Col>
             <Col>
-              <Badge color='#1677ff' count={marketing_promocional.length} showZero />
+              <Badge color='#1677ff' count={creacion_de_contenido.length} showZero />
             </Col>
           </Row>
         } >
