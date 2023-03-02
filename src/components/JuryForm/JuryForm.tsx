@@ -12,7 +12,7 @@ import axios from "axios";
 import { IPost } from "../../interfaces/Post";
 
 const { Search } = Input;
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 
 interface DataType {
   _id: string
@@ -119,18 +119,9 @@ export const JuryForm = () => {
       title: 'Acción',
       key: 'action',
       render: (_, record) => {
-        if (!record.published) {
-          return (
-            <Space size="large">
-              <Tooltip placement="top" title={'Editar'}>
-                <BsPencil onClick={() => navigate(`/update-categories/${record._id}`)} size={16} />
-              </Tooltip>
-            </Space>
-          )
-        }
         return (
           <Space size="large">
-            <Tooltip placement="top" title={'Ver'}>
+            <Tooltip placement="top" title={'Juzgar'}>
               <AiOutlineEye onClick={() => navigate(`/categories/published/${record._id}`)} size={16} />
             </Tooltip >
           </Space >
@@ -142,9 +133,14 @@ export const JuryForm = () => {
   return (
     <>
       <AiOutlineInfoCircle color='grey' size={32} />
-      <Title style={{ margin: '0 0 20px 0' }} level={4}>
-        Casos Evaluados
-      </Title>
+      <Typography>
+        <Title style={{ margin: '0 0 20px 0' }} level={4}>
+          Casos Evaluados
+        </Title>
+        <Paragraph>
+          A continuación puedes ver el detalle de los casos ya evaluados. Puedes volver a puntuar los casos las veces que lo consideres necesario. Quedará guardada la última versión que realices.
+        </Paragraph>
+      </Typography>
       <Card style={{ marginBottom: 20 }}>
         <Form
           style={{ width: '100%' }}
