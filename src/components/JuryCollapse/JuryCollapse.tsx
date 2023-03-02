@@ -1,8 +1,7 @@
 import { Badge, Col, Collapse, Row, Space, Table, Tag, Tooltip, Typography } from "antd"
-import { AiOutlineEye, AiOutlineInfoCircle } from "react-icons/ai";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { ColumnsType } from "antd/es/table";
-import { BsPencil } from "react-icons/bs";
 import moment from "moment";
 
 import styles from './styles.module.scss'
@@ -11,6 +10,7 @@ import { BASE_URL, getPosts } from "../../api/Post";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { IPost } from "../../interfaces/Post";
+import { GiBookmark } from "react-icons/gi";
 
 const { Title } = Typography;
 const { Panel } = Collapse;
@@ -110,22 +110,14 @@ export const JuryCollapse = () => {
       }
     },
     {
+      align: 'center',
       title: 'Acción',
       key: 'action',
       render: (_, record) => {
-        if (!record.published) {
-          return (
-            <Space size="large">
-              <Tooltip placement="top" title={'Editar'}>
-                <BsPencil onClick={() => navigate(`/update-categories/${record._id}`)} size={16} />
-              </Tooltip>
-            </Space>
-          )
-        }
         return (
           <Space size="large">
-            <Tooltip placement="top" title={'Ver'}>
-              <AiOutlineEye onClick={() => navigate(`/categories/published/${record._id}`)} size={16} />
+            <Tooltip placement="top" title={'Juzgar'}>
+              <GiBookmark onClick={() => navigate(`/categories/published/${record._id}`)} size={16} />
             </Tooltip >
           </Space >
         )
