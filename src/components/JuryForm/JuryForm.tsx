@@ -45,7 +45,7 @@ export const JuryForm = () => {
 
   useEffect(() => {
     setLoading(true)
-    const url = `${BASE_URL}/api/posts?status=approved&scored=true`
+    const url = `${BASE_URL}/api/posts?status=approved&juryScore=desc`
     axios.get(url)
       .then(({ data }) => {
         setPost(data.posts.filter((post: IPost) => post.scored === true))
