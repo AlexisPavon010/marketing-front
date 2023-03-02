@@ -7,24 +7,23 @@ export const StepsComponent = () => {
   const [steps, setSteps] = useState([
     {
       title: 'Inscripción',
-      startDate: '14/02/23',
-      endDate: '14/03/23',
-      descripcion: ''
+      startDate: '24/02/23',
+      endDate: '17/03/23',
     },
     {
       title: 'Primer Juzgamiento',
-      startDate: '15/03/23',
+      startDate: '17/03/23',
       endDate: '29/03/23',
     },
     {
       title: 'Segundo Juzgamiento',
-      startDate: '10/04/23',
+      startDate: '29/03/23',
       endDate: '10/04/23'
     },
     {
       title: 'Resultados',
-      startDate: '11/04/23',
-      endDate: '11/04/23',
+      startDate: '10/04/23',
+      endDate: '10/04/23',
     },
   ]);
 
