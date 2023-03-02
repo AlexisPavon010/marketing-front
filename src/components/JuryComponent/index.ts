@@ -1,0 +1,1 @@
+export { JuryComponent } from "./JuryComponent";

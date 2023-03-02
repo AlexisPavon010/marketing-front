@@ -1,0 +1,32 @@
+.hero {
+  margin-bottom: 20px;
+}
+
+.hero__title {
+  font-weight: 200 !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero__subtitle {
+  margin-top: 20px !important;
+}
+
+@media screen and (max-width: 576px) {
+  .hero__title {
+    font-size: 24px !important;
+  }
+
+  .hero__subtitle {
+    font-size: 16px !important;
+  }
+}
+
+.card__categories {
+  margin-bottom: 20px;
+}
+
+.card__categories_title {
+  margin: 8px 0 20px !important;
+}
