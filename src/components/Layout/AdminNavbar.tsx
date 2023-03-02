@@ -42,7 +42,7 @@ export const AdminNavbar = ({ openMenu }: NavbarProps) => {
     <Header style={{ background: 'white' }}>
       <div className="header__wrapper">
         <Row align="middle" gutter={16}>
-          <Col lg={0} >
+          <Col xs={1} >
             <Button
               style={{
                 display: 'flex'
