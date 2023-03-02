@@ -1,4 +1,4 @@
-import { Card, Form, Button, Steps, Result, message, } from "antd"
+import { Card, Form, Button, Steps, Result, message, Typography, } from "antd"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { updatePost } from "../../api/Post";
@@ -12,6 +12,7 @@ import { Step4 } from "./Step4";
 import { Step5 } from "./Step5";
 
 const { Step } = Steps;
+const { Title, Paragraph } = Typography;
 
 interface QuestionsProps {
   id: string;
@@ -60,7 +61,7 @@ export const Questions = ({ id, post }: QuestionsProps) => {
       ),
     },
     {
-      title: 'Pregunta 5',
+      title: 'Resultados',
       content: (
         <Form form={form} layout="vertical">
           <Step5 />
@@ -114,10 +115,9 @@ export const Questions = ({ id, post }: QuestionsProps) => {
 
   };
 
-  return (
-    <Card style={{ boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)' }}>
-
-      {published ? (
+  if (published) {
+    return (
+      <Card style={{ boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)' }}>
         <Result
           status="success"
           title="El caso ha sido puntuado correctamente"
@@ -132,38 +132,57 @@ export const Questions = ({ id, post }: QuestionsProps) => {
             <Button onClick={() => setPublished(false)} >Volver a Evaluar</Button>,
           ]}
         />
-      ) : (
-        <>
-          <Steps current={current}>
-            {steps.map((item) => (
-              <Step key={item.title} title={item.title} />
-            ))}
-          </Steps>
-          <div className="steps-content">{steps[current].content}</div>
-          <div className="steps-action">
-            {current < steps.length - 1 && (
-              <Button style={{ margin: '8px 0' }} type="primary" onClick={next}>
-                Siguiente
-              </Button>
-            )}
-            {current === steps.length - 1 && (
-              <Button
-                type="primary"
-                loading={loading}
-                style={{ margin: '8px 0' }}
-                onClick={handleSubmit}
-              >
-                Enviar
-              </Button>
-            )}
-            {current > 0 && (
-              <Button style={{ margin: '0 8px' }} onClick={prev}>
-                Volver
-              </Button>
-            )}
-          </div>
-        </>
-      )}
+      </Card>
+    )
+  }
+
+  return (
+    <Card style={{ boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)' }}>
+      <Typography style={{ marginBottom: '20px' }}>
+        <Title level={4}>
+          CUESTIONARIO DE JUZGAMIENTO
+        </Title>
+        <Paragraph>
+          A continuación encontrarás las 5 preguntas para puntuar el caso.  Te pedimos que asignes un puntaje a cada pregunta del formulario de acuerdo al criterio preestablecido:
+        </Paragraph>
+        <Paragraph>
+          1: Muy insatisfactorio; 2: Insatisfactorio; 3: Neutral; 4: Satisfactorio; 5: Muy satisfactorio.
+        </Paragraph>
+        <Paragraph>
+          La puntuación final será automática y resultará de la media ponderada de las respuestas siendo la pregunta final de “Resultados” la que tendrá un peso del 60% sobre el total.
+        </Paragraph>
+        <Paragraph>
+          Muchas gracias por tu participación
+        </Paragraph>
+      </Typography>
+      <Steps current={current}>
+        {steps.map((item) => (
+          <Step key={item.title} title={item.title} />
+        ))}
+      </Steps>
+      <div className="steps-content">{steps[current].content}</div>
+      <div className="steps-action">
+        {current < steps.length - 1 && (
+          <Button style={{ margin: '8px 0' }} type="primary" onClick={next}>
+            Siguiente
+          </Button>
+        )}
+        {current === steps.length - 1 && (
+          <Button
+            type="primary"
+            loading={loading}
+            style={{ margin: '8px 0' }}
+            onClick={handleSubmit}
+          >
+            Enviar
+          </Button>
+        )}
+        {current > 0 && (
+          <Button style={{ margin: '0 8px' }} onClick={prev}>
+            Volver
+          </Button>
+        )}
+      </div>
     </Card >
   )
 }
