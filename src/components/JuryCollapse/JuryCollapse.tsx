@@ -2,17 +2,17 @@ import { Badge, Col, Collapse, Row, Space, Table, Tag, Tooltip, Typography } fro
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { ColumnsType } from "antd/es/table";
+import { GiBookmark } from "react-icons/gi";
 import moment from "moment";
+import axios from "axios";
 
 import styles from './styles.module.scss'
 import { CATEGORIES, STATUSES } from "../../constans";
 import { BASE_URL, getPosts } from "../../api/Post";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { IPost } from "../../interfaces/Post";
-import { GiBookmark } from "react-icons/gi";
 
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 const { Panel } = Collapse;
 
 interface DataType {
@@ -29,7 +29,6 @@ interface DataType {
 export const JuryCollapse = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [branding, set_branding] = useState([])
-  const [impacto_positivo, set_impacto_positivo] = useState([])
   const [marketing_promocional, set_marketing_promocional] = useState([])
   const [performance_marketing, set_performance_marketing] = useState([])
   const [creacion_de_contenido, set_creacion_de_contenido] = useState([])
@@ -65,7 +64,6 @@ export const JuryCollapse = () => {
       dataIndex: 'categories',
       key: 'categories',
       render: (text) => {
-
         return (
           // @ts-ignore 
           <p>{CATEGORIES.find(({ id }) => id === text).name}</p>
@@ -128,9 +126,14 @@ export const JuryCollapse = () => {
   return (
     <>
       <AiOutlineInfoCircle color='grey' size={32} />
-      <Title className={styles.title} level={4}>
-        Casos para Juzgamiento
-      </Title>
+      <Typography>
+        <Title className={styles.title} level={4}>
+          Casos para Juzgamiento
+        </Title>
+        <Paragraph>
+          A continuación puedes ver el detalle de los casos a evaluar.
+        </Paragraph>
+      </Typography>
       <br />
       <Collapse accordion>
         <Panel className={styles.panel} key={1} header={
