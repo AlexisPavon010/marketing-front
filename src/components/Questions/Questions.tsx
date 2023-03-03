@@ -1,10 +1,10 @@
 import { Card, Form, Button, Steps, Result, message, Typography, } from "antd"
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { updatePost } from "../../api/Post";
+import { sendReview } from "../../api/Post";
 
 import { IPost } from "../../interfaces/Post";
-import { QuestionModal } from "../Modals";
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
 import { Step3 } from "./Step3";
@@ -20,6 +20,7 @@ interface QuestionsProps {
 }
 
 export const Questions = ({ id, post }: QuestionsProps) => {
+  const { username, uid } = useSelector((state: any) => state.auth)
   const [loading, setLoading] = useState(false)
   const [published, setPublished] = useState(false)
   const [current, setCurrent] = useState(0);
@@ -98,9 +99,10 @@ export const Questions = ({ id, post }: QuestionsProps) => {
 
     form.validateFields().then(() => {
       setLoading(true)
-      updatePost(id, {
-        juryScore: Math.round(notaFinal),
-        scored: true
+      sendReview(id, {
+        userId: uid,
+        name: username,
+        score: Math.round(notaFinal),
       })
         .then(({ data }) => {
           message.success(`El score final es de ${Math.round(notaFinal)} pts.`)
