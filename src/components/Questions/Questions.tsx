@@ -151,7 +151,7 @@ export const Questions = ({ id, post }: QuestionsProps) => {
           1: Muy insatisfactorio; 2: Insatisfactorio; 3: Neutral; 4: Satisfactorio; 5: Muy satisfactorio.
         </Paragraph>
         <Paragraph>
-          La puntuación final será automática y resultará de la media ponderada de las respuestas siendo la pregunta final de “Resultados” la que tendrá un peso del 60% sobre el total.
+          La puntuación final será automática y resultará de la media ponderada de las respuestas.
         </Paragraph>
         <Paragraph>
           Muchas gracias por tu participación
