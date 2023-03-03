@@ -89,9 +89,12 @@ export const JuryForm = () => {
       dataIndex: 'juryScore',
       key: 'juryScore',
       align: 'center',
-      render: (value) => (
-        <Badge color='#1677ff' count={value} overflowCount={999} showZero />
-      )
+      render: (value: number) => {
+        const total = value.toFixed(2)
+        return (
+          <Badge color='#1677ff' count={total} overflowCount={999} showZero />
+        )
+      }
     },
     {
       align: 'center',

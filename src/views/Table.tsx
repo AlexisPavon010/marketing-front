@@ -133,9 +133,12 @@ export const Table = () => {
       dataIndex: 'juryScore',
       key: 'juryScore',
       align: 'center',
-      render: (value) => (
-        <Badge color='#1677ff' overflowCount={999} count={value} showZero />
-      )
+      render: (value) => {
+        const total = value.toFixed(2)
+        return (
+          <Badge color='#1677ff' overflowCount={999} count={total} showZero />
+        )
+      }
     },
     // {
     //   width: 200,
