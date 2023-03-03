@@ -21,7 +21,7 @@ export const CategoriesCollapse = () => {
           </Paragraph>
           <Paragraph>
             <strong>Métricas: </strong>
-            A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente. No dejes de participar.
+            A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s y a las fuentes de información con las que cuente cada marca.
           </Paragraph>
           <Paragraph>
             <li className={styles.list_item}>
@@ -58,7 +58,7 @@ export const CategoriesCollapse = () => {
           </Paragraph>
           <Paragraph>
             <strong>Métricas: </strong>
-            A modo de referencia a continuación se detallan como ejemplo  métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s  y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente. No dejes de participar.
+            A modo de referencia a continuación se detallan como ejemplo  métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s  y a las fuentes de información con las que cuente cada marca.
           </Paragraph>
           <Paragraph>
             <li className={styles.list_item}>
@@ -100,7 +100,7 @@ export const CategoriesCollapse = () => {
           </Paragraph>
           <Paragraph>
             <strong>Métricas: </strong>
-            A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI ́s  y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente. No dejes de participar.
+            A modo de referencia a continuación se detallan como ejemplo métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI ́s  y a las fuentes de información con las que cuente cada marca.
           </Paragraph>
           <Paragraph>
             <li className={styles.list_item}>
@@ -120,7 +120,7 @@ export const CategoriesCollapse = () => {
           </Paragraph>
           <Paragraph>
             <strong>Métricas: </strong>
-            A modo de referencia a continuación se detallan como ejemplo  métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s  y a las fuentes de información con las que cuente cada marca. Si tienes 1 ó 2 métricas, ya es suficiente. No dejes de participar.
+            A modo de referencia a continuación se detallan como ejemplo  métricas posibles a citar para validar los resultados de impacto. Son sólo referenciales. No es obligatorio contar con toda esa información y pueden sumarse otras de acuerdo a los KPI´s  y a las fuentes de información con las que cuente cada marca.
           </Paragraph>
           <Paragraph>
             <li className={styles.list_item}>
