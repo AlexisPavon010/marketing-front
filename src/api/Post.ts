@@ -24,8 +24,8 @@ export const getPosts = (limit?: any, skip?: any, category?: string, brand?: str
   return axios.get(`${BASE_URL}/api/posts?${urlParams.toString()}`)
 }
 
-export const getPostByIdAndCategory = (id: string, category: string) => {
-  return axios.get(`${BASE_URL}/api/posts/user/${id}/category/${category}`)
+export const sendReview = (id: string, payload: any) => {
+  return axios.post(`${BASE_URL}/api/posts/review/${id}`, payload)
 }
 
 export const getPostById = (id: string) => {
