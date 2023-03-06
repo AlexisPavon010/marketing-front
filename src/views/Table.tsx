@@ -311,11 +311,6 @@ export const Table = () => {
           })}
         />
       </Card>
-      <DeletedModal
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-        getData={getData}
-      />
     </>
   )
 }

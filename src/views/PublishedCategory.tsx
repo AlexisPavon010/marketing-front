@@ -1,4 +1,4 @@
-import { Card, Image, Spin, Typography, Descriptions, Tag, Row, Button, Rate, Form, Select, Col } from "antd"
+import { Card, Image, Spin, Typography, Descriptions, Tag, Row, Button, Rate, Form, Select, Col, Space } from "antd"
 import { useNavigate, useParams, Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { FiDownload } from "react-icons/fi";
@@ -13,11 +13,14 @@ import { updatePost } from "../api/Post";
 import { getPostById } from "../api";
 import { Questions } from "../components/Questions";
 import { useSelector } from "react-redux";
+import { BsTrash } from "react-icons/bs";
+import { DeletedModal } from "../components/Modals";
 
 const { Title, Paragraph } = Typography;
 const { PreviewGroup } = Image;
 
 export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }) => {
+  const [openModal, setOpenModal] = useState<{ visible: boolean; id: string | null }>({ visible: false, id: null })
   const { role } = useSelector((state: any) => state.auth)
   const [layoutLoading, setLayoutLoading] = useState(true)
   const [post, setPost] = useState<IPost>()
@@ -49,6 +52,9 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
       .finally()
   }
 
+  const handleDeleted = (id: string) => {
+    setOpenModal({ visible: true, id: id })
+  }
 
   useEffect(() => {
     if (!id) return
@@ -79,9 +85,12 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
           </Col>
           <Col flex={1}></Col>
           <Col>
-            <Link target='_blank' to={`/view/${id}`}>
-              <FiDownload size={26} />
-            </Link>
+            <Space>
+              <Link target='_blank' to={`/view/${id}`}>
+                <FiDownload size={26} />
+              </Link>
+              <BsTrash onClick={() => handleDeleted(id!)} size={24} color='red' cursor='pointer' />
+            </Space>
           </Col>
         </Row>
         <Descriptions title="Información">
@@ -212,6 +221,10 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
       {role === 'jury' && (
         <Questions id={id!} post={post!} />
       )}
+      <DeletedModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
     </>
   )
 }

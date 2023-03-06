@@ -1,13 +1,15 @@
 import { Modal, Typography } from "antd";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { deletedPost } from "../../api";
 
 const { Paragraph } = Typography
 
-export const DeletedModal = ({ openModal, setOpenModal, getData }: any) => {
+export const DeletedModal = ({ openModal, setOpenModal }: any) => {
   const [confirmLoading, setConfirmLoading] = useState(false)
+  const navigate = useNavigate()
 
   const handleOk = () => {
     setConfirmLoading(true);
@@ -24,8 +26,8 @@ export const DeletedModal = ({ openModal, setOpenModal, getData }: any) => {
           draggable: false,
           theme: "light",
         });
-        getData()
         setOpenModal({ visible: false, id: null })
+        navigate('/dashboard')
       })
       .catch((error) => {
         toast.error('Opps! Ocurrio un error', {
