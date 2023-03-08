@@ -3,7 +3,7 @@ import { Form, Radio, Space, Typography } from 'antd'
 export const Step3 = () => {
   return (
     <>
-      <Typography.Title style={{ width: '100%' }} level={5}>¿La Acción / Campaña / Idea es novedosa o es una acción que habitualmente se implementa?</Typography.Title>
+      <Typography.Title style={{ width: '100%' }} level={5}>¿La Acción / Campaña / Idea es novedosa o es una acción/campaña/idea que habitualmente se implementa? (para casos de Performance Marketing: ¿utiliza una herramienta nueva?)</Typography.Title>
       <Space direction="vertical" size='large'>
         <Form.Item name='pregunta3' rules={[{ required: true, message: 'Por favor seleccione una respuesta.' }]}>
           <Radio.Group style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '8px' }}>

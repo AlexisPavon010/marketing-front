@@ -6,13 +6,18 @@ import { BASE_URL } from "../../api/Post"
 import { IPost } from '../../interfaces/Post'
 
 export const ProgressComponent = () => {
-  const [pending, setPending] = useState([])
-  const total = 100 - (pending.length * 10)
+  const [total, setTotal] = useState(0)
 
   useEffect(() => {
     axios.get(`${BASE_URL}/api/posts`)
       .then(({ data }) => {
-        setPending(data.posts.filter((post: IPost) => post.scored === false))
+        const completed = data.posts.filter((post: IPost) => post.scored === true).length
+        const pending = data.posts.filter((post: IPost) => post.scored === false).length
+        if (pending === 0) {
+          setTotal(100)
+        } else {
+          setTotal(Math.round(completed / (100 - pending) * 100))
+        }
       })
       .catch()
       .finally()
