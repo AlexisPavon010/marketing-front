@@ -1,4 +1,4 @@
-import { Typography } from "antd";
+import { Card, Typography } from "antd";
 import { AiOutlineUser } from "react-icons/ai";
 import { useSelector } from "react-redux";
 
@@ -10,7 +10,7 @@ export const HomeComponent = () => {
   const { username, email, role } = useSelector((state: any) => state.auth)
 
   return (
-    <>
+    <Card style={{ margin: '20px 0' }}>
       <Typography>
         <Title className={styles.hero__title} >
           <AiOutlineUser /> {role === 'jury' ? `¡Bienvenido/a  ${username ? username : email}! al Jurado` : `¡Bienvenido/a  ${username ? username : email}!`}
@@ -31,6 +31,6 @@ export const HomeComponent = () => {
           ¡Buena suerte con tus inscripciones!
         </Paragraph>
       </Typography>
-    </>
+    </Card>
   )
 }

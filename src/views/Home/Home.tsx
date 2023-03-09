@@ -19,13 +19,11 @@ export const Home = () => {
 
   return (
     <>
-      <Card className={styles.hero}>
-        {role === 'jury' ? (
-          <JuryComponent />
-        ) : (
-          <HomeComponent />
-        )}
-      </Card>
+      {role === 'jury' ? (
+        <JuryComponent />
+      ) : (
+        <HomeComponent />
+      )}
       <Card className={styles.card__categories}>
         <StepsComponent />
       </Card>

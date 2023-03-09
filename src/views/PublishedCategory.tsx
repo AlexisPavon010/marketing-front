@@ -1,4 +1,4 @@
-import { Card, Image, Spin, Typography, Descriptions, Tag, Row, Button, Rate, Form, Select, Col, Space } from "antd"
+import { Card, Image, Spin, Typography, Descriptions, Tag, Row, Button, Rate, Form, Select, Col, Space, Tooltip } from "antd"
 import { useNavigate, useParams, Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { FiDownload } from "react-icons/fi";
@@ -87,9 +87,15 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
           <Col>
             <Space>
               <Link target='_blank' to={`/view/${id}`}>
-                <FiDownload size={26} />
+                <Tooltip title="Descargar PDF">
+                  <FiDownload size={26} />
+                </Tooltip>
               </Link>
-              <BsTrash onClick={() => handleDeleted(id!)} size={24} color='red' cursor='pointer' />
+              {role === 'jury' && (
+                <Tooltip title="Eliminar">
+                  <BsTrash onClick={() => handleDeleted(id!)} size={24} color='gray' cursor='pointer' />
+                </Tooltip>
+              )}
             </Space>
           </Col>
         </Row>
