@@ -91,7 +91,7 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
                   <FiDownload size={26} />
                 </Tooltip>
               </Link>
-              {role === 'jury' && (
+              {role === 'admin' && (
                 <Tooltip title="Eliminar">
                   <BsTrash onClick={() => handleDeleted(id!)} size={24} color='gray' cursor='pointer' />
                 </Tooltip>
