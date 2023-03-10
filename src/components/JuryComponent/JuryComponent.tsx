@@ -35,19 +35,19 @@ export const JuryComponent = () => {
           <Paragraph>
             <ul>
               <li>
-                Muy insatisfactorio.
+                Muy insatisfactorio. (1 pt.)
               </li>
               <li>
-                Insatisfactorio.
+                Insatisfactorio. (2 pts.)
               </li>
               <li>
-                Neutral.
+                Neutral. (3 pts.)
               </li>
               <li>
-                Satisfactorio.
+                Satisfactorio. (4 pts.)
               </li>
               <li>
-                Muy satisfactorio.
+                Muy satisfactorio. (5 pts.)
               </li>
             </ul>
           </Paragraph>
