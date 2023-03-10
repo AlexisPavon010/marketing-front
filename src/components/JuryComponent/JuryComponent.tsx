@@ -71,7 +71,7 @@ export const JuryComponent = () => {
           <Paragraph>
             <ul>
               <li>
-                ¿La Acción / Campaña / Idea es adecuada para el público objetivo? se basa en una motivación, necesidad, tendencia?
+                ¿La Acción / Campaña / Idea ¿Se basa en una motivación, necesidad, tendencia relevante para el público objetivo?
               </li>
             </ul>
           </Paragraph>
