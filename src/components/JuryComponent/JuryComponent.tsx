@@ -1,4 +1,4 @@
-import { Card, Typography } from "antd";
+import { Badge, Card, Typography } from "antd";
 import { AiOutlineUser } from "react-icons/ai";
 import { useSelector } from "react-redux";
 
@@ -59,42 +59,34 @@ export const JuryComponent = () => {
             </ul>
           </Paragraph> */}
           <Paragraph>
-            Las preguntas a puntuar son:
+            <strong>
+              Las preguntas a puntuar son:
+            </strong>
           </Paragraph>
           <Paragraph>
-            <ul>
-              <li>
-                ¿La Acción / Campaña / Idea responde al objetivo de negocio planteado?
-              </li>
-            </ul>
+            <Badge color='#1677ff' count={1} showZero />
+            <span> </span>
+            ¿La Acción / Campaña / Idea responde al objetivo de negocio planteado?
           </Paragraph>
           <Paragraph>
-            <ul>
-              <li>
-                ¿La Acción / Campaña / Idea ¿Se basa en una motivación, necesidad, tendencia relevante para el público objetivo?
-              </li>
-            </ul>
+            <Badge color='#1677ff' count={2} showZero />
+            <span> </span>
+            ¿La Acción / Campaña / Idea ¿Se basa en una motivación, necesidad, tendencia relevante para el público objetivo?
           </Paragraph>
           <Paragraph>
-            <ul>
-              <li>
-                ¿La Acción / Campaña / Idea es novedosa o es una acción/campaña/idea que habitualmente se implementa? (para casos de Performance Marketing: ¿utiliza una herramienta nueva?)
-              </li>
-            </ul>
+            <Badge color='#1677ff' count={3} showZero />
+            <span> </span>
+            ¿La Acción / Campaña / Idea es novedosa o es una acción/campaña/idea que habitualmente se implementa? (para casos de Performance Marketing: ¿utiliza una herramienta nueva?)
           </Paragraph>
           <Paragraph>
-            <ul>
-              <li>
-                ¿La Acción / Campaña / Idea es diferente a lo que hace la competencia? (Para casos de performance marketing: ¿utiliza nuevas plataformas o herramientas?)
-              </li>
-            </ul>
+            <Badge color='#1677ff' count={4} showZero />
+            <span> </span>
+            ¿La Acción / Campaña / Idea es diferente a lo que hace la competencia? (Para casos de performance marketing: ¿utiliza nuevas plataformas o herramientas?)
           </Paragraph>
           <Paragraph>
-            <ul>
-              <li>
-                ¿La Acción / Campaña / Idea presenta resultados de alto impacto en el negocio y/o en la marca?
-              </li>
-            </ul>
+            <Badge color='#1677ff' count={5} showZero />
+            <span> </span>
+            ¿La Acción / Campaña / Idea presenta resultados de alto impacto en el negocio y/o en la marca?
           </Paragraph>
         </Typography>
       </Card>
