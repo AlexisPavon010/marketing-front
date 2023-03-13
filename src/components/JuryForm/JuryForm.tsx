@@ -45,7 +45,21 @@ export const JuryForm = () => {
 
   useEffect(() => {
     setLoading(true)
-    const url = `${BASE_URL}/api/posts?status=approved&juryScore=desc`
+    let query: any = { skip, limit }
+    if (category) {
+      query = {
+        ...query,
+        category
+      }
+    }
+    if (brand) {
+      query = {
+        ...query,
+        brand
+      }
+    }
+    const urlParams = new URLSearchParams(query)
+    const url = `${BASE_URL}/api/posts?status=approved&juryScore=desc&${urlParams.toString()}`
     axios.get(url)
       .then(({ data }) => {
         setPost(data.posts.filter((post: IPost) => post.scored === true))
