@@ -231,7 +231,7 @@ export const FormScreen = () => {
               rows={4}
               showCount
               minLength={100}
-              maxLength={1000}
+              maxLength={10000}
               style={{ height: 230, marginBottom: 24 }}
               placeholder='Escriba aquí su acción, campaña o idea...'
             />
@@ -298,8 +298,8 @@ export const FormScreen = () => {
               rows={4}
               showCount
               minLength={50}
-              maxLength={1000}
-              style={{ height: 120, marginBottom: 24 }}
+              maxLength={10000}
+              style={{ height: 300, marginBottom: 24 }}
               placeholder='Escriba aquí sus resultados...'
             />
           </Form.Item>
