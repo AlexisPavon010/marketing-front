@@ -39,7 +39,7 @@ export const JuryCollapse = () => {
   const fetchData = async () => {
     setIsLoading(true)
     try {
-      const url = `${BASE_URL}/api/posts?status=approved`
+      const url = `${BASE_URL}/api/posts?status=approved&limit=1000`
       const { data } = await axios.get(url)
       set_branding(data.posts.filter((post: IPost) => post.categories === 'branding' && post.scored === false))
       set_estrategia_de_crecimiento(data.posts.filter((post: IPost) => post.categories === 'estrategia-de-crecimiento' && post.scored === false))
