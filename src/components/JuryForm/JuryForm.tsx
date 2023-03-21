@@ -63,7 +63,7 @@ export const JuryForm = () => {
     axios.get(url)
       .then(({ data }) => {
         setPost(data.posts.filter((post: IPost) => post.scored === true))
-        setCount(data.metadata.total)
+        setCount(data.posts.filter((post: IPost) => post.scored === true).length)
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false))
