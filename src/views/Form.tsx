@@ -102,12 +102,12 @@ export const FormScreen = () => {
   )
 
 
-  if (posted) return (
+  if (true) return (
     <Card style={{ maxWidth: '600px', margin: '0 auto' }}>
       <Result
-        status="success"
-        title="Su caso ha sido postulado con éxito."
-        subTitle="Haga un seguimiento del mismo desde su Dashboard principal."
+        status="info"
+        title="La inscripción de casos ha finalizado."
+        subTitle="Si tiene casos postulados, haga un seguimiento del mismo desde su Dashboard principal."
         extra={[
           <Button type="primary" key="console" onClick={() => navigate('/')}>
             Volver
