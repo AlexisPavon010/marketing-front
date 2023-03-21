@@ -30,7 +30,7 @@ export const Table = () => {
   const [brand, setBrand] = useState('')
   const [loading, setLoading] = useState(true)
   const [skip, setSkip] = useState(1)
-  const [limit, setLimit] = useState(10)
+  const [limit, setLimit] = useState(100)
   const [count, setCount] = useState(0)
   const [openModal, setOpenModal] = useState<{ visible: boolean; id: string | null }>({ visible: false, id: null })
   const navigate = useNavigate()
