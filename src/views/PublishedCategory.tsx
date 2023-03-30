@@ -118,9 +118,9 @@ export const PublishedCategory = ({ adminView = false }: { adminView?: boolean }
             {/* @ts-ignore  */}
             <Tag color={STATUSES.find(({ id }) => id === post?.status).color}>{STATUSES.find(({ id }) => id === post?.status).name}</Tag>
           </Descriptions.Item>
-          <Descriptions.Item label="Score">
+          {/* <Descriptions.Item label="Score">
             <Tag color="blue">{post?.juryScore}</Tag>
-          </Descriptions.Item>
+          </Descriptions.Item> */}
         </Descriptions>
         <Typography>
           <Title level={5}>Titulo</Title>
