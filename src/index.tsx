@@ -5,6 +5,7 @@ import esES from 'antd/locale/es_ES';
 
 import './index.scss';
 import { AppRouter } from './routers/AppRouter';
+import { ErrorComponent } from './components/ErrorComponent';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,7 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ConfigProvider locale={esES}>
-      <AppRouter />
+      <ErrorComponent />
     </ConfigProvider>
   </React.StrictMode>
 );
